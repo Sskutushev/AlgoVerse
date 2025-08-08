@@ -124,6 +124,12 @@ const ICONS = {
       <path d="M1 1H4L7.68 16.79C7.85 17.51 8.52 18 9.24 18H19.76C20.48 18 21.15 17.51 21.32 16.79L23 9H6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   ),
+  search: (props) => (
+    <svg {...props} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M21 21L16.65 16.65" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  ),
 };
 
 //=========== КОМПОНЕНТЫ UI (КНОПКИ И Т.Д.) ===========//
@@ -133,10 +139,10 @@ const Button = ({ children, variant = 'big-classic', icon: Icon, iconPosition = 
   const variantStyles = {
     'big-classic': 'px-8 py-3 bg-main text-white hover:bg-main-light active:bg-main-dark disabled:bg-grey-2 disabled:text-text-grey',
     'big-outline': 'px-8 py-3 bg-transparent border-2 border-main text-main hover:bg-main hover:text-white active:bg-main-dark disabled:border-grey-2 disabled:text-grey',
-    'big-with-arrow': `px-8 py-3 bg-main text-white hover:bg-main-light active:bg-main-dark disabled:bg-grey-2 disabled:text-text-grey ${iconPosition === 'right' ? 'flex-row-reverse' : ''}`,
+    'big-with-arrow': 'px-8 py-3 bg-main text-white hover:bg-main-light active:bg-main-dark disabled:bg-grey-2 disabled:text-text-grey',
     'small-classic': 'px-4 py-2 text-sm bg-main text-white hover:bg-main-light active:bg-main-dark disabled:bg-grey-2 disabled:text-text-grey',
     'small-outline': 'px-4 py-2 text-sm bg-transparent border border-main text-main hover:bg-main hover:text-white active:bg-main-dark disabled:border-grey-2 disabled:text-grey',
-    'small-with-arrow': `px-4 py-2 text-sm bg-main text-white hover:bg-main-light active:bg-main-dark disabled:bg-grey-2 disabled:text-text-grey ${iconPosition === 'right' ? 'flex-row-reverse' : ''}`,
+    'small-with-arrow': 'px-4 py-2 text-sm bg-main text-white hover:bg-main-light active:bg-main-dark disabled:bg-grey-2 disabled:text-text-grey',
     'text': 'text-main hover:text-main-dark disabled:text-grey font-semibold',
     'icon': 'p-2 rounded-full hover:bg-grey-2/50 active:bg-grey-2 disabled:text-grey',
   };
@@ -261,16 +267,36 @@ const LandingPage = ({ onNavigate }) => {
   const handlePrev = () => {
     if (carouselRef.current) {
       const cardWidth = carouselRef.current.children[0].offsetWidth;
-      const gapWidth = 32; // gap-8 is 2rem, which is 32px
-      carouselRef.current.scrollBy({ left: -(cardWidth + gapWidth), behavior: 'smooth' });
+      const gapWidth = 50; // gap-8 is 2rem, which is 32px, but carousel uses 50px
+      const scrollAmount = cardWidth + gapWidth;
+      const currentScrollLeft = carouselRef.current.scrollLeft;
+      const maxScrollLeft = carouselRef.current.scrollWidth - carouselRef.current.clientWidth;
+
+      if (currentScrollLeft <= 0) {
+        // If at the beginning, go to the end
+        carouselRef.current.scrollTo({ left: maxScrollLeft, behavior: 'smooth' });
+      } else {
+        // Otherwise, scroll back by one card
+        carouselRef.current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+      }
     }
   };
 
   const handleNext = () => {
     if (carouselRef.current) {
       const cardWidth = carouselRef.current.children[0].offsetWidth;
-      const gapWidth = 32; // gap-8 is 2rem, which is 32px
-      carouselRef.current.scrollBy({ left: cardWidth + gapWidth, behavior: 'smooth' });
+      const gapWidth = 50; // gap-8 is 2rem, which is 32px, but carousel uses 50px
+      const scrollAmount = cardWidth + gapWidth;
+      const currentScrollLeft = carouselRef.current.scrollLeft;
+      const maxScrollLeft = carouselRef.current.scrollWidth - carouselRef.current.clientWidth;
+
+      if (currentScrollLeft + carouselRef.current.clientWidth >= maxScrollLeft) {
+        // If at the end, go to the beginning
+        carouselRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        // Otherwise, scroll forward by one card
+        carouselRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      }
     }
   };
 
@@ -459,8 +485,8 @@ const LandingPage = ({ onNavigate }) => {
               </div>
             ))}
           </div>
-          <Button variant="icon" className="absolute top-1/2 left-0 -translate-y-1/2 bg-white/80 backdrop-blur-sm shadow-lg p-4" onClick={handlePrev} disabled={carouselRef.current?.scrollLeft === 0}><ICONS.arrowLeft /></Button>
-          <Button variant="icon" className="absolute top-1/2 right-0 -translate-y-1/2 bg-white/80 backdrop-blur-sm shadow-lg p-4" onClick={handleNext} disabled={currentIndex >= botData.length - cardsPerPage}><ICONS.arrowRight /></Button>
+          <Button variant="icon" className="absolute top-1/2 left-0 -translate-y-1/2 bg-white/80 backdrop-blur-sm shadow-lg p-4" onClick={handlePrev}><ICONS.arrowLeft /></Button>
+          <Button variant="icon" className="absolute top-1/2 right-0 -translate-y-1/2 bg-white/80 backdrop-blur-sm shadow-lg p-4" onClick={handleNext}><ICONS.arrowRight /></Button>
         </div>
       </section>
 
@@ -707,12 +733,12 @@ const Sidebar = ({ activePage, onNavigate, isMobileMenuOpen, setMobileMenuOpen }
   const sidebarContent = (
     <>
       <div className="p-4">
-        <a href="/" onClick={(e) => { e.preventDefault(); onNavigate('Лента'); setMobileMenuOpen(false); }} className="flex items-center gap-4">
+        <a href="/" onClick={(e) => { e.preventDefault(); onNavigate('Главная'); setMobileMenuOpen(false); }} className="flex items-center gap-4">
           <Logo className="h-10 w-10"/>
           <span className="font-tt-travels text-2xl font-bold text-text-black">AlgoVerse</span>
         </a>
       </div>
-      <nav className="flex-grow px-4 mt-8">
+      <nav className="flex-grow px-4 mt-8 pb-6">
         <div className="space-y-2">
           {['Лента', 'Маркетплейс', 'Персоны'].map((item) => (
             <a key={item} href="#" onClick={(e) => { e.preventDefault(); onNavigate(item); setMobileMenuOpen(false); }} className={`flex items-center gap-5 px-4 py-3 rounded-lg transition-colors ${activePage === item ? 'bg-main text-white' : 'text-text-grey hover:bg-grey-2/50 hover:text-text-black'}`}>
@@ -760,6 +786,7 @@ const Header = ({ onOpenModal, setMobileMenuOpen, onLogout }) => {
   const languages = ['Русский', 'English', 'Español', '中文'];
   const notificationsRef = useRef(null);
   const profileRef = useRef(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -805,11 +832,19 @@ const Header = ({ onOpenModal, setMobileMenuOpen, onLogout }) => {
 
   return (
     <header className="bg-white/80 backdrop-blur-sm sticky top-4 z-20 mx-4 lg:mx-0 rounded-2xl shadow-sm">
-      <div className="container mx-auto px-4 lg:px-6 h-16 flex items-center justify-between">
+      <div className="container mx-auto px-4 lg:px-6 h-16 flex items-center pl-4">
         <div className="lg:hidden"><Button variant="icon" onClick={() => setMobileMenuOpen(true)}><ICONS.burger /></Button></div>
-        <div className="lg:hidden w-8"></div>
-        <div className="hidden lg:block"></div>
-        <div className="flex items-center gap-2 md:gap-4">
+        <div className="relative flex items-center">
+          <ICONS.search className="absolute left-3 text-text-grey w-5 h-5" />
+          <input
+            type="text"
+            placeholder="Поиск"
+                          className="pl-10 pr-4 py-2 rounded-full bg-grey-1 border border-grey-2 focus:outline-none focus:border-main w-[500px] transition-all duration-300 hidden md:block"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+        <div className="flex items-center gap-2 md:gap-4 ml-auto">
           <Button variant="big-classic" onClick={onOpenModal} className="hidden md:inline-flex"><ICONS.plus className="mr-2"/> Создать</Button>
           <Button variant="icon" onClick={onOpenModal} className="md:hidden"><ICONS.plus /></Button>
           <div className="relative" ref={notificationsRef}><Button variant="icon" onClick={() => setNotificationsOpen(o => !o)}><ICONS.bell /></Button>{notificationsOpen && <NotificationDropdown />}</div>
@@ -886,10 +921,15 @@ const MainContent = ({ activePage, productCreated }) => {
         switch (activePage) {
             case 'Лента': return <div className="bg-white rounded-2xl p-8 shadow-sm"><h1 className="font-tt-travels text-3xl font-bold">Лента новостей</h1><p className="mt-4 text-text-grey">Здесь будет отображаться контент ленты.</p></div>;
             case 'Маркетплейс': return <div className="bg-white rounded-2xl p-8 shadow-sm"><h1 className="font-tt-travels text-3xl font-bold">Маркетплейс</h1><p className="mt-4 text-text-grey">Здесь будут карточки продуктов.</p></div>;
-            default: return <div className="bg-white rounded-2xl p-8 shadow-sm"><h1 className="font-tt-travels text-3xl font-bold">Добро пожаловать</h1><p className="mt-4 text-text-grey">Выберите раздел в меню слева.</p></div>;
+            case 'Персоны': return <div className="bg-white rounded-2xl p-8 shadow-sm"><h1 className="font-tt-travels text-3xl font-bold">Персоны</h1><p className="mt-4 text-text-grey">Здесь будет список персон.</p></div>;
+            case 'Рабочий стол': return <div className="bg-white rounded-2xl p-8 shadow-sm"><h1 className="font-tt-travels text-3xl font-bold">Рабочий стол</h1><p className="mt-4 text-text-grey">Здесь будет ваш рабочий стол.</p></div>;
+            case 'Сообщения': return <div className="bg-white rounded-2xl p-8 shadow-sm"><h1 className="font-tt-travels text-3xl font-bold">Сообщения</h1><p className="mt-4 text-text-grey">Здесь будут ваши сообщения.</p></div>;
+            case 'Избранное': return <div className="bg-white rounded-2xl p-8 shadow-sm"><h1 className="font-tt-travels text-3xl font-bold">Избранное</h1><p className="mt-4 text-text-grey">Здесь будут ваши избранные элементы.</p></div>;
+            case 'Помощь': return <div className="bg-white rounded-2xl p-8 shadow-sm"><h1 className="font-tt-travels text-3xl font-bold">Помощь</h1><p className="mt-4 text-text-grey">Здесь будет раздел помощи.</p></div>;
+            case 'Главная': return <div className="bg-white rounded-2xl p-8 shadow-sm"><h1 className="font-tt-travels text-3xl font-bold">Главная страница</h1><p className="mt-4 text-text-grey">Здесь будет стартовая страница с картинками, видео-инструкциями и обновлениями платформы, а также новости платформы, также будут кнопки ведущие на разделы помощи для новичков и новых пользователей.</p></div>;
         }
     }
-    return (<main className="flex-grow p-4 lg:p-0 lg:pt-4">{renderContent()}</main>);
+    return (<main className="flex-grow p-4 lg:p-0 lg:pt-[40px]">{renderContent()}</main>);
 };
 
 const Dashboard = ({ onLogout }) => {

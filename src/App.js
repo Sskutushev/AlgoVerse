@@ -386,16 +386,6 @@ const LandingPage = ({ onNavigate }) => {
             </div>
         </div>
       </section>
-        <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
-            <div className={`w-full md:w-1/2 text-left md:pl-16 order-last md:order-none ${aboutVisible ? 'slide-in-left' : 'section-hidden'}`}>
-                <h2 className="font-tt-travels text-3xl font-bold mb-4">О проекте</h2>
-                <p className="text-lg text-text-grey max-w-5xl">Мы верим, что автоматическая торговля — это не удел избранных и не магия с Уолл-стрит. Это инструмент, который должен быть доступен каждому, у кого есть идея и желание проверить её в деле. Мы создали платформу нового поколения, чтобы вы могли сосредоточиться на главном — на стратегии, логике и принятии решений, а всё остальное доверить инфраструктуре.</p>
-            </div>
-            <div className={`w-full md:w-1/2 flex justify-center mt-8 md:mt-0 order-first md:order-none ${aboutVisible ? 'slide-in-right' : 'section-hidden'}`}>
-                <img src={`${process.env.PUBLIC_URL}/container.svg`} alt="Container" className="max-w-full h-auto" />
-            </div>
-        </div>
-      </section>
 
       <section id="section1" ref={section1Ref} className={`bg-white py-20 px-6 ${section1Visible ? 'fade-in-up' : 'section-hidden'}`}>
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">

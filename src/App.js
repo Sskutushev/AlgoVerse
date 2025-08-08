@@ -358,23 +358,23 @@ const LandingPage = ({ onNavigate }) => {
       
       {/* Placeholder Sections */}
       <section id="about" ref={aboutRef} className={`bg-bg-light py-20 px-6 ${aboutVisible ? 'fade-in-up' : 'section-hidden'}`}>
-        <div className="container mx-auto flex items-center justify-between">
-            <div className={`w-1/2 text-left pl-16 ${aboutVisible ? 'slide-in-left' : 'section-hidden'}`}>
+        <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div className={`w-full md:w-1/2 text-left md:pl-16 ${aboutVisible ? 'slide-in-left' : 'section-hidden'}`}>
                 <h2 className="font-tt-travels text-3xl font-bold mb-4">О проекте</h2>
                 <p className="text-lg text-text-grey max-w-5xl">Мы верим, что автоматическая торговля — это не удел избранных и не магия с Уолл-стрит. Это инструмент, который должен быть доступен каждому, у кого есть идея и желание проверить её в деле. Мы создали платформу нового поколения, чтобы вы могли сосредоточиться на главном — на стратегии, логике и принятии решений, а всё остальное доверить инфраструктуре.</p>
             </div>
-            <div className={`w-1/2 flex justify-center ${aboutVisible ? 'slide-in-right' : 'section-hidden'}`}>
+            <div className={`w-full md:w-1/2 flex justify-center mt-8 md:mt-0 ${aboutVisible ? 'slide-in-right' : 'section-hidden'}`}>
                 <img src={`${process.env.PUBLIC_URL}/container.svg`} alt="Container" className="max-w-full h-auto" />
             </div>
         </div>
       </section>
 
       <section id="section1" ref={section1Ref} className={`bg-white py-20 px-6 ${section1Visible ? 'fade-in-up' : 'section-hidden'}`}>
-        <div className="container mx-auto flex items-center justify-between">
-            <div className={`w-1/2 flex justify-center ${section1Visible ? 'slide-in-left' : 'section-hidden'}`}>
+        <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div className={`w-full md:w-1/2 flex justify-center order-2 md:order-1 mt-8 md:mt-0 ${section1Visible ? 'slide-in-left' : 'section-hidden'}`}>
                 <img src={`${process.env.PUBLIC_URL}/34укый234ы 1.svg`} alt="Section 1 Image" className="max-w-full h-auto" />
             </div>
-            <div className={`w-1/2 text-left pl-16 ${section1Visible ? 'slide-in-right' : 'section-hidden'}`}>
+            <div className={`w-full md:w-1/2 text-left md:pl-16 order-1 md:order-2 ${section1Visible ? 'slide-in-right' : 'section-hidden'}`}>
                 <h2 className="font-tt-travels text-3xl font-bold mb-4">От идеи до результата — за часы, а не недели</h2>
                 <p className="text-lg text-text-grey mb-4">Наша платформа избавляет от рутины: никаких серверов, интеграций и технической мороки. Просто заходите, создавайте стратегию — с нуля или на базе готового решения — и запускайте её в работу. Тестирование на истории или в реальном времени, мгновенное развертывание, удобный интерфейс — всё, чтобы вы могли сосредоточиться на главном: логике и эффективности.</p>
             </div>
@@ -382,23 +382,23 @@ const LandingPage = ({ onNavigate }) => {
       </section>
 
       <section id="section2" ref={section2Ref} className={`bg-bg-light py-20 px-6 ${section2Visible ? 'fade-in-up' : 'section-hidden'}`}>
-        <div className="container mx-auto flex items-center justify-between">
-            <div className={`w-1/2 text-left pl-16 ${section2Visible ? 'slide-in-left' : 'section-hidden'}`}>
+        <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div className={`w-full md:w-1/2 text-left md:pl-16 ${section2Visible ? 'slide-in-left' : 'section-hidden'}`}>
                 <h2 className="font-tt-travels text-3xl font-bold mb-4">Больше, чем просто боты</h2>
                 <p className="text-lg text-text-grey mb-4">Мы не ограничиваемся инструментами. Мы строим экосистему: готовые боты, гибкая кастомизация, автокопирование сделок, сигналы, аналитика и дашборд, где вся активность — под контролем. Это не просто платформа, а место, где идеи превращаются в результат.</p>
             </div>
-            <div className={`w-1/2 flex justify-center ${section2Visible ? 'slide-in-right' : 'section-hidden'}`}>
+            <div className={`w-full md:w-1/2 flex justify-center mt-8 md:mt-0 ${section2Visible ? 'slide-in-right' : 'section-hidden'}`}>
                 <img src={`${process.env.PUBLIC_URL}/Frame 7460.svg`} alt="Section 2 Image" className="max-w-full h-auto" />
             </div>
         </div>
       </section>
 
       <section id="section3" ref={section3Ref} className={`bg-white py-20 px-6 ${section3Visible ? 'fade-in-up' : 'section-hidden'}`}>
-        <div className="container mx-auto flex items-center justify-between">
-            <div className={`w-1/2 flex justify-center ${section3Visible ? 'slide-in-left' : 'section-hidden'}`}>
+        <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div className={`w-full md:w-1/2 flex justify-center order-2 md:order-1 mt-8 md:mt-0 ${section3Visible ? 'slide-in-left' : 'section-hidden'}`}>
                 <img src={`${process.env.PUBLIC_URL}/followers_empty.svg`} alt="Section 3 Image" className="w-[400px] h-[250px]" />
             </div>
-            <div className={`w-1/2 text-left pl-16 ${section3Visible ? 'slide-in-right' : 'section-hidden'}`}>
+            <div className={`w-full md:w-1/2 text-left md:pl-16 order-1 md:order-2 ${section3Visible ? 'slide-in-right' : 'section-hidden'}`}>
                 <h2 className="font-tt-travels text-3xl font-bold mb-4">Кто мы</h2>
                 <p className="text-lg text-text-grey">Мы — команда, которая знает рынок изнутри. За плечами годы в алгоритмической торговле и управлении фондами с капиталом свыше 100 миллионов долларов. Мы запускали стратегии в реальный бой, переживали просадки, били рекорды и каждый день принимали решения, от которых зависели чужие деньги. Нас объединило разочарование в громоздких и устарелых решениях. Мы создаём платформу не как ещё один инструмент, а как среду для тех, кто ценит скорость, гибкость и контроль. Здесь всё построено вокруг смысла: от первой строки кода до последней кнопки в интерфейсе.</p>
             </div>
@@ -406,13 +406,13 @@ const LandingPage = ({ onNavigate }) => {
       </section>
 
       <section id="section4" ref={section4Ref} className={`bg-bg-light py-20 px-6 ${section4Visible ? 'fade-in-up' : 'section-hidden'}`}>
-        <div className="container mx-auto flex items-center justify-between">
-            <div className={`w-1/2 text-left pl-16 ${section4Visible ? 'slide-in-left' : 'section-hidden'}`}>
+        <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div className={`w-full md:w-1/2 text-left md:pl-16 ${section4Visible ? 'slide-in-left' : 'section-hidden'}`}>
                 <h2 className="font-tt-travels text-3xl font-bold mb-4">Наше видение</h2>
                 <p className="text-lg text-text-grey mb-4">Мы верим в мир, где алгоритмическая торговля — это инструмент для всех. Где стратегии можно тестировать и запускать за часы, без технических сложностей. Где алгоритмы живут, развиваются и работают на вас.</p>
                 <p className="text-lg text-text-grey" style={{ marginTop: '15px' }}>И если вам близко это будущее — добро пожаловать.</p>
             </div>
-            <div className={`w-1/2 flex justify-center ${section4Visible ? 'slide-in-right' : 'section-hidden'}`}>
+            <div className={`w-full md:w-1/2 flex justify-center mt-8 md:mt-0 ${section4Visible ? 'slide-in-right' : 'section-hidden'}`}>
                 <img src={`${process.env.PUBLIC_URL}/Frame 7461.svg`} alt="Section 4 Image" className="max-w-full h-auto" />
             </div>
         </div>
@@ -420,7 +420,7 @@ const LandingPage = ({ onNavigate }) => {
 
       <section id="features" ref={featuresRef} className={`container mx-auto px-6 py-20 ${featuresVisible ? 'fade-in-up' : 'section-hidden'}`}>
         <h2 className="font-tt-travels text-4xl font-bold text-center mb-12">Что мы предлагаем?</h2>
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="bg-bg-light p-8 rounded-2xl text-center ${featuresVisible ? 'fade-in-up' : 'section-hidden'}">
             <img src={`${process.env.PUBLIC_URL}/34653 1.svg`} alt="Feature Icon" className="w-[70px] h-[70px] mx-auto mb-4" />
             <h3 className="font-tt-travels text-2xl font-bold mb-4">Свои боты</h3>
@@ -467,7 +467,7 @@ const LandingPage = ({ onNavigate }) => {
             }}
           >
             {botData.map((bot, index) => (
-              <div key={index} className="flex-none w-[calc((100%-100px)/3)] bg-white p-6 rounded-2xl shadow-lg flex flex-col snap-start">
+              <div key={index} className="flex-none w-full sm:w-1/2 md:w-1/3 lg:w-[calc((100%-100px)/3)] bg-white p-6 rounded-2xl shadow-lg flex flex-col snap-start">
                 <div className="relative mb-4">
                   <img src={bot.image} alt={bot.name} className="w-full h-32 object-cover rounded-lg"/>
                   <div className="absolute top-2 left-2 flex items-center bg-white rounded-full px-2 py-1 shadow-md">
@@ -558,13 +558,13 @@ const LoginPage = ({ onNavigate }) => {
   };
 
   return (
-    <div className="bg-bg-light min-h-screen flex items-center justify-center p-6 relative">
-      <div className="absolute top-6 left-6">
+    <div className="bg-bg-light min-h-screen flex items-center justify-center p-4 sm:p-6 relative">
+      <div className="absolute top-4 left-4 sm:top-6 sm:top-6 sm:left-6">
         <Button variant="icon" onClick={handleGoBack} className="bg-grey-2/50 hover:bg-grey-2 active:bg-grey-3">
           <ICONS.arrowLeft />
         </Button>
       </div>
-      <div className="bg-white p-8 rounded-2xl shadow-lg max-w-md w-full text-center">
+      <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-lg max-w-sm w-full text-center">
         <h1 className="font-tt-travels text-3xl font-bold mb-2">Вход</h1>
         <p className="text-text-grey mb-6">Войдите в свой аккаунт.</p>
         <form onSubmit={handleLogin}>
@@ -674,13 +674,13 @@ const RegistrationPage = ({ onNavigate }) => {
   };
 
   return (
-    <div className="bg-bg-light min-h-screen flex items-center justify-center p-6 relative">
-      <div className="absolute top-6 left-6">
+    <div className="bg-bg-light min-h-screen flex items-center justify-center p-4 sm:p-6 relative">
+      <div className="absolute top-4 left-4 sm:top-6 sm:left-6">
         <Button variant="icon" onClick={handleGoBack} className="bg-grey-2/50 hover:bg-grey-2 active:bg-grey-3">
           <ICONS.arrowLeft />
         </Button>
       </div>
-      <div className="bg-white p-8 rounded-2xl shadow-lg max-w-md w-full text-center">
+      <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-lg max-w-sm w-full text-center">
         <h1 className="font-tt-travels text-3xl font-bold mb-2">Регистрация</h1>
         <p className="text-text-grey mb-6">Создайте аккаунт, чтобы начать.</p>
         <form onSubmit={handleRegister}>
@@ -832,14 +832,14 @@ const Header = ({ onOpenModal, setMobileMenuOpen, onLogout }) => {
 
   return (
     <header className="bg-white/80 backdrop-blur-sm sticky top-4 z-20 mx-4 lg:mx-0 rounded-2xl shadow-sm">
-      <div className="container mx-auto px-4 lg:px-6 h-16 flex items-center pl-4">
+      <div className="container mx-auto px-4 lg:px-6 h-16 flex items-center justify-between md:justify-start md:gap-4">
         <div className="lg:hidden"><Button variant="icon" onClick={() => setMobileMenuOpen(true)}><ICONS.burger /></Button></div>
-        <div className="relative flex items-center">
+        <div className="relative flex items-center flex-grow md:flex-grow-0">
           <ICONS.search className="absolute left-3 text-text-grey w-5 h-5" />
           <input
             type="text"
             placeholder="Поиск"
-                          className="pl-10 pr-4 py-2 rounded-full bg-grey-1 border border-grey-2 focus:outline-none focus:border-main w-[500px] transition-all duration-300 hidden md:block"
+            className="pl-10 pr-4 py-2 rounded-full bg-grey-1 border border-grey-2 focus:outline-none focus:border-main w-full md:w-[700px] transition-all duration-300"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />

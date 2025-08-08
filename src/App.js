@@ -159,6 +159,7 @@ const Button = ({ children, variant = 'big-classic', icon: Icon, iconPosition = 
 //=========== НОВЫЕ КОМПОНЕНТЫ: ЛЕНДИНГ И РЕГИСТРАЦИЯ ===========//
 
 const LandingPage = ({ onNavigate }) => {
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const botImages = [
     "https://placehold.co/300x150/E0F2F7/000000?text=Finance+Chart+1",
     "https://placehold.co/300x150/E8F5E9/000000?text=Stock+Market+2",

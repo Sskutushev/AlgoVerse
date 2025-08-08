@@ -332,19 +332,37 @@ const LandingPage = ({ onNavigate }) => {
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           <a href="#" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center gap-4">
             <Logo className="h-10 w-10"/>
-            <span className="font-tt-travels text-2xl font-bold">AlgoVerse</span>
+            <span className="font-tt-travels text-2xl font-bold hidden md:inline">AlgoVerse</span>
           </a>
           <nav className="hidden md:flex items-center gap-8">
             <a href="#about" onClick={(e) => { e.preventDefault(); document.getElementById('about').scrollIntoView({ behavior: 'smooth' }); }} className="hover:text-main">О нас</a>
             <a href="#features" onClick={(e) => { e.preventDefault(); document.getElementById('features').scrollIntoView({ behavior: 'smooth' }); }} className="hover:text-main">Возможности</a>
             <a href="#showcase" onClick={(e) => { e.preventDefault(); document.getElementById('showcase').scrollIntoView({ behavior: 'smooth' }); }} className="hover:text-main">Витрина</a>
           </nav>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 md:hidden">
+            <Button variant="icon" onClick={() => setMobileMenuOpen(true)}><ICONS.burger /></Button>
+          </div>
+          <div className="hidden md:flex items-center gap-4">
             <Button variant="text" onClick={() => onNavigate('app')}>Войти</Button>
             <Button variant="big-classic" onClick={() => onNavigate('register')}>Регистрация</Button>
           </div>
         </div>
       </header>
+
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 bg-black/50 z-40 md:hidden" onClick={() => setMobileMenuOpen(false)}>
+          <div className="absolute right-0 top-0 h-full w-64 bg-white shadow-lg p-6 flex flex-col items-start space-y-4" onClick={(e) => e.stopPropagation()}>
+            <Button variant="icon" onClick={() => setMobileMenuOpen(false)} className="self-end"><ICONS.close /></Button>
+            <a href="#about" onClick={(e) => { e.preventDefault(); document.getElementById('about').scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }} className="text-lg font-semibold hover:text-main w-full text-left">О нас</a>
+            <a href="#features" onClick={(e) => { e.preventDefault(); document.getElementById('features').scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }} className="text-lg font-semibold hover:text-main w-full text-left">Возможности</a>
+            <a href="#showcase" onClick={(e) => { e.preventDefault(); document.getElementById('showcase').scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }} className="text-lg font-semibold hover:text-main w-full text-left">Витрина</a>
+            <div className="w-full border-t border-grey-2 my-4"></div>
+            <Button variant="text" onClick={() => { onNavigate('app'); setMobileMenuOpen(false); }} className="w-full text-left">Войти</Button>
+            <Button variant="big-classic" onClick={() => { onNavigate('register'); setMobileMenuOpen(false); }} className="w-full">Регистрация</Button>
+          </div>
+        </div>
+      )}
 
       {/* Hero Section */}
       <section id="hero" ref={heroRef} className={`text-center py-20 px-6 bg-bg-light ${heroVisible ? 'fade-in-up' : 'section-hidden'}`} style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/backgroundImage.svg)`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
@@ -363,7 +381,12 @@ const LandingPage = ({ onNavigate }) => {
                 <h2 className="font-tt-travels text-3xl font-bold mb-4">О проекте</h2>
                 <p className="text-lg text-text-grey max-w-5xl">Мы верим, что автоматическая торговля — это не удел избранных и не магия с Уолл-стрит. Это инструмент, который должен быть доступен каждому, у кого есть идея и желание проверить её в деле. Мы создали платформу нового поколения, чтобы вы могли сосредоточиться на главном — на стратегии, логике и принятии решений, а всё остальное доверить инфраструктуре.</p>
             </div>
-            <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div className={`w-full md:w-1/2 flex justify-center mt-8 md:mt-0 order-first md:order-none ${aboutVisible ? 'slide-in-right' : 'section-hidden'}`}>
+                <img src={`${process.env.PUBLIC_URL}/container.svg`} alt="Container" className="max-w-full h-auto" />
+            </div>
+        </div>
+      </section>
+        <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
             <div className={`w-full md:w-1/2 text-left md:pl-16 order-last md:order-none ${aboutVisible ? 'slide-in-left' : 'section-hidden'}`}>
                 <h2 className="font-tt-travels text-3xl font-bold mb-4">О проекте</h2>
                 <p className="text-lg text-text-grey max-w-5xl">Мы верим, что автоматическая торговля — это не удел избранных и не магия с Уолл-стрит. Это инструмент, который должен быть доступен каждому, у кого есть идея и желание проверить её в деле. Мы создали платформу нового поколения, чтобы вы могли сосредоточиться на главном — на стратегии, логике и принятии решений, а всё остальное доверить инфраструктуре.</p>
@@ -371,7 +394,6 @@ const LandingPage = ({ onNavigate }) => {
             <div className={`w-full md:w-1/2 flex justify-center mt-8 md:mt-0 order-first md:order-none ${aboutVisible ? 'slide-in-right' : 'section-hidden'}`}>
                 <img src={`${process.env.PUBLIC_URL}/container.svg`} alt="Container" className="max-w-full h-auto" />
             </div>
-        </div>
         </div>
       </section>
 

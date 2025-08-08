@@ -359,22 +359,28 @@ const LandingPage = ({ onNavigate }) => {
       {/* Placeholder Sections */}
       <section id="about" ref={aboutRef} className={`bg-bg-light py-20 px-6 ${aboutVisible ? 'fade-in-up' : 'section-hidden'}`}>
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
-            <div className={`w-full md:w-1/2 text-left md:pl-16 ${aboutVisible ? 'slide-in-left' : 'section-hidden'}`}>
+            <div className={`w-full md:w-1/2 text-left md:pl-16 order-last md:order-none ${aboutVisible ? 'slide-in-left' : 'section-hidden'}`}>
                 <h2 className="font-tt-travels text-3xl font-bold mb-4">О проекте</h2>
                 <p className="text-lg text-text-grey max-w-5xl">Мы верим, что автоматическая торговля — это не удел избранных и не магия с Уолл-стрит. Это инструмент, который должен быть доступен каждому, у кого есть идея и желание проверить её в деле. Мы создали платформу нового поколения, чтобы вы могли сосредоточиться на главном — на стратегии, логике и принятии решений, а всё остальное доверить инфраструктуре.</p>
             </div>
-            <div className={`w-full md:w-1/2 flex justify-center mt-8 md:mt-0 ${aboutVisible ? 'slide-in-right' : 'section-hidden'}`}>
+            <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div className={`w-full md:w-1/2 text-left md:pl-16 order-last md:order-none ${aboutVisible ? 'slide-in-left' : 'section-hidden'}`}>
+                <h2 className="font-tt-travels text-3xl font-bold mb-4">О проекте</h2>
+                <p className="text-lg text-text-grey max-w-5xl">Мы верим, что автоматическая торговля — это не удел избранных и не магия с Уолл-стрит. Это инструмент, который должен быть доступен каждому, у кого есть идея и желание проверить её в деле. Мы создали платформу нового поколения, чтобы вы могли сосредоточиться на главном — на стратегии, логике и принятии решений, а всё остальное доверить инфраструктуре.</p>
+            </div>
+            <div className={`w-full md:w-1/2 flex justify-center mt-8 md:mt-0 order-first md:order-none ${aboutVisible ? 'slide-in-right' : 'section-hidden'}`}>
                 <img src={`${process.env.PUBLIC_URL}/container.svg`} alt="Container" className="max-w-full h-auto" />
             </div>
+        </div>
         </div>
       </section>
 
       <section id="section1" ref={section1Ref} className={`bg-white py-20 px-6 ${section1Visible ? 'fade-in-up' : 'section-hidden'}`}>
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
-            <div className={`w-full md:w-1/2 flex justify-center order-2 md:order-1 mt-8 md:mt-0 ${section1Visible ? 'slide-in-left' : 'section-hidden'}`}>
+            <div className={`w-full md:w-1/2 flex justify-center order-first md:order-none mt-8 md:mt-0 ${section1Visible ? 'slide-in-left' : 'section-hidden'}`}>
                 <img src={`${process.env.PUBLIC_URL}/34укый234ы 1.svg`} alt="Section 1 Image" className="max-w-full h-auto" />
             </div>
-            <div className={`w-full md:w-1/2 text-left md:pl-16 order-1 md:order-2 ${section1Visible ? 'slide-in-right' : 'section-hidden'}`}>
+            <div className={`w-full md:w-1/2 text-left md:pl-16 order-last md:order-none ${section1Visible ? 'slide-in-right' : 'section-hidden'}`}>
                 <h2 className="font-tt-travels text-3xl font-bold mb-4">От идеи до результата — за часы, а не недели</h2>
                 <p className="text-lg text-text-grey mb-4">Наша платформа избавляет от рутины: никаких серверов, интеграций и технической мороки. Просто заходите, создавайте стратегию — с нуля или на базе готового решения — и запускайте её в работу. Тестирование на истории или в реальном времени, мгновенное развертывание, удобный интерфейс — всё, чтобы вы могли сосредоточиться на главном: логике и эффективности.</p>
             </div>
@@ -383,11 +389,11 @@ const LandingPage = ({ onNavigate }) => {
 
       <section id="section2" ref={section2Ref} className={`bg-bg-light py-20 px-6 ${section2Visible ? 'fade-in-up' : 'section-hidden'}`}>
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
-            <div className={`w-full md:w-1/2 text-left md:pl-16 ${section2Visible ? 'slide-in-left' : 'section-hidden'}`}>
+            <div className={`w-full md:w-1/2 text-left md:pl-16 order-last md:order-none ${section2Visible ? 'slide-in-left' : 'section-hidden'}`}>
                 <h2 className="font-tt-travels text-3xl font-bold mb-4">Больше, чем просто боты</h2>
                 <p className="text-lg text-text-grey mb-4">Мы не ограничиваемся инструментами. Мы строим экосистему: готовые боты, гибкая кастомизация, автокопирование сделок, сигналы, аналитика и дашборд, где вся активность — под контролем. Это не просто платформа, а место, где идеи превращаются в результат.</p>
             </div>
-            <div className={`w-full md:w-1/2 flex justify-center mt-8 md:mt-0 ${section2Visible ? 'slide-in-right' : 'section-hidden'}`}>
+            <div className={`w-full md:w-1/2 flex justify-center mt-8 md:mt-0 order-first md:order-none ${section2Visible ? 'slide-in-right' : 'section-hidden'}`}>
                 <img src={`${process.env.PUBLIC_URL}/Frame 7460.svg`} alt="Section 2 Image" className="max-w-full h-auto" />
             </div>
         </div>
@@ -395,10 +401,10 @@ const LandingPage = ({ onNavigate }) => {
 
       <section id="section3" ref={section3Ref} className={`bg-white py-20 px-6 ${section3Visible ? 'fade-in-up' : 'section-hidden'}`}>
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
-            <div className={`w-full md:w-1/2 flex justify-center order-2 md:order-1 mt-8 md:mt-0 ${section3Visible ? 'slide-in-left' : 'section-hidden'}`}>
+            <div className={`w-full md:w-1/2 flex justify-center order-first md:order-none mt-8 md:mt-0 ${section3Visible ? 'slide-in-left' : 'section-hidden'}`}>
                 <img src={`${process.env.PUBLIC_URL}/followers_empty.svg`} alt="Section 3 Image" className="w-[400px] h-[250px]" />
             </div>
-            <div className={`w-full md:w-1/2 text-left md:pl-16 order-1 md:order-2 ${section3Visible ? 'slide-in-right' : 'section-hidden'}`}>
+            <div className={`w-full md:w-1/2 text-left md:pl-16 order-last md:order-none ${section3Visible ? 'slide-in-right' : 'section-hidden'}`}>
                 <h2 className="font-tt-travels text-3xl font-bold mb-4">Кто мы</h2>
                 <p className="text-lg text-text-grey">Мы — команда, которая знает рынок изнутри. За плечами годы в алгоритмической торговле и управлении фондами с капиталом свыше 100 миллионов долларов. Мы запускали стратегии в реальный бой, переживали просадки, били рекорды и каждый день принимали решения, от которых зависели чужие деньги. Нас объединило разочарование в громоздких и устарелых решениях. Мы создаём платформу не как ещё один инструмент, а как среду для тех, кто ценит скорость, гибкость и контроль. Здесь всё построено вокруг смысла: от первой строки кода до последней кнопки в интерфейсе.</p>
             </div>
@@ -407,12 +413,12 @@ const LandingPage = ({ onNavigate }) => {
 
       <section id="section4" ref={section4Ref} className={`bg-bg-light py-20 px-6 ${section4Visible ? 'fade-in-up' : 'section-hidden'}`}>
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
-            <div className={`w-full md:w-1/2 text-left md:pl-16 ${section4Visible ? 'slide-in-left' : 'section-hidden'}`}>
-                <h2 className="font-tt-travels text-3xl font-bold mb-4">Наше видение</h2>
+            <div className={`w-full md:w-1/2 text-left md:pl-16 order-last md:order-none ${section4Visible ? 'slide-in-left' : 'section-hidden'}`}>
+                <h2 className="font-tt-travels text-3xl font-bold mb-4">Наше видедение</h2>
                 <p className="text-lg text-text-grey mb-4">Мы верим в мир, где алгоритмическая торговля — это инструмент для всех. Где стратегии можно тестировать и запускать за часы, без технических сложностей. Где алгоритмы живут, развиваются и работают на вас.</p>
                 <p className="text-lg text-text-grey" style={{ marginTop: '15px' }}>И если вам близко это будущее — добро пожаловать.</p>
             </div>
-            <div className={`w-full md:w-1/2 flex justify-center mt-8 md:mt-0 ${section4Visible ? 'slide-in-right' : 'section-hidden'}`}>
+            <div className={`w-full md:w-1/2 flex justify-center mt-8 md:mt-0 order-first md:order-none ${section4Visible ? 'slide-in-right' : 'section-hidden'}`}>
                 <img src={`${process.env.PUBLIC_URL}/Frame 7461.svg`} alt="Section 4 Image" className="max-w-full h-auto" />
             </div>
         </div>

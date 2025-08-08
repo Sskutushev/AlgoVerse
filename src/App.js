@@ -798,7 +798,7 @@ const Sidebar = ({ activePage, onNavigate, isMobileMenuOpen, setMobileMenuOpen }
 };
 
 
-const Header = ({ onOpenModal, setMobileMenuOpen, onLogout }) => {
+const Header = ({ onOpenModal, setMobileMenuOpen, onLogout, isMobileMenuOpen }) => {
   const [notificationsOpen, setNotificationsOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const [language, setLanguage] = useState('Русский');
@@ -968,7 +968,7 @@ const Dashboard = ({ onLogout }) => {
       <div className="flex">
         <Sidebar activePage={activePage} onNavigate={handleNavigate} isMobileMenuOpen={isMobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
         <div className="flex-grow flex flex-col lg:ml-4">
-          <Header onOpenModal={() => setModalOpen(true)} setMobileMenuOpen={setMobileMenuOpen} onLogout={onLogout} />
+          <Header onOpenModal={() => setModalOpen(true)} setMobileMenuOpen={setMobileMenuOpen} onLogout={onLogout} isMobileMenuOpen={isMobileMenuOpen} />
           <MainContent activePage={activePage} productCreated={productCreated} />
         </div>
       </div>

@@ -159,7 +159,6 @@ const Button = ({ children, variant = 'big-classic', icon: Icon, iconPosition = 
 //=========== НОВЫЕ КОМПОНЕНТЫ: ЛЕНДИНГ И РЕГИСТРАЦИЯ ===========//
 
 const LandingPage = ({ onNavigate }) => {
-  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const botImages = [
     "https://placehold.co/300x150/E0F2F7/000000?text=Finance+Chart+1",
     "https://placehold.co/300x150/E8F5E9/000000?text=Stock+Market+2",
@@ -333,37 +332,19 @@ const LandingPage = ({ onNavigate }) => {
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           <a href="#" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center gap-4">
             <Logo className="h-10 w-10"/>
-            <span className="font-tt-travels text-2xl font-bold hidden md:inline">AlgoVerse</span>
+            <span className="font-tt-travels text-2xl font-bold">AlgoVerse</span>
           </a>
           <nav className="hidden md:flex items-center gap-8">
             <a href="#about" onClick={(e) => { e.preventDefault(); document.getElementById('about').scrollIntoView({ behavior: 'smooth' }); }} className="hover:text-main">О нас</a>
             <a href="#features" onClick={(e) => { e.preventDefault(); document.getElementById('features').scrollIntoView({ behavior: 'smooth' }); }} className="hover:text-main">Возможности</a>
             <a href="#showcase" onClick={(e) => { e.preventDefault(); document.getElementById('showcase').scrollIntoView({ behavior: 'smooth' }); }} className="hover:text-main">Витрина</a>
           </nav>
-          <div className="flex items-center gap-4 md:hidden">
-            <Button variant="icon" onClick={() => setMobileMenuOpen(true)}><ICONS.burger /></Button>
-          </div>
-          <div className="hidden md:flex items-center gap-4">
+          <div className="flex items-center gap-4">
             <Button variant="text" onClick={() => onNavigate('app')}>Войти</Button>
             <Button variant="big-classic" onClick={() => onNavigate('register')}>Регистрация</Button>
           </div>
         </div>
       </header>
-
-      {/* Mobile Menu Overlay */}
-      {isMobileMenuOpen && (
-        <div className="fixed inset-0 bg-black/50 z-40 md:hidden" onClick={() => setMobileMenuOpen(false)}>
-          <div className="absolute right-0 top-0 h-full w-64 bg-white shadow-lg p-6 flex flex-col items-start space-y-4" onClick={(e) => e.stopPropagation()}>
-            <Button variant="icon" onClick={() => setMobileMenuOpen(false)} className="self-end"><ICONS.close /></Button>
-            <a href="#about" onClick={(e) => { e.preventDefault(); document.getElementById('about').scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }} className="text-lg font-semibold hover:text-main w-full text-left">О нас</a>
-            <a href="#features" onClick={(e) => { e.preventDefault(); document.getElementById('features').scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }} className="text-lg font-semibold hover:text-main w-full text-left">Возможности</a>
-            <a href="#showcase" onClick={(e) => { e.preventDefault(); document.getElementById('showcase').scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }} className="text-lg font-semibold hover:text-main w-full text-left">Витрина</a>
-            <div className="w-full border-t border-grey-2 my-4"></div>
-            <Button variant="text" onClick={() => { onNavigate('app'); setMobileMenuOpen(false); }} className="w-full text-left">Войти</Button>
-            <Button variant="big-classic" onClick={() => { onNavigate('register'); setMobileMenuOpen(false); }} className="w-full">Регистрация</Button>
-          </div>
-        </div>
-      )}
 
       {/* Hero Section */}
       <section id="hero" ref={heroRef} className={`text-center py-20 px-6 bg-bg-light ${heroVisible ? 'fade-in-up' : 'section-hidden'}`} style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/backgroundImage.svg)`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
@@ -378,11 +359,11 @@ const LandingPage = ({ onNavigate }) => {
       {/* Placeholder Sections */}
       <section id="about" ref={aboutRef} className={`bg-bg-light py-20 px-6 ${aboutVisible ? 'fade-in-up' : 'section-hidden'}`}>
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
-            <div className={`w-full md:w-1/2 text-left md:pl-16 order-last md:order-none ${aboutVisible ? 'slide-in-left' : 'section-hidden'}`}>
+            <div className={`w-full md:w-1/2 text-left md:pl-16 ${aboutVisible ? 'slide-in-left' : 'section-hidden'}`}>
                 <h2 className="font-tt-travels text-3xl font-bold mb-4">О проекте</h2>
                 <p className="text-lg text-text-grey max-w-5xl">Мы верим, что автоматическая торговля — это не удел избранных и не магия с Уолл-стрит. Это инструмент, который должен быть доступен каждому, у кого есть идея и желание проверить её в деле. Мы создали платформу нового поколения, чтобы вы могли сосредоточиться на главном — на стратегии, логике и принятии решений, а всё остальное доверить инфраструктуре.</p>
             </div>
-            <div className={`w-full md:w-1/2 flex justify-center mt-8 md:mt-0 order-first md:order-none ${aboutVisible ? 'slide-in-right' : 'section-hidden'}`}>
+            <div className={`w-full md:w-1/2 flex justify-center mt-8 md:mt-0 ${aboutVisible ? 'slide-in-right' : 'section-hidden'}`}>
                 <img src={`${process.env.PUBLIC_URL}/container.svg`} alt="Container" className="max-w-full h-auto" />
             </div>
         </div>
@@ -390,10 +371,10 @@ const LandingPage = ({ onNavigate }) => {
 
       <section id="section1" ref={section1Ref} className={`bg-white py-20 px-6 ${section1Visible ? 'fade-in-up' : 'section-hidden'}`}>
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
-            <div className={`w-full md:w-1/2 flex justify-center order-first md:order-none mt-8 md:mt-0 ${section1Visible ? 'slide-in-left' : 'section-hidden'}`}>
+            <div className={`w-full md:w-1/2 flex justify-center order-2 md:order-1 mt-8 md:mt-0 ${section1Visible ? 'slide-in-left' : 'section-hidden'}`}>
                 <img src={`${process.env.PUBLIC_URL}/34укый234ы 1.svg`} alt="Section 1 Image" className="max-w-full h-auto" />
             </div>
-            <div className={`w-full md:w-1/2 text-left md:pl-16 order-last md:order-none ${section1Visible ? 'slide-in-right' : 'section-hidden'}`}>
+            <div className={`w-full md:w-1/2 text-left md:pl-16 order-1 md:order-2 ${section1Visible ? 'slide-in-right' : 'section-hidden'}`}>
                 <h2 className="font-tt-travels text-3xl font-bold mb-4">От идеи до результата — за часы, а не недели</h2>
                 <p className="text-lg text-text-grey mb-4">Наша платформа избавляет от рутины: никаких серверов, интеграций и технической мороки. Просто заходите, создавайте стратегию — с нуля или на базе готового решения — и запускайте её в работу. Тестирование на истории или в реальном времени, мгновенное развертывание, удобный интерфейс — всё, чтобы вы могли сосредоточиться на главном: логике и эффективности.</p>
             </div>
@@ -402,11 +383,11 @@ const LandingPage = ({ onNavigate }) => {
 
       <section id="section2" ref={section2Ref} className={`bg-bg-light py-20 px-6 ${section2Visible ? 'fade-in-up' : 'section-hidden'}`}>
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
-            <div className={`w-full md:w-1/2 text-left md:pl-16 order-last md:order-none ${section2Visible ? 'slide-in-left' : 'section-hidden'}`}>
+            <div className={`w-full md:w-1/2 text-left md:pl-16 ${section2Visible ? 'slide-in-left' : 'section-hidden'}`}>
                 <h2 className="font-tt-travels text-3xl font-bold mb-4">Больше, чем просто боты</h2>
                 <p className="text-lg text-text-grey mb-4">Мы не ограничиваемся инструментами. Мы строим экосистему: готовые боты, гибкая кастомизация, автокопирование сделок, сигналы, аналитика и дашборд, где вся активность — под контролем. Это не просто платформа, а место, где идеи превращаются в результат.</p>
             </div>
-            <div className={`w-full md:w-1/2 flex justify-center mt-8 md:mt-0 order-first md:order-none ${section2Visible ? 'slide-in-right' : 'section-hidden'}`}>
+            <div className={`w-full md:w-1/2 flex justify-center mt-8 md:mt-0 ${section2Visible ? 'slide-in-right' : 'section-hidden'}`}>
                 <img src={`${process.env.PUBLIC_URL}/Frame 7460.svg`} alt="Section 2 Image" className="max-w-full h-auto" />
             </div>
         </div>
@@ -414,10 +395,10 @@ const LandingPage = ({ onNavigate }) => {
 
       <section id="section3" ref={section3Ref} className={`bg-white py-20 px-6 ${section3Visible ? 'fade-in-up' : 'section-hidden'}`}>
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
-            <div className={`w-full md:w-1/2 flex justify-center order-first md:order-none mt-8 md:mt-0 ${section3Visible ? 'slide-in-left' : 'section-hidden'}`}>
+            <div className={`w-full md:w-1/2 flex justify-center order-2 md:order-1 mt-8 md:mt-0 ${section3Visible ? 'slide-in-left' : 'section-hidden'}`}>
                 <img src={`${process.env.PUBLIC_URL}/followers_empty.svg`} alt="Section 3 Image" className="w-[400px] h-[250px]" />
             </div>
-            <div className={`w-full md:w-1/2 text-left md:pl-16 order-last md:order-none ${section3Visible ? 'slide-in-right' : 'section-hidden'}`}>
+            <div className={`w-full md:w-1/2 text-left md:pl-16 order-1 md:order-2 ${section3Visible ? 'slide-in-right' : 'section-hidden'}`}>
                 <h2 className="font-tt-travels text-3xl font-bold mb-4">Кто мы</h2>
                 <p className="text-lg text-text-grey">Мы — команда, которая знает рынок изнутри. За плечами годы в алгоритмической торговле и управлении фондами с капиталом свыше 100 миллионов долларов. Мы запускали стратегии в реальный бой, переживали просадки, били рекорды и каждый день принимали решения, от которых зависели чужие деньги. Нас объединило разочарование в громоздких и устарелых решениях. Мы создаём платформу не как ещё один инструмент, а как среду для тех, кто ценит скорость, гибкость и контроль. Здесь всё построено вокруг смысла: от первой строки кода до последней кнопки в интерфейсе.</p>
             </div>
@@ -426,12 +407,12 @@ const LandingPage = ({ onNavigate }) => {
 
       <section id="section4" ref={section4Ref} className={`bg-bg-light py-20 px-6 ${section4Visible ? 'fade-in-up' : 'section-hidden'}`}>
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
-            <div className={`w-full md:w-1/2 text-left md:pl-16 order-last md:order-none ${section4Visible ? 'slide-in-left' : 'section-hidden'}`}>
-                <h2 className="font-tt-travels text-3xl font-bold mb-4">Наше видедение</h2>
+            <div className={`w-full md:w-1/2 text-left md:pl-16 ${section4Visible ? 'slide-in-left' : 'section-hidden'}`}>
+                <h2 className="font-tt-travels text-3xl font-bold mb-4">Наше видение</h2>
                 <p className="text-lg text-text-grey mb-4">Мы верим в мир, где алгоритмическая торговля — это инструмент для всех. Где стратегии можно тестировать и запускать за часы, без технических сложностей. Где алгоритмы живут, развиваются и работают на вас.</p>
                 <p className="text-lg text-text-grey" style={{ marginTop: '15px' }}>И если вам близко это будущее — добро пожаловать.</p>
             </div>
-            <div className={`w-full md:w-1/2 flex justify-center mt-8 md:mt-0 order-first md:order-none ${section4Visible ? 'slide-in-right' : 'section-hidden'}`}>
+            <div className={`w-full md:w-1/2 flex justify-center mt-8 md:mt-0 ${section4Visible ? 'slide-in-right' : 'section-hidden'}`}>
                 <img src={`${process.env.PUBLIC_URL}/Frame 7461.svg`} alt="Section 4 Image" className="max-w-full h-auto" />
             </div>
         </div>
@@ -693,13 +674,13 @@ const RegistrationPage = ({ onNavigate }) => {
   };
 
   return (
-    <div className="bg-bg-light min-h-screen flex items-center justify-center p-4 sm:p-6 relative">
-      <div className="absolute top-4 left-4 sm:top-6 sm:left-6">
+    <div className="bg-bg-light min-h-screen flex items-center justify-center p-6 relative">
+      <div className="absolute top-6 left-6">
         <Button variant="icon" onClick={handleGoBack} className="bg-grey-2/50 hover:bg-grey-2 active:bg-grey-3">
           <ICONS.arrowLeft />
         </Button>
       </div>
-      <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-lg max-w-sm w-full text-center">
+      <div className="bg-white p-8 rounded-2xl shadow-lg max-w-md w-full text-center">
         <h1 className="font-tt-travels text-3xl font-bold mb-2">Регистрация</h1>
         <p className="text-text-grey mb-6">Создайте аккаунт, чтобы начать.</p>
         <form onSubmit={handleRegister}>
@@ -798,7 +779,7 @@ const Sidebar = ({ activePage, onNavigate, isMobileMenuOpen, setMobileMenuOpen }
 };
 
 
-const Header = ({ onOpenModal, setMobileMenuOpen, onLogout, isMobileMenuOpen }) => {
+const Header = ({ onOpenModal, setMobileMenuOpen, onLogout }) => {
   const [notificationsOpen, setNotificationsOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const [language, setLanguage] = useState('Русский');
@@ -968,7 +949,7 @@ const Dashboard = ({ onLogout }) => {
       <div className="flex">
         <Sidebar activePage={activePage} onNavigate={handleNavigate} isMobileMenuOpen={isMobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
         <div className="flex-grow flex flex-col lg:ml-4">
-          <Header onOpenModal={() => setModalOpen(true)} setMobileMenuOpen={setMobileMenuOpen} onLogout={onLogout} isMobileMenuOpen={isMobileMenuOpen} />
+          <Header onOpenModal={() => setModalOpen(true)} setMobileMenuOpen={setMobileMenuOpen} onLogout={onLogout} />
           <MainContent activePage={activePage} productCreated={productCreated} />
         </div>
       </div>

@@ -7,20 +7,6 @@ import { ReactComponent as ExitIcon } from './assets/exit.svg';
 import UnionIcon from './assets/Union.png';
 import Group12Icon from './assets/Group12.png';
 
-import img1 from '../public/инвестиционные-инструменты-300x212.jpg';
-import img2 from '../public/2.jpg';
-import img3 from '../public/3.jpg';
-import img4 from '../public/4.jpg';
-import img5 from '../public/5.jpg';
-import img6 from '../public/6.jpg';
-import img7 from '../public/7.jpg';
-import img8 from '../public/8.jpg';
-import img9 from '../public/9.jpg';
-import img10 from '../public/10.jpg';
-import img11 from '../public/11.jpg';
-import img12 from '../public/12.jpg';
-import img13 from '../public/13.jpeg';
-
 
 //=========== ИКОНКИ (SVG) ===========//
 // Для удобства определим иконки как отдельные компоненты.
@@ -174,19 +160,19 @@ const Button = ({ children, variant = 'big-classic', icon: Icon, iconPosition = 
 
 const LandingPage = ({ onNavigate }) => {
   const botImages = [
-    img1,
-    img2,
-    img3,
-    img4,
-    img5,
-    img6,
-    img7,
-    img8,
-    img9,
-    img10,
-    img11,
-    img12,
-    img13,
+    `${process.env.PUBLIC_URL}/инвестиционные-инструменты-300x212.jpg`,
+    `${process.env.PUBLIC_URL}/2.jpg`,
+    `${process.env.PUBLIC_URL}/3.jpg`,
+    `${process.env.PUBLIC_URL}/4.jpg`,
+    `${process.env.PUBLIC_URL}/5.jpg`,
+    `${process.env.PUBLIC_URL}/6.jpg`,
+    `${process.env.PUBLIC_URL}/7.jpg`,
+    `${process.env.PUBLIC_URL}/8.jpg`,
+    `${process.env.PUBLIC_URL}/9.jpg`,
+    `${process.env.PUBLIC_URL}/10.jpg`,
+    `${process.env.PUBLIC_URL}/11.jpg`,
+    `${process.env.PUBLIC_URL}/12.jpg`,
+    `${process.env.PUBLIC_URL}/13.jpeg`,
   ];
 
   const botData = [

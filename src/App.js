@@ -6,6 +6,7 @@ import { ReactComponent as SiteIcon } from './assets/site.svg';
 import { ReactComponent as ExitIcon } from './assets/exit.svg';
 import UnionIcon from './assets/Union.png';
 import Group12Icon from './assets/Group12.png';
+import ReactSlider from 'react-slider';
 
 
 //=========== ИКОНКИ (SVG) ===========//
@@ -132,6 +133,42 @@ const ICONS = {
   ),
 };
 
+const botImages = [
+  `${process.env.PUBLIC_URL}/инвестиционные-инструменты-300x212.jpg`,
+  `${process.env.PUBLIC_URL}/2.jpg`,
+  `${process.env.PUBLIC_URL}/3.jpg`,
+  `${process.env.PUBLIC_URL}/4.jpg`,
+  `${process.env.PUBLIC_URL}/5.jpg`,
+  `${process.env.PUBLIC_URL}/6.jpg`,
+  `${process.env.PUBLIC_URL}/7.jpg`,
+  `${process.env.PUBLIC_URL}/8.jpg`,
+  `${process.env.PUBLIC_URL}/9.jpg`,
+  `${process.env.PUBLIC_URL}/10.jpg`,
+  `${process.env.PUBLIC_URL}/11.jpg`,
+  `${process.env.PUBLIC_URL}/12.jpg`,
+  `${process.env.PUBLIC_URL}/13.jpeg`,
+  `${process.env.PUBLIC_URL}/инвестиционные-инструменты-300x212.jpg`,
+  `${process.env.PUBLIC_URL}/2.jpg`,
+];
+
+const botData = [
+    { name: "Алго-бот по нефти", description: "Автоматизированный торговый робот, специализирующийся на анализе и торговле фьючерсами на нефть. Использует передовые алгоритмы для выявления оптимальных точек входа и выхода.", rating: 4.5, comments: 12, image: botImages[0] },
+    { name: "Эксперт на криптовалюту BTC", description: "Высокочастотный бот для торговли Bitcoin. Анализирует рыночные данные в реальном времени, обеспечивая быстрые и точные сделки.", rating: 4.8, comments: 25, image: botImages[1] },
+    { name: "Algo-tradingbot Gold", description: "Специализированный бот для торговли золотом. Использует комбинацию технических индикаторов и новостного анализа для принятия торговых решений.", rating: 4.2, comments: 8, image: botImages[2] },
+    { name: "Форекс Мастер Pro", description: "Бот для автоматической торговли на рынке Форекс. Оптимизирован для работы с основными валютными парами, минимизируя риски и максимизируя прибыль.", rating: 4.7, comments: 18, image: botImages[3] },
+    { name: "Индексный Скальпер", description: "Робот, разработанный для скальпинга на фондовых индексах. Быстро реагирует на малейшие изменения рынка, совершая множество коротких сделок.", rating: 4.1, comments: 7, image: botImages[4] },
+    { name: "Товарный Аналитик", description: "Бот для анализа и торговли сырьевыми товарами. Учитывает сезонность и глобальные экономические факторы для точных прогнозов.", rating: 4.6, comments: 15, image: botImages[5] },
+    { name: "Опционный Стратег", description: "Специализированный бот для торговли опционами. Реализует сложные опционные стратегии, адаптируясь к волатильности рынка.", rating: 4.9, comments: 30, image: botImages[6] },
+    { name: "Портфельный Оптимизатор", description: "Бот для автоматического управления инвестиционным портфелем. Распределяет активы для достижения максимальной доходности при заданном уровне риска.", rating: 4.3, comments: 10, image: botImages[7] },
+    { name: "Арбитражный Бот", description: "Использует разницу в ценах на разных биржах для получения прибыли. Работает с минимальной задержкой, обеспечивая высокую эффективность.", rating: 4.4, comments: 20, image: botImages[8] },
+    { name: "Квантовый Трейдер", description: "Передовой бот, использующий методы машинного обучения для прогнозирования движения цен. Постоянно обучается и адаптируется к новым рыночным условиям.", rating: 5.0, comments: 35, image: botImages[9] },
+    { name: "Валютный Спекулянт", description: "Бот для краткосрочных спекуляций на валютных рынках. Быстро реагирует на новостные события и изменения ликвидности.", rating: 4.0, comments: 5, image: botImages[10] },
+    { name: "Долгосрочный Инвестор", description: "Бот для формирования долгосрочного инвестиционного портфеля. Ориентирован на фундаментальный анализ и стабильный рост активов.", rating: 4.9, comments: 22, image: botImages[11] },
+    { name: "ИИ-Трейдер Акций", description: "Бот на основе искусственного интеллекта для торговли акциями. Анализирует большие объемы данных для прогнозирования движения цен.", rating: 4.7, comments: 28, image: botImages[12] },
+    { name: "Облигационный Оптимизатор", description: "Бот для оптимизации портфеля облигаций. Учитывает доходность, срок погашения и кредитный рейтинг для максимальной эффективности.", rating: 4.5, comments: 10, image: botImages[13] },
+    { name: "Фьючерсный Аналитик", description: "Бот для анализа и торговли фьючерсными контрактами. Использует технический анализ и объем торгов для определения трендов.", rating: 4.6, comments: 17, image: botImages[14] },
+  ];
+
 //=========== КОМПОНЕНТЫ UI (КНОПКИ И Т.Д.) ===========//
 
 const Button = ({ children, variant = 'big-classic', icon: Icon, iconPosition = 'left', className = '', disabled, iconClass = '', ...props }) => {
@@ -158,40 +195,7 @@ const Button = ({ children, variant = 'big-classic', icon: Icon, iconPosition = 
 
 //=========== НОВЫЕ КОМПОНЕНТЫ: ЛЕНДИНГ И РЕГИСТРАЦИЯ ===========//
 
-const LandingPage = ({ onNavigate }) => {
-  const botImages = [
-    `${process.env.PUBLIC_URL}/инвестиционные-инструменты-300x212.jpg`,
-    `${process.env.PUBLIC_URL}/2.jpg`,
-    `${process.env.PUBLIC_URL}/3.jpg`,
-    `${process.env.PUBLIC_URL}/4.jpg`,
-    `${process.env.PUBLIC_URL}/5.jpg`,
-    `${process.env.PUBLIC_URL}/6.jpg`,
-    `${process.env.PUBLIC_URL}/7.jpg`,
-    `${process.env.PUBLIC_URL}/8.jpg`,
-    `${process.env.PUBLIC_URL}/9.jpg`,
-    `${process.env.PUBLIC_URL}/10.jpg`,
-    `${process.env.PUBLIC_URL}/11.jpg`,
-    `${process.env.PUBLIC_URL}/12.jpg`,
-    `${process.env.PUBLIC_URL}/13.jpeg`,
-  ];
-
-  const botData = [
-    { name: "Алго-бот по нефти", description: "Автоматизированный торговый робот, специализирующийся на анализе и торговле фьючерсами на нефть. Использует передовые алгоритмы для выявления оптимальных точек входа и выхода.", rating: 4.5, comments: 12, image: botImages[0] },
-    { name: "Эксперт на криптовалюту BTC", description: "Высокочастотный бот для торговли Bitcoin. Анализирует рыночные данные в реальном времени, обеспечивая быстрые и точные сделки.", rating: 4.8, comments: 25, image: botImages[1] },
-    { name: "Algo-tradingbot Gold", description: "Специализированный бот для торговли золотом. Использует комбинацию технических индикаторов и новостного анализа для принятия торговых решений.", rating: 4.2, comments: 8, image: botImages[2] },
-    { name: "Форекс Мастер Pro", description: "Бот для автоматической торговли на рынке Форекс. Оптимизирован для работы с основными валютными парами, минимизируя риски и максимизируя прибыль.", rating: 4.7, comments: 18, image: botImages[3] },
-    { name: "Индексный Скальпер", description: "Робот, разработанный для скальпинга на фондовых индексах. Быстро реагирует на малейшие изменения рынка, совершая множество коротких сделок.", rating: 4.1, comments: 7, image: botImages[4] },
-    { name: "Товарный Аналитик", description: "Бот для анализа и торговли сырьевыми товарами. Учитывает сезонность и глобальные экономические факторы для точных прогнозов.", rating: 4.6, comments: 15, image: botImages[5] },
-    { name: "Опционный Стратег", description: "Специализированный бот для торговли опционами. Реализует сложные опционные стратегии, адаптируясь к волатильности рынка.", rating: 4.9, comments: 30, image: botImages[6] },
-    { name: "Портфельный Оптимизатор", description: "Бот для автоматического управления инвестиционным портфелем. Распределяет активы для достижения максимальной доходности при заданном уровне риска.", rating: 4.3, comments: 10, image: botImages[7] },
-    { name: "Арбитражный Бот", description: "Использует разницу в ценах на разных биржах для получения прибыли. Работает с минимальной задержкой, обеспечивая высокую эффективность.", rating: 4.4, comments: 20, image: botImages[8] },
-    { name: "Квантовый Трейдер", description: "Передовой бот, использующий методы машинного обучения для прогнозирования движения цен. Постоянно обучается и адаптируется к новым рыночным условиям.", rating: 5.0, comments: 35, image: botImages[9] },
-    { name: "Валютный Спекулянт", description: "Бот для краткосрочных спекуляций на валютных рынках. Быстро реагирует на новостные события и изменения ликвидности.", rating: 4.0, comments: 5, image: botImages[10] },
-    { name: "Долгосрочный Инвестор", description: "Бот для формирования долгосрочного инвестиционного портфеля. Ориентирован на фундаментальный анализ и стабильный рост активов.", rating: 4.9, comments: 22, image: botImages[11] },
-    { name: "ИИ-Трейдер Акций", description: "Бот на основе искусственного интеллекта для торговли акциями. Анализирует большие объемы данных для прогнозирования движения цен.", rating: 4.7, comments: 28, image: botImages[12] },
-    { name: "Облигационный Оптимизатор", description: "Бот для оптимизации портфеля облигаций. Учитывает доходность, срок погашения и кредитный рейтинг для максимальной эффективности.", rating: 4.5, comments: 10, image: botImages[13] },
-    { name: "Фьючерсный Аналитик", description: "Бот для анализа и торговли фьючерсными контрактами. Использует технический анализ и объем торгов для определения трендов.", rating: 4.6, comments: 17, image: botImages[14] },
-  ];
+const LandingPage = ({ onNavigate, botData, botImages }) => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const cardsPerPage = 3;
@@ -886,39 +890,331 @@ const CreateModal = ({ isOpen, onClose, isVerified, onVerificationComplete, onPr
 
 const ProductCreationForm = ({ onBack, onSave }) => { return (<><h2 className="text-2xl font-bold mb-6 font-tt-travels">Создание нового продукта</h2><div className="space-y-4"><div><label className="font-semibold mb-1 block">Название</label><input type="text" placeholder="Название продукта..." className="w-full p-3 border border-grey-2 rounded-lg" /></div><div><label className="font-semibold mb-1 block">Продукт</label><select className="w-full p-3 border border-grey-2 rounded-lg"><option>Эксперты</option><option>Индикаторы</option></select></div><div className="grid grid-cols-2 gap-4"><div><label className="font-semibold mb-1 block">Тип счета</label><select className="w-full p-3 border border-grey-2 rounded-lg"><option>Любой</option></select></div><div><label className="font-semibold mb-1 block">Тип эксперта</label><div className="p-3 border border-grey-2 rounded-lg space-y-2"><label className="flex items-center"><input type="checkbox" className="form-checkbox mr-2"/>Арбитражный</label><label className="flex items-center"><input type="checkbox" className="form-checkbox mr-2"/>Скальпирующий</label></div></div></div><div><label className="font-semibold mb-1 block">Цена</label><div className="space-y-2"><div className="flex items-center gap-2"><input type="checkbox" className="form-checkbox"/><input type="number" placeholder="0.00" className="w-24 p-2 border rounded-lg"/><span>USD</span><span>аренда на 1 месяц</span></div><div className="flex items-center gap-2"><input type="checkbox" className="form-checkbox"/><input type="number" placeholder="0.00" className="w-24 p-2 border rounded-lg"/><span>USD</span><span>аренда на 1 год</span></div></div></div></div><div className="flex gap-4 mt-8">{onBack && <Button variant="big-outline" onClick={onBack}>Назад</Button>}<Button variant="big-classic" className="w-full" onClick={onSave}>Сохранить черновик</Button></div></>);};
 
-const BotDetailsPage = () => {
-    const [activeTab, setActiveTab] = useState('Общая');
-    const tabs = ['Общая', 'Описание', 'Скриншоты', 'Версии'];
-    const renderTabContent = () => {
-        switch (activeTab) {
-            case 'Общая': return (<div className="p-6"><h3 className="text-xl font-bold font-tt-travels mb-4">Логотип</h3><p className="text-text-grey mb-4">Создайте для своего Продукта стильный Логотип.</p><div className="grid md:grid-cols-3 gap-6">{['Для показа в карточке:', 'Для показа на витрине:', 'Для платформы MetaTrader 5:'].map(title => (<div key={title}><p className="font-semibold mb-2">{title}</p><div className="w-full h-32 bg-grey-2/30 rounded-lg flex items-center justify-center border-2 border-dashed border-grey"><ICONS.plus className="text-grey"/></div></div>))}
+const BotDetailsPage = ({ bot, onBack }) => {
+  const [activeTab, setActiveTab] = useState('Описание');
+  const tabs = ['Описание', 'Инструкция', 'Отзывы', 'Обновление'];
+
+  const renderTabContent = () => {
+    switch (activeTab) {
+      case 'Описание':
+        return (
+          <div className="py-6">
+            <div className="max-w-2xl">
+              <div className="space-y-3 mb-6">
+                  <div className="flex justify-between items-center">
+                      <span className="text-text-grey">Доходность за год</span>
+                      <div className="flex-grow border-b border-dashed border-grey-2 mx-4"></div>
+                      <span className="font-semibold">{Math.floor(Math.random() * 200 + 50)}%</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                      <span className="text-text-grey">Уровень риска</span>
+                      <div className="flex-grow border-b border-dashed border-grey-2 mx-4"></div>
+                      <span className="font-semibold">{['Низкий', 'Средний', 'Высокий'][Math.floor(Math.random() * 3)]}</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                      <span className="text-text-grey">Допустимая просадка</span>
+                      <div className="flex-grow border-b border-dashed border-grey-2 mx-4"></div>
+                      <span className="font-semibold">{Math.floor(Math.random() * 20 + 5)}%</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                      <span className="text-text-grey">Сейчас активно</span>
+                      <div className="flex-grow border-b border-dashed border-grey-2 mx-4"></div>
+                      <span className="font-semibold">{Math.floor(Math.random() * 100 + 10)}</span>
+                  </div>
+              </div>
+              <h4 className="font-bold text-xl mb-4">Полное описание</h4>
+              <p className="text-text-grey">{bot.description} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec ultricies lacinia, nisl nisl aliquet nisl, eget aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec ultricies lacinia, nisl nisl aliquet nisl, eget aliquam nisl nisl sit amet nisl.</p>
+              
+              <h4 className="font-bold text-xl my-4">Скриншоты</h4>
+              <div className="grid grid-cols-2 gap-4">
+                <img src={bot.image} alt="Screenshot 1" className="rounded-lg w-full h-auto" />
+                <img src={bot.image} alt="Screenshot 2" className="rounded-lg w-full h-auto" />
+              </div>
             </div>
-            <div className="space-y-4 mt-8">
-                <div><label className="font-semibold mb-1 block">Название</label><input type="text" placeholder="Название продукта..." className="w-full p-3 border border-grey-2 rounded-lg" /></div>
-                <div><label className="font-semibold mb-1 block">Продукт</label><select className="w-full p-3 border border-grey-2 rounded-lg"><option>Эксперты</option><option>Индикаторы</option></select></div>
-                <div className="grid grid-cols-2 gap-4">
-                    <div><label className="font-semibold mb-1 block">Тип счета</label><select className="w-full p-3 border border-grey-2 rounded-lg"><option>Любой</option></select></div>
-                    <div><label className="font-semibold mb-1 block">Тип эксперта</label><div className="p-3 border border-grey-2 rounded-lg space-y-2"><label className="flex items-center"><input type="checkbox" className="form-checkbox mr-2"/>Арбитражный</label><label className="flex items-center"><input type="checkbox" className="form-checkbox mr-2"/>Скальпирующий</label></div></div>
+          </div>
+        );
+      case 'Инструкция':
+        return (
+          <div className="p-6">
+            <h4 className="font-bold text-xl mb-4">Схема подключения</h4>
+            <div className="flex items-center justify-center p-4 border border-dashed border-grey-2 rounded-lg">
+              <p className="text-text-grey">Здесь будет диаграмма или пошаговая инструкция по подключению.</p>
+            </div>
+          </div>
+        );
+      case 'Отзывы':
+        return (
+          <div className="p-6">
+            <h4 className="font-bold text-xl mb-4">Отзывы покупателей</h4>
+            <p className="text-text-grey mb-4">Оставить отзыв могут только пользователи, купившие продукт.</p>
+            <div className="space-y-4">
+              <textarea placeholder="Ваш комментарий..." className="w-full p-3 border border-grey-2 rounded-lg"></textarea>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-1">
+                  {[...Array(5)].map((_, i) => <ICONS.favorites key={i} className="w-6 h-6 text-grey-2 cursor-pointer hover:text-yellow-400" />)}
                 </div>
-                <div><label className="font-semibold mb-1 block">Цена</label><div className="space-y-2"><div className="flex items-center gap-2"><input type="checkbox" className="form-checkbox"/><input type="number" placeholder="0.00" className="w-24 p-2 border rounded-lg"/><span>USD</span><span>аренда на 1 месяц</span></div><div className="flex items-center gap-2"><input type="checkbox" className="form-checkbox"/><input type="number" placeholder="0.00" className="w-24 p-2 border rounded-lg"/><span>USD</span><span>аренда на 1 год</span></div></div></div>
+                <Button variant="small-classic">Отправить</Button>
+              </div>
             </div>
-            </div>);
-            case 'Описание': return (<div className="p-6"><h3 className="text-xl font-bold font-tt-travels mb-4">Описание продукта</h3><p className="text-text-grey mb-4">Опишите преимущества и принципы работы Продукта.</p><div className="border border-grey-2 rounded-lg"><div className="p-2 border-b border-grey-2 bg-grey-2/30"><span className="font-bold">Русский</span></div><textarea className="w-full h-64 p-4 border-0 focus:ring-0" placeholder="Введите описание..."></textarea></div></div>);
-            case 'Скриншоты': return (<div className="p-6"><h3 className="text-xl font-bold font-tt-travels mb-4">Скриншоты</h3><p className="text-text-grey mb-4">Добавьте качественные скриншоты продукта.</p><div className="w-full h-64 bg-grey-2/30 rounded-lg flex items-center justify-center border-2 border-dashed border-grey"><Button variant="text" icon={ICONS.plus}>Добавить изображение</Button></div></div>);
-            case 'Версии': return (<div className="p-6"><h3 className="text-xl font-bold font-tt-travels mb-4">Версии продукта</h3><p className="text-text-grey mb-4">Загрузите файл продукта.</p><div className="w-full p-6 bg-grey-2/30 rounded-lg flex items-center justify-center border-2 border-dashed border-grey"><Button variant="text" icon={ICONS.plus}>Добавить файл продукта</Button></div></div>);
-            default: return null;
-        }
-    };
-    return (<div className="bg-white rounded-2xl shadow-sm"><div className="p-4 border-b border-grey-2"><h2 className="text-2xl font-bold font-tt-travels">Редактирование бота "Super Scalper"</h2><p className="text-text-grey">Ваш продукт находится на стадии черновика.</p></div><div className="border-b border-grey-2 flex">{tabs.map(tab => (<button key={tab} onClick={() => setActiveTab(tab)} className={`px-6 py-3 font-semibold transition-colors ${activeTab === tab ? 'text-main border-b-2 border-main' : 'text-text-grey hover:bg-grey-2/30'}`}>{tab}</button>))}
-        </div><div>{renderTabContent()}</div><div className="p-4 border-t border-grey-2 flex justify-end"><Button variant="big-classic">Опубликовать</Button></div></div>);
+          </div>
+        );
+      case 'Обновление':
+        return (
+          <div className="p-6">
+            <div className="space-y-6">
+              <div className="border-b border-grey-2 pb-4">
+                <p className="font-semibold">Версия 1.3 - <span className="text-text-grey">01.08.2025</span></p>
+                <p className="text-text-grey mt-2">- Добавлена поддержка новой криптовалютной пары.
+- Улучшена стабильность работы при высокой волатильности.</p>
+              </div>
+              <div className="border-b border-grey-2 pb-4">
+                <p className="font-semibold">Версия 1.2 - <span className="text-text-grey">15.07.2025</span></p>
+                <p className="text-text-grey mt-2">- Исправлена ошибка с расчетом стоп-лосса.</p>
+              </div>
+              <div className="pb-4">
+                <p className="font-semibold">Версия 1.0 - <span className="text-text-grey">01.07.2025</span></p>
+                <p className="text-text-grey mt-2">- Первый релиз.</p>
+              </div>
+            </div>
+          </div>
+        );
+      default: return null;
+    }
+  };
+
+  return (
+    <div>
+      <div className="flex items-center mb-6">
+        <Button variant="icon" onClick={onBack} className="mr-4">
+          <ICONS.arrowLeft />
+        </Button>
+        <h2 className="font-bold text-2xl">Подробная информация</h2>
+      </div>
+      <div className="flex justify-center">
+        <div className="flex items-start" style={{ gap: '50px' }}>
+          {/* Left Card Container */}
+          <div className="w-[640px] bg-white p-8" style={{ borderRadius: '65px' }}>
+            <div className="flex items-center gap-4 mb-4">
+              <span className="bg-green-service/20 text-green-service font-semibold px-4 py-1 rounded-full text-sm">Алго-боты</span>
+            </div>
+            <h3 className="font-bold text-4xl mb-6">{bot.name}</h3>
+            <img src={bot.image} alt={bot.name} className="w-full h-auto max-h-[300px] object-cover rounded-2xl mb-6" />
+            
+            <div className="border-b border-grey-2 flex">
+              {tabs.map(tab => (
+                <button key={tab} onClick={() => setActiveTab(tab)} className={`px-6 py-3 font-semibold transition-colors ${activeTab === tab ? 'text-main border-b-2 border-main' : 'text-text-grey hover:bg-grey-2/30'}`}>
+                  {tab}
+                </button>
+              ))}
+            </div>
+            <div>{renderTabContent()}</div>
+          </div>
+
+          {/* Right Purchase Container */}
+          <aside className="w-[380px] flex-shrink-0">
+          <div className="bg-white shadow-lg p-6 w-[380px] h-auto flex flex-col border border-grey-2" style={{ borderRadius: '65px' }}>
+              <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center bg-white rounded-full px-2 py-1 shadow-md">
+                      <ICONS.favorites className="w-4 h-4 text-yellow-500 mr-1"/>
+                      <span className="text-sm font-semibold">{bot.rating}</span>
+                  </div>
+                  <div className="flex items-center bg-white rounded-full px-2 py-1 shadow-md">
+                      <ICONS.messages className="w-4 h-4 text-blue-500 mr-1"/>
+                      <span className="text-sm font-semibold">{bot.comments} отзывов</span>
+                  </div>
+              </div>
+              <p className="font-bold text-4xl my-2">$199</p>
+              <div className="flex items-baseline mb-4">
+                  <p className="font-semibold text-lg">Прогноз:</p>
+                  <p className="text-orange text-lg font-bold ml-2">+170%</p>
+                  <p className="text-text-grey ml-1">в год</p>
+              </div>
+              <div className="flex-grow"></div>
+              <div className="flex items-center gap-4 mt-4">
+                  <Button variant="small-outline" className="w-1/2 !border-main !text-main hover:!bg-main hover:!text-white">Демо</Button>
+                  <Button variant="small-classic" className="w-1/2">Купить</Button>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  );
 };
 
-const MainContent = ({ activePage, productCreated }) => {
+const Marketplace = ({ onNavigate, botData, botImages }) => {
+  const [selectedBot, setSelectedBot] = useState(null);
+  const [activeTab, setActiveTab] = useState('Алго-боты');
+  const [isFilterOpen, setFilterOpen] = useState(false);
+  const tabs = ['Алго-боты', 'Сигналы', 'Услуги', 'Софт', 'Дополнительно'];
+
+  if (selectedBot) {
+    return <BotDetailsPage bot={selectedBot} onBack={() => setSelectedBot(null)} />;
+  }
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'Алго-боты':
+        return (
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            {botData.map((bot, index) => (
+              <div key={index} className="bg-white p-6 rounded-2xl shadow-lg flex flex-col transform hover:-translate-y-1 transition-all duration-300">
+                <div className="relative mb-4">
+                  <img src={bot.image} alt={bot.name} className="w-full h-48 object-cover rounded-lg"/>
+                  <div className="absolute top-2 left-2 flex items-center bg-white rounded-full px-2 py-1 shadow-md">
+                    <ICONS.favorites className="w-4 h-4 text-yellow-500 mr-1"/>
+                    <span className="text-sm font-semibold">{bot.rating}</span>
+                  </div>
+                  <div className="absolute top-2 left-16 flex items-center bg-white rounded-full px-2 py-1 shadow-md">
+                    <ICONS.messages className="w-4 h-4 text-blue-500 mr-1"/>
+                    <span className="text-sm font-semibold">{bot.comments}</span>
+                  </div>
+                </div>
+                <h3 className="font-tt-travels text-xl font-bold mb-2">{bot.name}</h3>
+                <p className="text-text-grey text-sm mb-4 flex-grow">{bot.description}</p>
+                <div className="flex items-center gap-2 mt-4">
+                  <Button variant="small-classic" className="w-1/2" onClick={() => onNavigate('register')}>Купить</Button>
+                  <Button variant="small-outline" icon={ICONS.arrowRight} iconPosition="right" onClick={() => setSelectedBot(bot)} className="w-1/2 !border-orange !text-orange hover:!bg-orange hover:!text-white">
+                    Подробнее
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </div>
+        );
+      default:
+        return <div className="text-center py-10"><p>Контент для "{activeTab}" будет добавлен в будущем.</p></div>;
+    }
+  };
+
+  const FilterSidebar = () => {
+    const [price, setPrice] = useState([0, 1000]);
+    const [isFree, setIsFree] = useState(false);
+
+    return (
+      <div className="bg-white rounded-2xl shadow-sm p-6 h-full">
+        <div className="flex justify-between items-center mb-4">
+          <h3 className="font-tt-travels text-xl font-bold">Фильтры</h3>
+          <Button variant="icon" className="lg:hidden" onClick={() => setFilterOpen(false)}><ICONS.close /></Button>
+        </div>
+        <div className="space-y-6">
+          <div>
+            <label className="font-semibold mb-2 block">Цена</label>
+            <ReactSlider
+              className="h-1 w-full bg-grey-2 rounded-full my-6"
+              thumbClassName="h-5 w-5 -top-2 bg-main rounded-full cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-main"
+              trackClassName="h-1 bg-main rounded-full"
+              value={price}
+              onChange={setPrice}
+              min={0}
+              max={1000}
+              pearling
+              minDistance={10}
+            />
+            <div className="flex items-center gap-2 mt-2">
+              <input type="text" placeholder="от" value={price[0]} onChange={e => setPrice([+e.target.value, price[1]])} className="w-full p-2 border border-grey-2 rounded-lg"/>
+              <span className="text-text-grey">-</span>
+              <input type="text" placeholder="до" value={price[1]} onChange={e => setPrice([price[0], +e.target.value])} className="w-full p-2 border border-grey-2 rounded-lg"/>
+            </div>
+          </div>
+          <div>
+            <label className="flex items-center justify-between cursor-pointer">
+              <span className="font-semibold text-lg">Бесплатные</span>
+              <div onClick={() => setIsFree(!isFree)} className={`w-14 h-8 flex items-center rounded-full p-1 duration-300 ${isFree ? 'bg-green-service' : 'bg-grey-2'}`}>
+                <div className={`bg-white w-6 h-6 rounded-full shadow-md transform duration-300 ${isFree ? 'translate-x-6' : ''}`}></div>
+              </div>
+            </label>
+          </div>
+          <div>
+            <label className="font-semibold mb-2 block">Рейтинг</label>
+            <div className="space-y-2">
+              <label className="flex items-center cursor-pointer">
+                <input type="checkbox" className="form-checkbox text-main focus:ring-main rounded"/>
+                <span className="ml-2 flex items-center">Выше 3 <ICONS.favorites className="w-4 h-4 text-yellow-400 ml-1"/></span>
+              </label>
+              <label className="flex items-center cursor-pointer">
+                <input type="checkbox" className="form-checkbox text-main focus:ring-main rounded"/>
+                <span className="ml-2 flex items-center">Выше 4 <ICONS.favorites className="w-4 h-4 text-yellow-400 ml-1"/></span>
+              </label>
+              <label className="flex items-center cursor-pointer">
+                <input type="checkbox" className="form-checkbox text-main focus:ring-main rounded"/>
+                <span className="ml-2 flex items-center">Выше 5 <ICONS.favorites className="w-4 h-4 text-yellow-400 ml-1"/></span>
+              </label>
+            </div>
+          </div>
+          <div>
+            <div className="space-y-2">
+              <label className="flex items-center cursor-pointer">
+                <input type="checkbox" className="form-checkbox text-main focus:ring-main rounded"/>
+                <span className="ml-2">Есть отзывы</span>
+              </label>
+              <label className="flex items-center cursor-pointer">
+                <input type="checkbox" className="form-checkbox text-main focus:ring-main rounded"/>
+                <span className="ml-2">Есть аренда</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="flex gap-6">
+      {/* Main Content */}
+      <div className="flex-grow">
+        <div className="bg-white rounded-2xl shadow-sm p-4 mb-6">
+          <div className="border-b border-grey-2 flex items-center justify-between flex-wrap">
+            <nav className="flex">
+              {tabs.map(tab => (
+                <button key={tab} onClick={() => setActiveTab(tab)} className={`px-4 md:px-6 py-3 font-semibold transition-colors text-sm md:text-base ${activeTab === tab ? 'text-main border-b-2 border-main' : 'text-text-grey hover:bg-grey-2/30'}`}>
+                  {tab}
+                </button>
+              ))}
+            </nav>
+          </div>
+          <div className="p-4 flex items-center justify-between bg-grey-1/50 rounded-b-2xl flex-wrap gap-4">
+            <div className="flex items-center gap-4">
+              <span className="text-sm font-semibold text-text-grey">Сортировать по:</span>
+              <select className="bg-white border border-grey-2 rounded-full px-4 py-2 text-sm focus:outline-none focus:border-main">
+                <option>Популярные</option>
+                <option>Новинки</option>
+                <option>Дешевле</option>
+                <option>Дороже</option>
+                <option>С высоким рейтингом</option>
+                <option>С большими скидками</option>
+              </select>
+            </div>
+            <Button variant="small-outline" className="lg:hidden" onClick={() => setFilterOpen(true)}>Фильтры</Button>
+          </div>
+        </div>
+        <div className="p-1">{renderContent()}</div>
+      </div>
+
+      {/* Sidebar for Desktop */}
+      <aside className="w-80 flex-shrink-0 hidden lg:block">
+        <div className="sticky top-24">
+          <FilterSidebar />
+        </div>
+      </aside>
+
+      {/* Sidebar for Mobile/Tablet (Drawer) */}
+      <div className={`fixed inset-0 z-40 transform lg:hidden ${isFilterOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 ease-in-out`}>
+        <div className="fixed inset-0 bg-black/30" onClick={() => setFilterOpen(false)}></div>
+        <div className="relative z-50 w-80 h-full bg-white ml-auto p-4">
+          <FilterSidebar />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const MainContent = ({ activePage, productCreated, onNavigate, botData, botImages }) => {
     const renderContent = () => {
         if (productCreated) return <BotDetailsPage />;
         switch (activePage) {
             case 'Лента': return <div className="bg-white rounded-2xl p-8 shadow-sm"><h1 className="font-tt-travels text-3xl font-bold">Лента новостей</h1><p className="mt-4 text-text-grey">Здесь будет отображаться контент ленты.</p></div>;
-            case 'Маркетплейс': return <div className="bg-white rounded-2xl p-8 shadow-sm"><h1 className="font-tt-travels text-3xl font-bold">Маркетплейс</h1><p className="mt-4 text-text-grey">Здесь будут карточки продуктов.</p></div>;
+            case 'Маркетплейс': return <Marketplace onNavigate={onNavigate} botData={botData} botImages={botImages} />;
             case 'Персоны': return <div className="bg-white rounded-2xl p-8 shadow-sm"><h1 className="font-tt-travels text-3xl font-bold">Персоны</h1><p className="mt-4 text-text-grey">Здесь будет список персон.</p></div>;
             case 'Рабочий стол': return <div className="bg-white rounded-2xl p-8 shadow-sm"><h1 className="font-tt-travels text-3xl font-bold">Рабочий стол</h1><p className="mt-4 text-text-grey">Здесь будет ваш рабочий стол.</p></div>;
             case 'Сообщения': return <div className="bg-white rounded-2xl p-8 shadow-sm"><h1 className="font-tt-travels text-3xl font-bold">Сообщения</h1><p className="mt-4 text-text-grey">Здесь будут ваши сообщения.</p></div>;
@@ -930,7 +1226,7 @@ const MainContent = ({ activePage, productCreated }) => {
     return (<main className="flex-grow p-4 lg:p-0 lg:pt-[40px]">{renderContent()}</main>);
 };
 
-const Dashboard = ({ onLogout }) => {
+const Dashboard = ({ onLogout, botData, botImages }) => {
   const [activePage, setActivePage] = useState('Лента');
   const [isModalOpen, setModalOpen] = useState(false);
   const [isVerified, setVerified] = useState(false);
@@ -948,7 +1244,7 @@ const Dashboard = ({ onLogout }) => {
         <Sidebar activePage={activePage} onNavigate={handleNavigate} isMobileMenuOpen={isMobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
         <div className="flex-grow flex flex-col lg:ml-4">
           <Header onOpenModal={() => setModalOpen(true)} setMobileMenuOpen={setMobileMenuOpen} onLogout={onLogout} />
-          <MainContent activePage={activePage} productCreated={productCreated} />
+          <MainContent activePage={activePage} productCreated={productCreated} onNavigate={handleNavigate} botData={botData} botImages={botImages} />
         </div>
       </div>
       <CreateModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} isVerified={isVerified} onVerificationComplete={() => setVerified(true)} onProductCreated={() => setProductCreated(true)} />
@@ -969,13 +1265,13 @@ export default function App() {
   const renderView = () => {
     switch (view) {
       case 'landing':
-        return <LandingPage onNavigate={handleNavigate} />;
+        return <LandingPage onNavigate={handleNavigate} botData={botData} botImages={botImages} />;
       case 'register':
         return <RegistrationPage onNavigate={handleNavigate} />;
       case 'login':
         return <LoginPage onNavigate={handleNavigate} />;
       case 'app':
-        return <Dashboard onLogout={() => handleNavigate('landing')} />;
+        return <Dashboard onLogout={() => handleNavigate('landing')} botData={botData} botImages={botImages} />;
       default:
         return <LandingPage onNavigate={handleNavigate} />;
     }

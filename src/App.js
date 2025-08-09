@@ -160,19 +160,19 @@ const Button = ({ children, variant = 'big-classic', icon: Icon, iconPosition = 
 
 const LandingPage = ({ onNavigate }) => {
   const botImages = [
-    `/инвестиционные-инструменты-300x212.jpg`,
-    `/2.jpg`,
-    `/3.jpg`,
-    `/4.jpg`,
-    `/5.jpg`,
-    `/6.jpg`,
-    `/7.jpg`,
-    `/8.jpg`,
-    `/9.jpg`,
-    `/10.jpg`,
-    `/11.jpg`,
-    `/12.jpg`,
-    `/13.jpeg`,
+    `${process.env.PUBLIC_URL}/инвестиционные-инструменты-300x212.jpg`,
+    `${process.env.PUBLIC_URL}/2.jpg`,
+    `${process.env.PUBLIC_URL}/3.jpg`,
+    `${process.env.PUBLIC_URL}/4.jpg`,
+    `${process.env.PUBLIC_URL}/5.jpg`,
+    `${process.env.PUBLIC_URL}/6.jpg`,
+    `${process.env.PUBLIC_URL}/7.jpg`,
+    `${process.env.PUBLIC_URL}/8.jpg`,
+    `${process.env.PUBLIC_URL}/9.jpg`,
+    `${process.env.PUBLIC_URL}/10.jpg`,
+    `${process.env.PUBLIC_URL}/11.jpg`,
+    `${process.env.PUBLIC_URL}/12.jpg`,
+    `${process.env.PUBLIC_URL}/13.jpeg`,
   ];
 
   const botData = [

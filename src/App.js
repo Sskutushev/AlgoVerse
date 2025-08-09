@@ -160,21 +160,19 @@ const Button = ({ children, variant = 'big-classic', icon: Icon, iconPosition = 
 
 const LandingPage = ({ onNavigate }) => {
   const botImages = [
-    "https://placehold.co/300x150/E0F2F7/000000?text=Finance+Chart+1",
-    "https://placehold.co/300x150/E8F5E9/000000?text=Stock+Market+2",
-    "https://placehold.co/300x150/FFF3E0/000000?text=Crypto+Graph+3",
-    "https://placehold.co/300x150/FBE9E7/000000?text=Trading+View+4",
-    "https://placehold.co/300x150/E1F5FE/000000?text=Investment+5",
-    "https://placehold.co/300x150/F3E5F5/000000?text=Economy+Data+6",
-    "https://placehold.co/300x150/E0F7FA/000000?text=Market+Trend+7",
-    "https://placehold.co/300x150/FCE4EC/000000?text=Financial+Growth+8",
-    "https://placehold.co/300x150/EDE7F6/000000?text=Analytics+9",
-    "https://placehold.co/300x150/E8F5E9/000000?text=Portfolio+10",
-    "https://placehold.co/300x150/D1C4E9/000000?text=Forex+Strategy+11",
-    "https://placehold.co/300x150/BBDEFB/000000?text=Commodity+Trading+12",
-    "https://placehold.co/300x150/C8E6C9/000000?text=Options+Analysis+13",
-    "https://placehold.co/300x150/FFCDD2/000000?text=Risk+Management+14",
-    "https://placehold.co/300x150/DCEDC8/000000?text=Algorithmic+Trading+15",
+    `${process.env.PUBLIC_URL}/инвестиционные-инструменты-300x212.jpg`,
+    `${process.env.PUBLIC_URL}/2.jpg`,
+    `${process.env.PUBLIC_URL}/3.jpg`,
+    `${process.env.PUBLIC_URL}/4.jpg`,
+    `${process.env.PUBLIC_URL}/5.jpg`,
+    `${process.env.PUBLIC_URL}/6.jpg`,
+    `${process.env.PUBLIC_URL}/7.jpg`,
+    `${process.env.PUBLIC_URL}/8.jpg`,
+    `${process.env.PUBLIC_URL}/9.jpg`,
+    `${process.env.PUBLIC_URL}/10.jpg`,
+    `${process.env.PUBLIC_URL}/11.jpg`,
+    `${process.env.PUBLIC_URL}/12.jpg`,
+    `${process.env.PUBLIC_URL}/13.jpeg`,
   ];
 
   const botData = [

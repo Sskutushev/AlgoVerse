@@ -1737,6 +1737,46 @@ const HomePage = () => {
       date: "01.08.2025",
       shortText: "Добавлена поддержка 25 новых криптовалютных пар для ваших торговых стратегий, включая популярные...",
       fullText: "Добавлена поддержка 25 новых криптовалютных пар для ваших торговых стратегий, включая популярные мем-коины и токены из сектора GameFi. Теперь ваши боты могут работать с еще большим количеством активов, открывая новые возможности для диверсификации и поиска арбитражных ситуаций. Полный список доступен в разделе документации."
+    },
+    {
+      id: 4,
+      image: botImages[0],
+      title: "Улучшения безопасности",
+      date: "28.07.2025",
+      shortText: "Мы внедрили двухфакторную аутентификацию (2FA) и расширенные настройки безопасности для всех аккаунтов...",
+      fullText: "Мы внедрили двухфакторную аутентификацию (2FA) и расширенные настройки безопасности для всех аккаунтов. Теперь вы можете защитить свой аккаунт с помощью Google Authenticator или SMS-кодов. Мы настоятельно рекомендуем всем пользователям включить 2FA для максимальной защиты своих средств и данных."
+    },
+    {
+      id: 5,
+      image: botImages[1],
+      title: "Снижение торговых комиссий",
+      date: "25.07.2025",
+      shortText: "Отличные новости! Мы снижаем торговые комиссии для всех пользователей на 20% навсегда. Торгуйте больше, платите меньше...",
+      fullText: "Отличные новости! Мы снижаем торговые комиссии для всех пользователей на 20% навсегда. Торгуйте больше, платите меньше. Это изменение касается как мейкеров, так и тейкеров на всех торговых парах. Новая сетка комиссий уже доступна на соответствующей странице нашего сайта."
+    },
+    {
+      id: 6,
+      image: botImages[2],
+      title: "Мобильное приложение AlgoVerse",
+      date: "20.07.2025",
+      shortText: "Мы рады объявить о запуске нашего мобильного приложения для iOS и Android. Теперь вы можете управлять своими ботами...",
+      fullText: "Мы рады объявить о запуске нашего мобильного приложения для iOS и Android. Теперь вы можете управлять своими ботами, следить за рынком и получать уведомления прямо на своем смартфоне. Приложение уже доступно для скачивания в App Store и Google Play."
+    },
+    {
+      id: 7,
+      image: botImages[3],
+      title: "Новый API для разработчиков",
+      date: "15.07.2025",
+      shortText: "Запускаем новый, более быстрый и функциональный REST API и WebSocket API для разработчиков...",
+      fullText: "Запускаем новый, более быстрый и функциональный REST API и WebSocket API для разработчиков. Новая версия API позволяет получать рыночные данные в реальном времени, управлять ордерами и ботами с минимальной задержкой. Подробная документация уже доступна в разделе для разработчиков."
+    },
+    {
+      id: 8,
+      image: botImages[4],
+      title: "Вебинар: Стратегии на волатильном рынке",
+      date: "10.07.2025",
+      shortText: "Приглашаем вас на бесплатный вебинар, где наши лучшие эксперты поделятся своими стратегиями торговли...",
+      fullText: "Приглашаем вас на бесплатный вебинар, где наши лучшие эксперты поделятся своими стратегиями торговли в условиях высокой волатильности. Вы узнаете, как использовать индикаторы, как управлять рисками и какие возможности открываются на падающем рынке. Запись будет доступна всем зарегистрированным участникам."
     }
   ];
 
@@ -1760,16 +1800,18 @@ const HomePage = () => {
   };
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-12 pb-12">
       {/* Welcome Banner */}
-      <section className="rounded-2xl p-8 flex items-center justify-between text-white relative overflow-hidden min-h-[250px]">
+      <section className="rounded-2xl text-white relative overflow-hidden min-h-[250px]">
         <img src={`${process.env.PUBLIC_URL}/Frame 5655.svg`} alt="" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="relative z-10 max-w-lg">
-          <h1 className="font-bold text-4xl mb-4">Добро пожаловать</h1>
-          <p className="text-lg">Ознакомьтесь с основными возможностями платформы и выберите то, что нужно именно вам!</p>
-        </div>
-        <div className="relative z-10 w-1/2 h-full flex items-end justify-end">
-            <img src={`${process.env.PUBLIC_URL}/Group 996.svg`} alt="Welcome Illustration" className="h-full object-contain" />
+        <div className="absolute inset-0 flex items-center justify-between p-8">
+          <div className="relative z-10 max-w-lg">
+            <h1 className="font-bold text-4xl mb-4">Добро пожаловать</h1>
+            <p className="text-lg">Ознакомьтесь с основными возможностями платформы и выберите то, что нужно именно вам!</p>
+          </div>
+          <div className="relative z-10 h-full">
+              <img src={`${process.env.PUBLIC_URL}/Group 996.svg`} alt="Welcome Illustration" className="h-full object-contain" />
+          </div>
         </div>
       </section>
 
@@ -1869,17 +1911,22 @@ const HomePage = () => {
 
       {/* Platform Updates Section */}
       <section>
-        <h2 className="font-bold text-3xl mb-4">Обновления платформы</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="font-bold text-3xl">Обновления платформы</h2>
+          <Button variant="text" icon={ICONS.arrowRight} iconPosition="right">Смотреть все</Button>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {platformUpdates.map(update => (
-            <div key={update.id} className="bg-white rounded-2xl shadow-lg flex flex-col cursor-pointer" onClick={() => setSelectedUpdate(update)}>
-              <img src={update.image} alt={update.title} className="w-full h-40 object-cover rounded-t-2xl" />
+            <div key={update.id} className="bg-white rounded-2xl shadow-lg flex flex-col cursor-pointer group overflow-hidden" onClick={() => setSelectedUpdate(update)}>
+              <div className="overflow-hidden">
+                <img src={update.image} alt={update.title} className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300" />
+              </div>
               <div className="p-6 flex flex-col flex-grow">
                 <h3 className="font-bold text-xl mb-2">{update.title}</h3>
                 <p className="text-sm text-text-grey mb-2">{update.date}</p>
                 <p className="text-text-grey text-sm mb-4 flex-grow">{update.shortText}</p>
                 <div className="flex justify-end mt-auto">
-                   <Button variant="small-outline" style={{width: '90px'}} className="!border-orange !text-orange hover:!bg-orange hover:!text-white">
+                   <Button variant="small-outline" style={{width: '110px'}} className="!border-orange !text-orange hover:!bg-orange hover:!text-white">
                     Подробнее
                   </Button>
                 </div>

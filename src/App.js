@@ -1802,15 +1802,15 @@ const HomePage = () => {
   return (
     <div className="space-y-12 pb-12">
       {/* Welcome Banner */}
-      <section className="rounded-2xl text-white relative overflow-hidden min-h-[250px]">
+      <section className="rounded-2xl text-white relative overflow-hidden min-h-[250px] md:min-h-[280px]">
         <img src={`${process.env.PUBLIC_URL}/Frame 5655.svg`} alt="" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 flex items-center justify-between p-8">
+        <div className="absolute inset-0 flex flex-col md:flex-row items-center justify-center md:justify-between text-center md:text-left p-8">
           <div className="relative z-10 max-w-lg">
-            <h1 className="font-bold text-4xl mb-4">Добро пожаловать</h1>
+            <h1 className="font-bold text-3xl md:text-4xl mb-4">Добро пожаловать</h1>
             <p className="text-lg">Ознакомьтесь с основными возможностями платформы и выберите то, что нужно именно вам!</p>
           </div>
-          <div className="relative z-10 h-full">
-              <img src={`${process.env.PUBLIC_URL}/Group 996.svg`} alt="Welcome Illustration" className="h-full object-contain" />
+          <div className="relative z-10 w-1/2 mt-4 md:mt-0 md:w-1/3">
+              <img src={`${process.env.PUBLIC_URL}/Group 996.svg`} alt="Welcome Illustration" className="w-full h-auto object-contain" />
           </div>
         </div>
       </section>
@@ -1857,22 +1857,22 @@ const HomePage = () => {
           <div>
             <h3 className="font-bold text-3xl mb-4">Инвесторам</h3>
             <div className="space-y-4">
-              <div className="bg-white rounded-2xl p-6 flex items-start gap-6">
-                <img src={`${process.env.PUBLIC_URL}/assets_task_01jye4eggtfk7ahzf9qf79dmxy_1750673668_img_3 1.svg`} alt="" className="w-16 h-16"/>
+              <div className="bg-white rounded-2xl p-6 flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
+                <img src={`${process.env.PUBLIC_URL}/assets_task_01jye4eggtfk7ahzf9qf79dmxy_1750673668_img_3 1.svg`} alt="" className="w-12 h-12 sm:w-16 sm:h-16 flex-shrink-0"/>
                 <div>
                   <h4 className="font-bold text-xl mb-1">Единый счет</h4>
                   <p className="text-text-grey">Управляйте всеми вашими инвестициями с одного счета. Пополняйте баланс, выводите средства и отслеживайте финансовые потоки в одном месте. Мы обеспечиваем максимальную прозрачность и безопасность ваших активов.</p>
                 </div>
               </div>
-              <div className="bg-white rounded-2xl p-6 flex items-start gap-6">
-                <img src={`${process.env.PUBLIC_URL}/assets_task_01jye57frdf2paxg768scs4s8p_1750674491_img_2 1.png`} alt="" className="w-16 h-16"/>
+              <div className="bg-white rounded-2xl p-6 flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
+                <img src={`${process.env.PUBLIC_URL}/assets_task_01jye57frdf2paxg768scs4s8p_1750674491_img_2 1.png`} alt="" className="w-12 h-12 sm:w-16 sm:h-16 flex-shrink-0"/>
                 <div>
                   <h4 className="font-bold text-xl mb-1">Инвестиционные продукты</h4>
                   <p className="text-text-grey">Выбирайте из широкого спектра готовых продуктов: от консервативных ботов для долгосрочных инвестиций до высокорисковых стратегий для агрессивной торговли. Диверсифицируйте свой портфель в несколько кликов.</p>
                 </div>
               </div>
-              <div className="bg-white rounded-2xl p-6 flex items-start gap-6">
-                <img src={`${process.env.PUBLIC_URL}/assets_task_01jye5x9b8faqtakmxk93mnj2t_1750675199_img_3 1.png`} alt="" className="w-16 h-16"/>
+              <div className="bg-white rounded-2xl p-6 flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
+                <img src={`${process.env.PUBLIC_URL}/assets_task_01jye5x9b8faqtakmxk93mnj2t_1750675199_img_3 1.png`} alt="" className="w-12 h-12 sm:w-16 sm:h-16 flex-shrink-0"/>
                 <div>
                   <h4 className="font-bold text-xl mb-1">Личный рабочий стол</h4>
                   <p className="text-text-grey">Ваш персональный центр управления. Отслеживайте доходность, анализируйте производительность каждого бота, получайте отчеты и настраивайте уведомления. Все ключевые метрики вашего портфеля на одном экране.</p>
@@ -1883,22 +1883,22 @@ const HomePage = () => {
           <div>
             <h3 className="font-bold text-3xl mb-4">Создателям алго-ботов и экспертов</h3>
             <div className="space-y-4">
-              <div className="bg-white rounded-2xl p-6 flex items-start gap-6">
-                <img src={`${process.env.PUBLIC_URL}/assets_task_01jye5yc7pe6w9d2y08qzdf1xt_1750675239_img_1 1.png`} alt="" className="w-16 h-16"/>
+              <div className="bg-white rounded-2xl p-6 flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
+                <img src={`${process.env.PUBLIC_URL}/assets_task_01jye5yc7pe6w9d2y08qzdf1xt_1750675239_img_1 1.png`} alt="" className="w-12 h-12 sm:w-16 sm:h-16 flex-shrink-0"/>
                 <div>
                   <h4 className="font-bold text-xl mb-1">Создание и продажа</h4>
                   <p className="text-text-grey">Превратите свои торговые идеи в источник дохода. Наш интуитивно понятный конструктор позволяет создавать ботов без написания кода. Опубликуйте свой продукт в Маркетплейсе и начните зарабатывать на продажах и аренде.</p>
                 </div>
               </div>
-              <div className="bg-white rounded-2xl p-6 flex items-start gap-6">
-                <img src={`${process.env.PUBLIC_URL}/Analytics_set.svg`} alt="" className="w-16 h-16"/>
+              <div className="bg-white rounded-2xl p-6 flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
+                <img src={`${process.env.PUBLIC_URL}/Analytics_set.svg`} alt="" className="w-12 h-12 sm:w-16 sm:h-16 flex-shrink-0"/>
                 <div>
                   <h4 className="font-bold text-xl mb-1">Аналитика по продуктам</h4>
                   <p className="text-text-grey">Получайте подробную статистику по вашим ботам: количество подписчиков, доходность, максимальная просадка и другие ключевые показатели. Анализируйте данные, чтобы улучшать свои стратегии и привлекать больше клиентов.</p>
                 </div>
               </div>
-              <div className="bg-white rounded-2xl p-6 flex items-start gap-6">
-                <img src={`${process.env.PUBLIC_URL}/assets_task_01jye63bnrfm2vt0y8at6hvj98_1750675399_img_1 1.png`} alt="" className="w-16 h-16"/>
+              <div className="bg-white rounded-2xl p-6 flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
+                <img src={`${process.env.PUBLIC_URL}/assets_task_01jye63bnrfm2vt0y8at6hvj98_1750675399_img_1 1.png`} alt="" className="w-12 h-12 sm:w-16 sm:h-16 flex-shrink-0"/>
                 <div>
                   <h4 className="font-bold text-xl mb-1">Платформа для продажи ботов</h4>
                   <p className="text-text-grey">Мы предоставляем вам готовую инфраструктуру для ведения бизнеса. Управляйте ценами, предлагайте скидки, общайтесь с клиентами и получайте пассивный доход. Сосредоточьтесь на разработке, а мы позаботимся об остальном.</p>

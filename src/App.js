@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ReactComponent as Logo } from './assets/icon.svg';
 import { ReactComponent as PersonsIcon } from './assets/persons.svg';
 import { ReactComponent as WalletIcon } from './assets/wallet.svg';
@@ -49,6 +49,11 @@ const ICONS = {
   heart: (props) => (
     <svg {...props} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  ),
+  bookmark: (props) => (
+    <svg {...props} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   ),
   help: (props) => (
@@ -273,8 +278,10 @@ const Button = ({ children, variant = 'big-classic', icon: Icon, iconPosition = 
     'icon': 'p-2 rounded-full hover:bg-grey-2/50 active:bg-grey-2 disabled:text-grey',
   };
 
+  const effectiveClassName = variant ? `${baseStyles} ${variantStyles[variant]} ${className}` : `${baseStyles} ${className}`;
+
   return (
-    <button className={`${baseStyles} ${variantStyles[variant]} ${className}`} disabled={disabled} {...props}>
+    <button className={effectiveClassName} disabled={disabled} {...props}>
       {Icon && iconPosition === 'left' && <Icon className={iconClass || "mr-2"} />}
       {children}
       {Icon && iconPosition === 'right' && <Icon className={iconClass || "ml-2"} />}
@@ -286,8 +293,6 @@ const Button = ({ children, variant = 'big-classic', icon: Icon, iconPosition = 
 
 const LandingPage = ({ onNavigate, botData, botImages }) => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const cardsPerPage = 3;
   const carouselRef = useRef(null);
   const autoScrollIntervalRef = useRef(null);
 
@@ -421,10 +426,10 @@ const LandingPage = ({ onNavigate, botData, botImages }) => {
       {/* Header */}
       <header className="sticky top-0 bg-white shadow-md z-20">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-          <a href="#" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center gap-4">
+          <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center gap-4">
             <Logo className="h-10 w-10"/>
             <span className="font-tt-travels text-2xl font-bold hidden sm:inline">AlgoVerse</span>
-          </a>
+          </button>
           <nav className="hidden md:flex items-center gap-8">
             <a href="#about" onClick={(e) => { e.preventDefault(); document.getElementById('about').scrollIntoView({ behavior: 'smooth' }); }} className="hover:text-main">О нас</a>
             <a href="#features" onClick={(e) => { e.preventDefault(); document.getElementById('features').scrollIntoView({ behavior: 'smooth' }); }} className="hover:text-main">Возможности</a>
@@ -443,10 +448,10 @@ const LandingPage = ({ onNavigate, botData, botImages }) => {
         {/* Mobile Menu */}
         <div className={`fixed inset-0 z-50 bg-white bg-opacity-100 p-6 transform ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 ease-in-out md:hidden`}>
             <div className="flex justify-between items-center mb-8">
-                <a href="#" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-4">
+                <button onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-4">
                     <Logo className="h-10 w-10"/>
                     <span className="font-tt-travels text-2xl font-bold">AlgoVerse</span>
-                </a>
+                </button>
                 <Button variant="icon" onClick={() => setMobileMenuOpen(false)}>
                     {React.createElement(ICONS.close)}
                 </Button>
@@ -847,38 +852,45 @@ const RegistrationPage = ({ onNavigate }) => {
 //=========== ОСНОВНЫЕ КОМПОНЕНТЫ ПРИЛОЖЕНИЯ (ДАШБОРД) ===========//
 
 const Sidebar = ({ activePage, onNavigate, isMobileMenuOpen, setMobileMenuOpen }) => {
+  const handleItemClick = (page) => {
+    onNavigate(page);
+    if (isMobileMenuOpen) {
+      setMobileMenuOpen(false);
+    }
+  };
+
   const sidebarContent = (
     <>
       <div className="p-4">
-        <a href="/" onClick={(e) => { e.preventDefault(); onNavigate('Главная'); setMobileMenuOpen(false); }} className="flex items-center gap-4">
+        <button onClick={() => handleItemClick('Главная')} className="flex items-center gap-4">
           <Logo className="h-10 w-10"/>
           <span className="font-tt-travels text-2xl font-bold text-text-black">AlgoVerse</span>
-        </a>
+        </button>
       </div>
-      <nav className="flex-grow px-4 mt-8 pb-6">
+      <nav className="flex-grow px-4 mt-8 pb-6 overflow-y-auto">
         <div className="space-y-2">
           {['Лента', 'Маркетплейс', 'Персоны'].map((item) => (
-            <a key={item} href="#" onClick={(e) => { e.preventDefault(); onNavigate(item); setMobileMenuOpen(false); }} className={`flex items-center gap-5 px-4 py-3 rounded-lg transition-colors ${activePage === item ? 'bg-main text-white' : 'text-text-grey hover:bg-grey-2/50 hover:text-text-black'}`}>
+            <button key={item} onClick={() => handleItemClick(item)} className={`flex items-center w-full text-left gap-5 px-4 py-3 rounded-lg transition-colors ${activePage === item ? 'bg-main text-white' : 'text-text-grey hover:bg-grey-2/50 hover:text-text-black'}`}>
               {React.createElement(ICONS[{'Лента': 'feed', 'Маркетплейс': 'marketplace', 'Персоны': 'persons'}[item]])}
               <span className="font-open-sans font-semibold">{item}</span>
-            </a>
+            </button>
           ))}
         </div>
         <hr className="my-4 border-grey-2" />
         <div className="space-y-2">
           {['Рабочий стол', 'Сообщения', 'Избранное'].map((item) => (
-            <a key={item} href="#" onClick={(e) => { e.preventDefault(); onNavigate(item); setMobileMenuOpen(false); }} className={`flex items-center gap-5 px-4 py-3 rounded-lg transition-colors ${activePage === item ? 'bg-main text-white' : 'text-text-grey hover:bg-grey-2/50 hover:text-text-black'}`}>
+            <button key={item} onClick={() => handleItemClick(item)} className={`flex items-center w-full text-left gap-5 px-4 py-3 rounded-lg transition-colors ${activePage === item ? 'bg-main text-white' : 'text-text-grey hover:bg-grey-2/50 hover:text-text-black'}`}>
               {React.createElement(ICONS[{'Рабочий стол': 'desktop', 'Сообщения': 'messages', 'Избранное': 'heart'}[item]])}
               <span className="font-open-sans font-semibold">{item}</span>
-            </a>
+            </button>
           ))}
         </div>
         <hr className="my-4 border-grey-2" />
         <div className="space-y-2">
-          <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('Помощь'); setMobileMenuOpen(false); }} className={`flex items-center gap-5 px-4 py-3 rounded-lg transition-colors ${activePage === 'Помощь' ? 'bg-main text-white' : 'text-text-grey hover:bg-grey-2/50 hover:text-text-black'}`}>
+          <button onClick={() => handleItemClick('Помощь')} className={`flex items-center w-full text-left gap-5 px-4 py-3 rounded-lg transition-colors ${activePage === 'Помощь' ? 'bg-main text-white' : 'text-text-grey hover:bg-grey-2/50 hover:text-text-black'}`}>
             {React.createElement(ICONS.help)}
             <span className="font-open-sans font-semibold">Помощь</span>
-          </a>
+          </button>
         </div>
       </nav>
     </>
@@ -886,7 +898,7 @@ const Sidebar = ({ activePage, onNavigate, isMobileMenuOpen, setMobileMenuOpen }
 
   return (
     <>
-      <aside className="hidden lg:flex lg:flex-col w-64 bg-white rounded-2xl m-4 flex-shrink-0">{sidebarContent}</aside>
+      <aside className="hidden lg:flex lg:flex-col w-64 bg-white rounded-2xl m-4 flex-shrink-0 self-start sticky top-4 h-[calc(100vh-2rem)]">{sidebarContent}</aside>
       <div className={`fixed inset-0 z-40 transform lg:hidden ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out`}>
           <div className="w-64 h-full bg-white shadow-lg flex flex-col">{sidebarContent}</div>
       </div>
@@ -917,10 +929,10 @@ const Header = ({ onOpenModal, setMobileMenuOpen, onLogout }) => {
   const ProfileDropdown = () => (
     <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 z-20">
       <div className="py-1">
-        <a href="#" className="flex items-center px-4 py-2 text-sm text-text-grey hover:bg-grey-2/50"><img src={UnionIcon} alt="Профиль" className="w-4 h-4 mr-2"/>Профиль</a>
-        <a href="#" className="flex items-center px-4 py-2 text-sm text-text-grey hover:bg-grey-2/50"><img src={Group12Icon} alt="Настройки аккаунта" className="w-4 h-4 mr-2"/>Настройки аккаунта</a>
-        <a href="#" className="flex items-center px-4 py-2 text-sm text-text-grey hover:bg-grey-2/50"><PersonsIcon className="w-4 h-4 mr-2"/>Партнерская программа</a>
-        <a href="#" className="flex items-center px-4 py-2 text-sm text-text-grey hover:bg-grey-2/50"><WalletIcon className="w-4 h-4 mr-2"/>Кошелек</a>
+        <button className="flex items-center w-full text-left px-4 py-2 text-sm text-text-grey hover:bg-grey-2/50"><img src={UnionIcon} alt="Профиль" className="w-4 h-4 mr-2"/>Профиль</button>
+        <button className="flex items-center w-full text-left px-4 py-2 text-sm text-text-grey hover:bg-grey-2/50"><img src={Group12Icon} alt="Настройки аккаунта" className="w-4 h-4 mr-2"/>Настройки аккаунта</button>
+        <button className="flex items-center w-full text-left px-4 py-2 text-sm text-text-grey hover:bg-grey-2/50"><PersonsIcon className="w-4 h-4 mr-2"/>Партнерская программа</button>
+        <button className="flex items-center w-full text-left px-4 py-2 text-sm text-text-grey hover:bg-grey-2/50"><WalletIcon className="w-4 h-4 mr-2"/>Кошелек</button>
         <div className="border-t border-grey-2 my-1"></div>
         <div className="flex items-center px-4 py-2 text-sm text-text-grey">
           <SiteIcon className="w-4 h-4 mr-2"/>
@@ -930,7 +942,7 @@ const Header = ({ onOpenModal, setMobileMenuOpen, onLogout }) => {
           </select>
         </div>
         <div className="border-t border-grey-2 my-1"></div>
-        <a href="#" onClick={(e) => { e.preventDefault(); onLogout(); }} className="flex items-center px-4 py-2 text-sm text-main hover:bg-grey-2/50"><ExitIcon className="w-4 h-4 mr-2"/>Выйти из аккаунта</a>
+        <button onClick={onLogout} className="flex items-center w-full text-left px-4 py-2 text-sm text-main hover:bg-grey-2/50"><ExitIcon className="w-4 h-4 mr-2"/>Выйти из аккаунта</button>
       </div>
     </div>
   );
@@ -1003,6 +1015,7 @@ const CreateModal = ({ isOpen, onClose, isVerified, onVerificationComplete, onPr
     return (<div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"><div className="bg-white rounded-2xl p-8 w-full max-w-2xl max-h-[90vh] overflow-y-auto relative"><Button variant="icon" className="absolute top-4 right-4" onClick={onClose}>{React.createElement(ICONS.close)}</Button>{renderStep()}</div></div>);
 };
 
+// eslint-disable-next-line no-template-curly-in-string
 const ProductCreationForm = ({ onBack, onSave }) => { return (<><h2 className="text-2xl font-bold mb-6 font-tt-travels">Создание нового продукта</h2><div className="space-y-4"><div><label className="font-semibold mb-1 block">Название</label><input type="text" placeholder="Название продукта..." className="w-full p-3 border border-grey-2 rounded-lg" /></div><div><label className="font-semibold mb-1 block">Продукт</label><select className="w-full p-3 border border-grey-2 rounded-lg"><option>Эксперты</option><option>Индикаторы</option></select></div><div className="grid grid-cols-2 gap-4"><div><label className="font-semibold mb-1 block">Тип счета</label><select className="w-full p-3 border border-grey-2 rounded-lg"><option>Любой</option></select></div><div><label className="font-semibold mb-1 block">Тип эксперта</label><div className="p-3 border border-grey-2 rounded-lg space-y-2"><label className="flex items-center"><input type="checkbox" className="form-checkbox mr-2"/>Арбитражный</label><label className="flex items-center"><input type="checkbox" className="form-checkbox mr-2"/>Скальпирующий</label></div></div></div><div><label className="font-semibold mb-1 block">Цена</label><div className="space-y-2"><div className="flex items-center gap-2"><input type="checkbox" className="form-checkbox"/><input type="number" placeholder="0.00" className="w-24 p-2 border rounded-lg"/><span>USD</span><span>аренда на 1 месяц</span></div><div className="flex items-center gap-2"><input type="checkbox" className="form-checkbox"/><input type="number" placeholder="0.00" className="w-24 p-2 border rounded-lg"/><span>USD</span><span>аренда на 1 год</span></div></div></div></div><div className="flex gap-4 mt-8">{onBack && <Button variant="big-outline" onClick={onBack}>Назад</Button>}<Button variant="big-classic" className="w-full" onClick={onSave}>Сохранить черновик</Button></div></>);};
 
 const BotDetailsPage = ({ bot, onBack }) => {
@@ -1162,6 +1175,26 @@ const Marketplace = ({ onNavigate, botData, botImages }) => {
   const [activeTab, setActiveTab] = useState('Алго-боты');
   const [isFilterOpen, setFilterOpen] = useState(false);
   const tabs = ['Алго-боты', 'Сигналы', 'Услуги', 'Софт', 'Дополнительно'];
+  const [showFilter, setShowFilter] = useState(true);
+  const lastScrollY = useRef(0);
+
+  const controlFilterSidebar = useCallback(() => {
+    const currentScrollY = window.scrollY;
+    if (currentScrollY > lastScrollY.current && currentScrollY > 200) {
+      setShowFilter(false);
+    } else {
+      setShowFilter(true);
+    }
+    lastScrollY.current = currentScrollY;
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('scroll', controlFilterSidebar);
+    return () => {
+      window.removeEventListener('scroll', controlFilterSidebar);
+    };
+  }, [controlFilterSidebar]);
+
 
   if (selectedBot) {
     return <BotDetailsPage bot={selectedBot} onBack={() => setSelectedBot(null)} />;
@@ -1176,14 +1209,19 @@ const Marketplace = ({ onNavigate, botData, botImages }) => {
               <div key={index} className="bg-white p-6 rounded-2xl shadow-lg flex flex-col transform hover:-translate-y-1 transition-all duration-300">
                 <div className="relative mb-4">
                   <img src={bot.image} alt={bot.name} className="w-full h-48 object-cover rounded-lg"/>
-                  <div className="absolute top-2 left-2 flex items-center bg-white rounded-full px-2 py-1 shadow-md">
-                    {React.createElement(ICONS.heart, { className: "w-4 h-4 text-yellow-500 mr-1" })}
-                    <span className="text-sm font-semibold">{bot.rating}</span>
+                  <div className="absolute top-2 left-2 flex items-center gap-2">
+                    <div className="flex items-center bg-white rounded-full px-2 py-1 shadow-md">
+                      {React.createElement(ICONS.heart, { className: "w-4 h-4 text-yellow-500 mr-1" })}
+                      <span className="text-sm font-semibold">{bot.rating}</span>
+                    </div>
+                    <div className="flex items-center bg-white rounded-full px-2 py-1 shadow-md">
+                      {React.createElement(ICONS.messages, { className: "w-4 h-4 text-blue-500 mr-1" })}
+                      <span className="text-sm font-semibold">{bot.comments}</span>
+                    </div>
                   </div>
-                  <div className="absolute top-2 left-16 flex items-center bg-white rounded-full px-2 py-1 shadow-md">
-                    {React.createElement(ICONS.messages, { className: "w-4 h-4 text-blue-500 mr-1" })}
-                    <span className="text-sm font-semibold">{bot.comments}</span>
-                  </div>
+                  <Button variant="icon" className="absolute top-2 right-2 text-white bg-black/20 hover:bg-black/40">
+                    {React.createElement(ICONS.bookmark, { className: "w-5 h-5" })}
+                  </Button>
                 </div>
                 <h3 className="font-tt-travels text-xl font-bold mb-2">{bot.name}</h3>
                 <p className="text-text-grey text-sm mb-4 flex-grow">{bot.description}</p>
@@ -1198,7 +1236,7 @@ const Marketplace = ({ onNavigate, botData, botImages }) => {
           </div>
         );
       default:
-        return <div className="text-center py-10"><p>Контент для "{activeTab}" будет добавлен в будущем.</p></div>;
+        return <div className="text-center py-10"><p>{`Контент для "${activeTab}" будет добавлен в будущем.`}</p></div>;
     }
   };
 
@@ -1308,7 +1346,7 @@ const Marketplace = ({ onNavigate, botData, botImages }) => {
 
       {/* Sidebar for Desktop */}
       <aside className="w-80 flex-shrink-0 hidden lg:block">
-        <div className="sticky top-24">
+        <div className={`sticky transition-transform duration-300 ${showFilter ? 'top-24' : '-translate-y-full'}`}>
           <FilterSidebar />
         </div>
       </aside>
@@ -1420,7 +1458,7 @@ const feedPosts = [
 
 const AdCard = ({ image, title, url }) => (
   <a href={url} target="_blank" rel="noopener noreferrer" className="block bg-white rounded-2xl shadow-sm p-4 hover:shadow-md transition-shadow">
-    <div className="relative h-24 rounded-lg overflow-hidden">
+    <div className="relative aspect-square rounded-lg overflow-hidden">
       <img src={image} alt={title} className="w-full h-full object-cover" />
       <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
         <h4 className="text-white font-bold text-center p-2">{title}</h4>
@@ -1482,11 +1520,11 @@ const FeedSidebar = () => {
           </div>
         </div>
         <div className="space-y-2">
-          <AdCard image={botImages[5]} title="АТОН - ваш брокер" url="#" />
-          <AdCard image={botImages[6]} title="БКС Инвестиции" url="#" />
-          <AdCard image={botImages[7]} title="Альфа Инвестиции" url="#" />
-          <AdCard image={botImages[8]} title="Брокер Цифра" url="#" />
-          <AdCard image={botImages[9]} title="Еще один брокер" url="#" />
+          <AdCard image={botImages[5]} title="АТОН - ваш брокер" url="#!" />
+          <AdCard image={botImages[6]} title="БКС Инвестиции" url="#!" />
+          <AdCard image={botImages[7]} title="Альфа Инвестиции" url="#!" />
+          <AdCard image={botImages[8]} title="Брокер Цифра" url="#!" />
+          <AdCard image={botImages[9]} title="Еще один брокер" url="#!" />
         </div>
       </div>
     </aside>
@@ -1618,8 +1656,8 @@ const PostCreator = ({ className }) => (
       placeholder="Что у вас нового?"
       className="w-full h-20 p-2 border border-grey-2 rounded-lg resize-none focus:outline-none focus:border-main"
     ></textarea>
-    <div className="flex justify-between items-center mt-2">
-      <div className="flex items-center gap-1 text-text-grey">
+    <div className="flex justify-between items-center mt-2 flex-wrap gap-y-2">
+      <div className="flex items-center gap-1 text-text-grey flex-wrap">
         <button className="p-2 hover:bg-grey-1 rounded-full">{React.createElement(ICONS.bold, { className: "w-5 h-5" })}</button>
         <button className="p-2 hover:bg-grey-1 rounded-full">{React.createElement(ICONS.italic, { className: "w-5 h-5" })}</button>
         <button className="p-2 hover:bg-grey-1 rounded-full">{React.createElement(ICONS.underline, { className: "w-5 h-5" })}</button>
@@ -1633,7 +1671,7 @@ const PostCreator = ({ className }) => (
         <button className="p-2 hover:bg-grey-1 rounded-full">{React.createElement(ICONS.attachVideo, { className: "w-5 h-5" })}</button>
         <button className="p-2 hover:bg-grey-1 rounded-full">{React.createElement(ICONS.attachFile, { className: "w-5 h-5" })}</button>
       </div>
-      <Button variant="small-classic" className="!rounded-full !px-6 !py-2 !bg-orange">Опубликовать</Button>
+      <Button variant={null} className="rounded-full px-6 py-2 bg-orange text-white font-bold text-sm hover:opacity-90">Опубликовать</Button>
     </div>
   </div>
 );
@@ -1692,7 +1730,7 @@ const MainContent = ({ activePage, productCreated, onNavigate, botData, botImage
 };
 
 const Dashboard = ({ onLogout, botData, botImages }) => {
-  const [activePage, setActivePage] = useState('Лента');
+  const [activePage, setActivePage] = useState('Главная');
   const [isModalOpen, setModalOpen] = useState(false);
   const [isVerified, setVerified] = useState(false);
   const [productCreated, setProductCreated] = useState(false);
@@ -1705,7 +1743,7 @@ const Dashboard = ({ onLogout, botData, botImages }) => {
 
   return (
     <div className="bg-bg-light min-h-screen font-open-sans text-text-black">
-      <div className="flex">
+      <div className="flex items-start">
         <Sidebar activePage={activePage} onNavigate={handleNavigate} isMobileMenuOpen={isMobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
         <div className="flex-grow flex flex-col lg:ml-4">
           <Header onOpenModal={() => setModalOpen(true)} setMobileMenuOpen={setMobileMenuOpen} onLogout={onLogout} />

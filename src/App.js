@@ -131,6 +131,95 @@ const ICONS = {
       <path d="M21 21L16.65 16.65" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   ),
+  eye: (props) => (
+    <svg {...props} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  ),
+  repost: (props) => (
+    <svg {...props} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17 1l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M3 11V9a4 4 0 0 1 4-4h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M7 23l-4-4 4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M21 13v2a4 4 0 0 1-4 4H3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  ),
+  send: (props) => (
+    <svg {...props} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="22" y1="2" x2="11" y2="13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <polygon points="22 2 15 22 11 13 2 9 22 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  ),
+  bold: (props) => (
+    <svg {...props} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6 4h8a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M6 12h9a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  ),
+  italic: (props) => (
+    <svg {...props} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="19" y1="4" x2="10" y2="4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <line x1="14" y1="20" x2="5" y2="20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <line x1="15" y1="4" x2="9" y2="20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  ),
+  underline: (props) => (
+    <svg {...props} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6 3v7a6 6 0 0 0 6 6 6 6 0 0 0 6-6V3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <line x1="4" y1="21" x2="20" y2="21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  ),
+  strikethrough: (props) => (
+    <svg {...props} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 4H9.5a4.5 4.5 0 0 0 0 9H15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M8 20h6.5a4.5 4.5 0 0 0 0-9H7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        <line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  ),
+  alignLeft: (props) => (
+    <svg {...props} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="17" y1="10" x2="3" y2="10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <line x1="21" y1="6" x2="3" y2="6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <line x1="17" y1="14" x2="3" y2="14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <line x1="21" y1="18" x2="3" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  ),
+  alignCenter: (props) => (
+    <svg {...props} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="18" y1="10" x2="6" y2="10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <line x1="21" y1="6" x2="3" y2="6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <line x1="21" y1="14" x2="3" y2="14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <line x1="18" y1="18" x2="6" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  ),
+  alignRight: (props) => (
+    <svg {...props} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="21" y1="10" x2="7" y2="10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <line x1="21" y1="6" x2="3" y2="6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <line x1="21" y1="14" x2="3" y2="14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <line x1="21" y1="18" x2="7" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  ),
+  attachFile: (props) => (
+    <svg {...props} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <polyline points="14 2 14 8 20 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  ),
+  attachVideo: (props) => (
+    <svg {...props} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="23 7 16 12 23 17 23 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <rect x="1" y="5" width="15" height="14" rx="2" ry="2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  ),
+  attachImage: (props) => (
+    <svg {...props} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="3" y="3" width="18" height="18" rx="2" ry="2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <circle cx="8.5" cy="8.5" r="1.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <polyline points="21 15 16 10 5 21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  ),
 };
 
 const botImages = [
@@ -347,7 +436,7 @@ const LandingPage = ({ onNavigate, botData, botImages }) => {
           </div>
           <div className="md:hidden">
             <Button variant="icon" onClick={() => setMobileMenuOpen(true)}>
-              <ICONS.burger />
+              {React.createElement(ICONS.burger)}
             </Button>
           </div>
         </div>
@@ -359,7 +448,7 @@ const LandingPage = ({ onNavigate, botData, botImages }) => {
                     <span className="font-tt-travels text-2xl font-bold">AlgoVerse</span>
                 </a>
                 <Button variant="icon" onClick={() => setMobileMenuOpen(false)}>
-                    <ICONS.close />
+                    {React.createElement(ICONS.close)}
                 </Button>
             </div>
             <nav className="flex flex-col gap-6 text-lg">
@@ -400,7 +489,7 @@ const LandingPage = ({ onNavigate, botData, botImages }) => {
       <section id="section1" ref={section1Ref} className={`bg-white py-20 px-6 ${section1Visible ? 'fade-in-up' : 'section-hidden'}`}>
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
             <div className={`w-full md:w-1/2 flex justify-center order-2 md:order-1 mt-8 md:mt-0 ${section1Visible ? 'slide-in-left' : 'section-hidden'}`}>
-                <img src={`${process.env.PUBLIC_URL}/34укый234ы 1.svg`} alt="Section 1 Image" className="max-w-full h-auto" />
+                <img src={`${process.env.PUBLIC_URL}/34укый234ы 1.svg`} alt="Section 1" className="max-w-full h-auto" />
             </div>
             <div className={`w-full md:w-1/2 text-left md:pl-16 order-1 md:order-2 ${section1Visible ? 'slide-in-right' : 'section-hidden'}`}>
                 <h2 className="font-tt-travels text-3xl font-bold mb-4">От идеи до результата — за часы, а не недели</h2>
@@ -416,7 +505,7 @@ const LandingPage = ({ onNavigate, botData, botImages }) => {
                 <p className="text-lg text-text-grey mb-4">Мы не ограничиваемся инструментами. Мы строим экосистему: готовые боты, гибкая кастомизация, автокопирование сделок, сигналы, аналитика и дашборд, где вся активность — под контролем. Это не просто платформа, а место, где идеи превращаются в результат.</p>
             </div>
             <div className={`w-full md:w-1/2 flex justify-center mt-8 md:mt-0 ${section2Visible ? 'slide-in-right' : 'section-hidden'}`}>
-                <img src={`${process.env.PUBLIC_URL}/Frame 7460.svg`} alt="Section 2 Image" className="max-w-full h-auto" />
+                <img src={`${process.env.PUBLIC_URL}/Frame 7460.svg`} alt="Section 2" className="max-w-full h-auto" />
             </div>
         </div>
       </section>
@@ -424,7 +513,7 @@ const LandingPage = ({ onNavigate, botData, botImages }) => {
       <section id="section3" ref={section3Ref} className={`bg-white py-20 px-6 ${section3Visible ? 'fade-in-up' : 'section-hidden'}`}>
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
             <div className={`w-full md:w-1/2 flex justify-center order-2 md:order-1 mt-8 md:mt-0 ${section3Visible ? 'slide-in-left' : 'section-hidden'}`}>
-                <img src={`${process.env.PUBLIC_URL}/followers_empty.svg`} alt="Section 3 Image" className="w-[400px] h-[250px]" />
+                <img src={`${process.env.PUBLIC_URL}/followers_empty.svg`} alt="Section 3" className="w-[400px] h-[250px]" />
             </div>
             <div className={`w-full md:w-1/2 text-left md:pl-16 order-1 md:order-2 ${section3Visible ? 'slide-in-right' : 'section-hidden'}`}>
                 <h2 className="font-tt-travels text-3xl font-bold mb-4">Кто мы</h2>
@@ -441,7 +530,7 @@ const LandingPage = ({ onNavigate, botData, botImages }) => {
                 <p className="text-lg text-text-grey" style={{ marginTop: '15px' }}>И если вам близко это будущее — добро пожаловать.</p>
             </div>
             <div className={`w-full md:w-1/2 flex justify-center mt-8 md:mt-0 ${section4Visible ? 'slide-in-right' : 'section-hidden'}`}>
-                <img src={`${process.env.PUBLIC_URL}/Frame 7461.svg`} alt="Section 4 Image" className="max-w-full h-auto" />
+                <img src={`${process.env.PUBLIC_URL}/Frame 7461.svg`} alt="Section 4" className="max-w-full h-auto" />
             </div>
         </div>
       </section>
@@ -499,11 +588,11 @@ const LandingPage = ({ onNavigate, botData, botImages }) => {
                 <div className="relative mb-4">
                   <img src={bot.image} alt={bot.name} className="w-full h-32 object-cover rounded-lg"/>
                   <div className="absolute top-2 left-2 flex items-center bg-white rounded-full px-2 py-1 shadow-md">
-                    <ICONS.favorites className="w-4 h-4 text-yellow-500 mr-1"/>
+                    {React.createElement(ICONS.favorites, { className: "w-4 h-4 text-yellow-500 mr-1" })}
                     <span className="text-sm font-semibold">{bot.rating}</span>
                   </div>
                   <div className="absolute top-2 left-16 flex items-center bg-white rounded-full px-2 py-1 shadow-md">
-                    <ICONS.messages className="w-4 h-4 text-blue-500 mr-1"/>
+                    {React.createElement(ICONS.messages, { className: "w-4 h-4 text-blue-500 mr-1" })}
                     <span className="text-sm font-semibold">{bot.comments}</span>
                   </div>
                 </div>
@@ -513,8 +602,8 @@ const LandingPage = ({ onNavigate, botData, botImages }) => {
               </div>
             ))}
           </div>
-          <Button variant="icon" className="absolute top-1/2 left-0 -translate-y-1/2 bg-white/80 backdrop-blur-sm shadow-lg p-4" onClick={handlePrev}><ICONS.arrowLeft /></Button>
-          <Button variant="icon" className="absolute top-1/2 right-0 -translate-y-1/2 bg-white/80 backdrop-blur-sm shadow-lg p-4" onClick={handleNext}><ICONS.arrowRight /></Button>
+          <Button variant="icon" className="absolute top-1/2 left-0 -translate-y-1/2 bg-white/80 backdrop-blur-sm shadow-lg p-4" onClick={handlePrev}>{React.createElement(ICONS.arrowLeft)}</Button>
+          <Button variant="icon" className="absolute top-1/2 right-0 -translate-y-1/2 bg-white/80 backdrop-blur-sm shadow-lg p-4" onClick={handleNext}>{React.createElement(ICONS.arrowRight)}</Button>
         </div>
       </section>
 
@@ -587,9 +676,9 @@ const LoginPage = ({ onNavigate }) => {
 
   return (
     <div className="bg-bg-light min-h-screen flex items-center justify-center p-4 sm:p-6 relative">
-      <div className="absolute top-4 left-4 sm:top-6 sm:top-6 sm:left-6">
+      <div className="absolute top-4 left-4 sm:top-6 sm:left-6">
         <Button variant="icon" onClick={handleGoBack} className="bg-grey-2/50 hover:bg-grey-2 active:bg-grey-3">
-          <ICONS.arrowLeft />
+          {React.createElement(ICONS.arrowLeft)}
         </Button>
       </div>
       <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-lg max-w-sm w-full text-center">
@@ -705,7 +794,7 @@ const RegistrationPage = ({ onNavigate }) => {
     <div className="bg-bg-light min-h-screen flex items-center justify-center p-6 relative">
       <div className="absolute top-6 left-6">
         <Button variant="icon" onClick={handleGoBack} className="bg-grey-2/50 hover:bg-grey-2 active:bg-grey-3">
-          <ICONS.arrowLeft />
+          {React.createElement(ICONS.arrowLeft)}
         </Button>
       </div>
       <div className="bg-white p-8 rounded-2xl shadow-lg max-w-md w-full text-center">
@@ -787,7 +876,7 @@ const Sidebar = ({ activePage, onNavigate, isMobileMenuOpen, setMobileMenuOpen }
         <hr className="my-4 border-grey-2" />
         <div className="space-y-2">
           <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('Помощь'); setMobileMenuOpen(false); }} className={`flex items-center gap-5 px-4 py-3 rounded-lg transition-colors ${activePage === 'Помощь' ? 'bg-main text-white' : 'text-text-grey hover:bg-grey-2/50 hover:text-text-black'}`}>
-            <ICONS.help />
+            {React.createElement(ICONS.help)}
             <span className="font-open-sans font-semibold">Помощь</span>
           </a>
         </div>
@@ -861,9 +950,9 @@ const Header = ({ onOpenModal, setMobileMenuOpen, onLogout }) => {
   return (
     <header className="bg-white/80 backdrop-blur-sm sticky top-4 z-20 mx-4 lg:mx-0 rounded-2xl shadow-sm">
       <div className="container mx-auto px-4 lg:px-6 h-16 flex items-center justify-between md:justify-start md:gap-4">
-        <div className="lg:hidden"><Button variant="icon" onClick={() => setMobileMenuOpen(true)}><ICONS.burger /></Button></div>
+        <div className="lg:hidden"><Button variant="icon" onClick={() => setMobileMenuOpen(true)}>{React.createElement(ICONS.burger)}</Button></div>
         <div className="relative flex items-center flex-grow md:flex-grow-0">
-          <ICONS.search className="absolute left-3 text-text-grey w-5 h-5" />
+          {React.createElement(ICONS.search, { className: "absolute left-3 text-text-grey w-5 h-5" })}
           <input
             type="text"
             placeholder="Поиск"
@@ -873,10 +962,10 @@ const Header = ({ onOpenModal, setMobileMenuOpen, onLogout }) => {
           />
         </div>
         <div className="flex items-center gap-2 md:gap-4 ml-auto">
-          <Button variant="big-classic" onClick={onOpenModal} className="hidden md:inline-flex"><ICONS.plus className="mr-2"/> Создать</Button>
-          <Button variant="icon" onClick={onOpenModal} className="md:hidden"><ICONS.plus /></Button>
-          <div className="relative" ref={notificationsRef}><Button variant="icon" onClick={() => setNotificationsOpen(o => !o)}><ICONS.bell /></Button>{notificationsOpen && <NotificationDropdown />}</div>
-          <div className="relative" ref={profileRef}><Button variant="icon" onClick={() => setProfileOpen(o => !o)}><ICONS.user /></Button>{profileOpen && <ProfileDropdown />}</div>
+          <Button variant="big-classic" onClick={onOpenModal} className="hidden md:inline-flex">{React.createElement(ICONS.plus, { className: "mr-2" })} Создать</Button>
+          <Button variant="icon" onClick={onOpenModal} className="md:hidden">{React.createElement(ICONS.plus)}</Button>
+          <div className="relative" ref={notificationsRef}><Button variant="icon" onClick={() => setNotificationsOpen(o => !o)}>{React.createElement(ICONS.bell)}</Button>{notificationsOpen && <NotificationDropdown />}</div>
+          <div className="relative" ref={profileRef}><Button variant="icon" onClick={() => setProfileOpen(o => !o)}>{React.createElement(ICONS.user)}</Button>{profileOpen && <ProfileDropdown />}</div>
         </div>
       </div>
     </header>
@@ -903,7 +992,7 @@ const CreateModal = ({ isOpen, onClose, isVerified, onVerificationComplete, onPr
 
     const renderStep = () => {
         switch (step) {
-            case 1: return (<><h2 className="text-2xl font-bold text-center mb-2 font-tt-travels">ПОДТВЕРЖДЕНИЕ ЛИЧНОСТИ</h2><p className="text-center text-text-grey mb-6">Выберите страну и тип документа</p><div className="mb-4"><label className="font-semibold mb-2 block">Выберите страну выдачи документа</label><select className="w-full p-3 border border-grey-2 rounded-lg"><option>Россия</option><option>Казахстан</option></select></div><div className="mb-6"><label className="font-semibold mb-2 block">Выберите тип документа</label><div className="grid grid-cols-2 gap-4">{['Паспорт', 'Водительское удостоверение', 'ID карта', 'Вид на жительство'].map(type => (<label key={type} className={`flex items-center p-3 border rounded-lg cursor-pointer ${docType === type ? 'border-main bg-main/10' : 'border-grey-2'}`}><input type="radio" name="docType" value={type} checked={docType === type} onChange={() => setDocType(type)} className="form-radio text-main focus:ring-main" /><span className="ml-3 text-sm">{type}</span></label>))}</div></div><div className="bg-grey-2/30 p-4 rounded-lg text-center mb-6"><ICONS.upload className="mx-auto text-grey mb-2"/><Button variant="text">Загрузить документ</Button></div><Button variant="big-with-arrow" icon={ICONS.arrowRight} iconPosition="right" className="w-full" onClick={handleNextStep}>Следующий шаг</Button></>);
+            case 1: return (<><h2 className="text-2xl font-bold text-center mb-2 font-tt-travels">ПОДТВЕРЖДЕНИЕ ЛИЧНОСТИ</h2><p className="text-center text-text-grey mb-6">Выберите страну и тип документа</p><div className="mb-4"><label className="font-semibold mb-2 block">Выберите страну выдачи документа</label><select className="w-full p-3 border border-grey-2 rounded-lg"><option>Россия</option><option>Казахстан</option></select></div><div className="mb-6"><label className="font-semibold mb-2 block">Выберите тип документа</label><div className="grid grid-cols-2 gap-4">{['Паспорт', 'Водительское удостоверение', 'ID карта', 'Вид на жительство'].map(type => (<label key={type} className={`flex items-center p-3 border rounded-lg cursor-pointer ${docType === type ? 'border-main bg-main/10' : 'border-grey-2'}`}><input type="radio" name="docType" value={type} checked={docType === type} onChange={() => setDocType(type)} className="form-radio text-main focus:ring-main" /><span className="ml-3 text-sm">{type}</span></label>))}</div></div><div className="bg-grey-2/30 p-4 rounded-lg text-center mb-6">{React.createElement(ICONS.upload, { className: "mx-auto text-grey mb-2" })}<Button variant="text">Загрузить документ</Button></div><Button variant="big-with-arrow" icon={ICONS.arrowRight} iconPosition="right" className="w-full" onClick={handleNextStep}>Следующий шаг</Button></>);
             case 2: return (<><h2 className="text-2xl font-bold text-center mb-2 font-tt-travels">3D СКАНИРОВАНИЕ ЛИЦА</h2><p className="text-center text-text-grey mb-8 max-w-sm mx-auto">Сначала посмотрите в камеру. Убедитесь, что ваше лицо полностью находится в кадре. Медленно поверните голову по кругу, чтобы завершить 3D-сканирование.</p><div className="relative w-48 h-48 mx-auto mb-8 flex items-center justify-center"><div className="absolute inset-0 border-8 border-grey-2 rounded-full"></div><div className="absolute inset-0 border-8 border-main rounded-full animate-spin" style={{ clipPath: 'polygon(0 0, 50% 0, 50% 100%, 0 100%)' }}></div><img src="https://placehold.co/150x150/E2BAA4/000000?text=User" alt="User face" className="rounded-full w-40 h-40 object-cover"/></div><div className="flex gap-4"><Button variant="big-outline" className="w-full" onClick={handleBackStep}>Назад</Button><Button variant="big-classic" className="w-full" onClick={handleNextStep}>Начать</Button></div></>);
             case 3: return (<><div className="w-24 h-24 mx-auto mb-6 flex items-center justify-center bg-light-blue/20 rounded-full"><svg className="w-12 h-12 text-light-blue animate-spin" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2V6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M12 18V22" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M4.93 4.93L7.76 7.76" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M16.24 16.24L19.07 19.07" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M2 12H6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M18 12H22" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M4.93 19.07L7.76 16.24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M16.24 7.76L19.07 4.93" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></div><h2 className="text-2xl font-bold text-center mb-2 font-tt-travels">Система уже проверяет ваши данные.</h2><p className="text-center text-text-grey mb-8 max-w-md mx-auto">Обычно это занимает одну-три минуты. Статус учетной записи будет автоматически изменяться после завершения проверки.</p><Button variant="big-classic" className="w-full" onClick={handleNextStep}>(Имитация) Завершить проверку</Button></>);
             case 4: return <ProductCreationForm onBack={isVerified ? null : handleBackStep} onSave={handleNextStep} />;
@@ -911,7 +1000,7 @@ const CreateModal = ({ isOpen, onClose, isVerified, onVerificationComplete, onPr
         }
     };
 
-    return (<div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"><div className="bg-white rounded-2xl p-8 w-full max-w-2xl max-h-[90vh] overflow-y-auto relative"><Button variant="icon" className="absolute top-4 right-4" onClick={onClose}><ICONS.close /></Button>{renderStep()}</div></div>);
+    return (<div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"><div className="bg-white rounded-2xl p-8 w-full max-w-2xl max-h-[90vh] overflow-y-auto relative"><Button variant="icon" className="absolute top-4 right-4" onClick={onClose}>{React.createElement(ICONS.close)}</Button>{renderStep()}</div></div>);
 };
 
 const ProductCreationForm = ({ onBack, onSave }) => { return (<><h2 className="text-2xl font-bold mb-6 font-tt-travels">Создание нового продукта</h2><div className="space-y-4"><div><label className="font-semibold mb-1 block">Название</label><input type="text" placeholder="Название продукта..." className="w-full p-3 border border-grey-2 rounded-lg" /></div><div><label className="font-semibold mb-1 block">Продукт</label><select className="w-full p-3 border border-grey-2 rounded-lg"><option>Эксперты</option><option>Индикаторы</option></select></div><div className="grid grid-cols-2 gap-4"><div><label className="font-semibold mb-1 block">Тип счета</label><select className="w-full p-3 border border-grey-2 rounded-lg"><option>Любой</option></select></div><div><label className="font-semibold mb-1 block">Тип эксперта</label><div className="p-3 border border-grey-2 rounded-lg space-y-2"><label className="flex items-center"><input type="checkbox" className="form-checkbox mr-2"/>Арбитражный</label><label className="flex items-center"><input type="checkbox" className="form-checkbox mr-2"/>Скальпирующий</label></div></div></div><div><label className="font-semibold mb-1 block">Цена</label><div className="space-y-2"><div className="flex items-center gap-2"><input type="checkbox" className="form-checkbox"/><input type="number" placeholder="0.00" className="w-24 p-2 border rounded-lg"/><span>USD</span><span>аренда на 1 месяц</span></div><div className="flex items-center gap-2"><input type="checkbox" className="form-checkbox"/><input type="number" placeholder="0.00" className="w-24 p-2 border rounded-lg"/><span>USD</span><span>аренда на 1 год</span></div></div></div></div><div className="flex gap-4 mt-8">{onBack && <Button variant="big-outline" onClick={onBack}>Назад</Button>}<Button variant="big-classic" className="w-full" onClick={onSave}>Сохранить черновик</Button></div></>);};
@@ -977,7 +1066,7 @@ const BotDetailsPage = ({ bot, onBack }) => {
               <textarea placeholder="Ваш комментарий..." className="w-full p-3 border border-grey-2 rounded-lg"></textarea>
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-1">
-                  {[...Array(5)].map((_, i) => <ICONS.favorites key={i} className="w-6 h-6 text-grey-2 cursor-pointer hover:text-yellow-400" />)}
+                  {[...Array(5)].map((_, i) => React.createElement(ICONS.favorites, { key: i, className: "w-6 h-6 text-grey-2 cursor-pointer hover:text-yellow-400" }))}
                 </div>
                 <Button variant="small-classic">Отправить</Button>
               </div>
@@ -1012,7 +1101,7 @@ const BotDetailsPage = ({ bot, onBack }) => {
     <div>
       <div className="flex items-center mb-6">
         <Button variant="icon" onClick={onBack} className="mr-4">
-          <ICONS.arrowLeft />
+          {React.createElement(ICONS.arrowLeft)}
         </Button>
         <h2 className="font-bold text-2xl">Подробная информация</h2>
       </div>
@@ -1041,11 +1130,11 @@ const BotDetailsPage = ({ bot, onBack }) => {
           <div className="bg-white shadow-lg p-6 w-full lg:w-[380px] h-auto flex flex-col border border-grey-2" style={{ borderRadius: '65px' }}>
               <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center bg-white rounded-full px-2 py-1 shadow-md">
-                      <ICONS.favorites className="w-4 h-4 text-yellow-500 mr-1"/>
+                      {React.createElement(ICONS.favorites, { className: "w-4 h-4 text-yellow-500 mr-1" })}
                       <span className="text-sm font-semibold">{bot.rating}</span>
                   </div>
                   <div className="flex items-center bg-white rounded-full px-2 py-1 shadow-md">
-                      <ICONS.messages className="w-4 h-4 text-blue-500 mr-1"/>
+                      {React.createElement(ICONS.messages, { className: "w-4 h-4 text-blue-500 mr-1" })}
                       <span className="text-sm font-semibold">{bot.comments} отзывов</span>
                   </div>
               </div>
@@ -1088,11 +1177,11 @@ const Marketplace = ({ onNavigate, botData, botImages }) => {
                 <div className="relative mb-4">
                   <img src={bot.image} alt={bot.name} className="w-full h-48 object-cover rounded-lg"/>
                   <div className="absolute top-2 left-2 flex items-center bg-white rounded-full px-2 py-1 shadow-md">
-                    <ICONS.favorites className="w-4 h-4 text-yellow-500 mr-1"/>
+                    {React.createElement(ICONS.favorites, { className: "w-4 h-4 text-yellow-500 mr-1" })}
                     <span className="text-sm font-semibold">{bot.rating}</span>
                   </div>
                   <div className="absolute top-2 left-16 flex items-center bg-white rounded-full px-2 py-1 shadow-md">
-                    <ICONS.messages className="w-4 h-4 text-blue-500 mr-1"/>
+                    {React.createElement(ICONS.messages, { className: "w-4 h-4 text-blue-500 mr-1" })}
                     <span className="text-sm font-semibold">{bot.comments}</span>
                   </div>
                 </div>
@@ -1121,7 +1210,7 @@ const Marketplace = ({ onNavigate, botData, botImages }) => {
       <div className="bg-white rounded-2xl shadow-sm p-6 h-full">
         <div className="flex justify-between items-center mb-4">
           <h3 className="font-tt-travels text-xl font-bold">Фильтры</h3>
-          <Button variant="icon" className="lg:hidden" onClick={() => setFilterOpen(false)}><ICONS.close /></Button>
+          <Button variant="icon" className="lg:hidden" onClick={() => setFilterOpen(false)}>{React.createElement(ICONS.close)}</Button>
         </div>
         <div className="space-y-6">
           <div>
@@ -1156,15 +1245,15 @@ const Marketplace = ({ onNavigate, botData, botImages }) => {
             <div className="space-y-2">
               <label className="flex items-center cursor-pointer">
                 <input type="checkbox" className="form-checkbox text-main focus:ring-main rounded"/>
-                <span className="ml-2 flex items-center">Выше 3 <ICONS.favorites className="w-4 h-4 text-yellow-400 ml-1"/></span>
+                <span className="ml-2 flex items-center">Выше 3 {React.createElement(ICONS.favorites, { className: "w-4 h-4 text-yellow-400 ml-1" })}</span>
               </label>
               <label className="flex items-center cursor-pointer">
                 <input type="checkbox" className="form-checkbox text-main focus:ring-main rounded"/>
-                <span className="ml-2 flex items-center">Выше 4 <ICONS.favorites className="w-4 h-4 text-yellow-400 ml-1"/></span>
+                <span className="ml-2 flex items-center">Выше 4 {React.createElement(ICONS.favorites, { className: "w-4 h-4 text-yellow-400 ml-1" })}</span>
               </label>
               <label className="flex items-center cursor-pointer">
                 <input type="checkbox" className="form-checkbox text-main focus:ring-main rounded"/>
-                <span className="ml-2 flex items-center">Выше 5 <ICONS.favorites className="w-4 h-4 text-yellow-400 ml-1"/></span>
+                <span className="ml-2 flex items-center">Выше 5 {React.createElement(ICONS.favorites, { className: "w-4 h-4 text-yellow-400 ml-1" })}</span>
               </label>
             </div>
           </div>
@@ -1235,11 +1324,282 @@ const Marketplace = ({ onNavigate, botData, botImages }) => {
   );
 };
 
+const feedPosts = [
+  {
+    id: 1,
+    author: {
+      name: 'CryptoWhale',
+      avatar: 'https://placehold.co/40x40/E2BAA4/000000?text=CW'
+    },
+    media: {
+      type: 'image',
+      url: botImages[1]
+    },
+    title: 'Анализ рынка BTC: куда движется главная криптовалюта?',
+    description: 'Глубокий анализ текущей ситуации на рынке Bitcoin. Рассматриваем ключевые уровни поддержки и сопротивления, а также возможные сценарии развития событий на ближайшие недели. #BTC #Криптовалюта #Аналитика',
+    views: '12.5k',
+    likes: 1200,
+    reposts: 45,
+    comments: 89,
+  },
+  {
+    id: 2,
+    author: {
+      name: 'Oil Baron',
+      avatar: 'https://placehold.co/40x40/333/fff?text=OB'
+    },
+    media: {
+      type: 'video',
+      url: botImages[0],
+      thumbnail: botImages[0]
+    },
+    title: 'Нефтяные фьючерсы: стоит ли ожидать роста?',
+    description: 'Видеообзор рынка нефти. Обсуждаем влияние геополитических факторов и данных по запасам на цены. #Нефть #Фьючерсы #Инвестиции',
+    views: '8.2k',
+    likes: 850,
+    reposts: 23,
+    comments: 45,
+  },
+  {
+    id: 3,
+    author: {
+      name: 'Gold Bug',
+      avatar: 'https://placehold.co/40x40/DAA520/fff?text=GB'
+    },
+    media: null,
+    title: 'Золото как защитный актив в условиях инфляции',
+    description: 'Текстовый пост о роли золота в инвестиционном портфеле. Почему драгоценный металл остается актуальным и как его использовать для хеджирования рисков. #Золото #Инфляция #Портфель',
+    views: '25.1k',
+    likes: 2300,
+    reposts: 150,
+    comments: 210,
+  },
+  {
+    id: 4,
+    author: {
+      name: 'Forex Guru',
+      avatar: 'https://placehold.co/40x40/4682B4/fff?text=FG'
+    },
+    media: {
+      type: 'image',
+      url: botImages[3]
+    },
+    title: 'Торговая стратегия для EUR/USD на эту неделю',
+    description: 'Разбор торговой стратегии для самой популярной валютной пары. Точки входа, стоп-лоссы и цели. #EURUSD #Forex #Трейдинг',
+    views: '5.7k',
+    likes: 600,
+    reposts: 15,
+    comments: 33,
+  },
+  {
+    id: 5,
+    author: {
+      name: 'Index Investor',
+      avatar: 'https://placehold.co/40x40/2E8B57/fff?text=II'
+    },
+    media: {
+      type: 'image',
+      url: botImages[4]
+    },
+    title: 'S&P 500: новый исторический максимум?',
+    description: 'Анализируем перспективы американского фондового рынка. Есть ли еще потенциал для роста и какие сектора выглядят наиболее привлекательно. #SP500 #Акции #Рынок',
+    views: '18.9k',
+    likes: 1800,
+    reposts: 98,
+    comments: 150,
+  }
+];
+
+const AdCard = ({ image, title, url }) => (
+  <a href={url} target="_blank" rel="noopener noreferrer" className="block bg-white rounded-2xl shadow-sm p-4 mb-4 hover:shadow-md transition-shadow">
+    <div className="relative h-32 rounded-lg overflow-hidden">
+      <img src={image} alt={title} className="w-full h-full object-cover" />
+      <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+        <h4 className="text-white font-bold text-lg text-center p-2">{title}</h4>
+      </div>
+    </div>
+  </a>
+);
+
+const FeedSidebar = () => {
+  const [hashtags, setHashtags] = useState([]);
+  const [hashtagInput, setHashtagInput] = useState('');
+
+  const addHashtag = (tag) => {
+    if (tag && !hashtags.includes(tag)) {
+      setHashtags([...hashtags, tag]);
+    }
+    setHashtagInput('');
+  };
+
+  return (
+    <aside className="w-80 flex-shrink-0 hidden lg:block">
+      <div className="sticky top-24 space-y-6">
+        <div className="bg-white rounded-2xl shadow-sm p-6">
+          <label className="font-semibold mb-2 block">Сортировка</label>
+          <select className="w-full p-3 border border-grey-2 rounded-lg">
+            <option>Новые</option>
+            <option>Старые</option>
+            <option>По лайкам</option>
+            <option>По репостам</option>
+          </select>
+        </div>
+        <div className="bg-white rounded-2xl shadow-sm p-6">
+          <label className="font-semibold mb-2 block">Хештеги</label>
+          <input
+            type="text"
+            placeholder="Найти по хештегу..."
+            value={hashtagInput}
+            onChange={(e) => setHashtagInput(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && addHashtag(e.target.value)}
+            className="w-full p-3 border border-grey-2 rounded-lg"
+          />
+          <div className="flex flex-wrap gap-2 mt-2">
+            {hashtags.map(tag => (
+              <div key={tag} className="bg-orange/20 text-orange font-semibold px-3 py-1 rounded-full text-sm">
+                #{tag}
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="bg-white rounded-2xl shadow-sm p-6">
+          <label className="font-semibold mb-2 block">Вложения</label>
+          <div className="space-y-2">
+            {['Фото', 'Видео', 'Без вложений', 'Документы', 'Опросы'].map(type => (
+              <label key={type} className="flex items-center">
+                <input type="checkbox" className="form-checkbox text-main focus:ring-main rounded" />
+                <span className="ml-2">{type}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+        <div>
+          <AdCard image={botImages[5]} title="АТОН - ваш брокер" url="#" />
+          <AdCard image={botImages[6]} title="БКС Инвестиции" url="#" />
+          <AdCard image={botImages[7]} title="Альфа Инвестиции" url="#" />
+        </div>
+      </div>
+    </aside>
+  );
+};
+
+const PostCard = ({ post }) => (
+  <div className="bg-white rounded-2xl shadow-sm mb-6">
+    <div className="p-6">
+      <div className="flex items-center mb-4">
+        <img src={post.author.avatar} alt={post.author.name} className="w-10 h-10 rounded-full mr-4" />
+        <div>
+          <p className="font-semibold">{post.author.name}</p>
+        </div>
+      </div>
+      {post.media && (
+        <div className="mb-4 rounded-lg overflow-hidden">
+          {post.media.type === 'image' ? (
+            <img src={post.media.url} alt={post.title} className="w-full h-auto object-cover" />
+          ) : (
+            <div className="relative">
+              <img src={post.media.thumbnail} alt={post.title} className="w-full h-auto object-cover" />
+              <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                <svg className="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"></path></svg>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+      <h3 className="font-bold text-xl mb-2">{post.title}</h3>
+      <p className="text-text-grey">{post.description}</p>
+    </div>
+    <div className="px-6 pb-4">
+      <div className="relative mb-4">
+        <input type="text" placeholder="Написать комментарий..." className="w-full bg-grey-1 border border-grey-2 rounded-full py-2 pl-4 pr-12" />
+        <button className="absolute right-2 top-1/2 -translate-y-1/2 text-orange">
+          {React.createElement(ICONS.send)}
+        </button>
+      </div>
+      <div className="flex justify-between items-center text-text-grey">
+        <div className="flex items-center gap-2">
+          {React.createElement(ICONS.eye, { className: "w-5 h-5" })}
+          <span>{post.views}</span>
+        </div>
+        <div className="flex items-center gap-4">
+          <button className="flex items-center gap-2 hover:text-main">
+            {React.createElement(ICONS.favorites, { className: "w-5 h-5" })}
+            <span>{post.likes}</span>
+          </button>
+          <button className="flex items-center gap-2 hover:text-main">
+            {React.createElement(ICONS.repost, { className: "w-5 h-5" })}
+            <span>{post.reposts}</span>
+          </button>
+          <button className="flex items-center gap-2 hover:text-main">
+            {React.createElement(ICONS.messages, { className: "w-5 h-5" })}
+            <span>{post.comments}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+const PostCreator = () => (
+  <div className="bg-white rounded-2xl shadow-sm p-6 mb-6">
+    <textarea
+      placeholder="Что у вас нового?"
+      className="w-full h-24 p-3 border border-grey-2 rounded-lg resize-none focus:outline-none focus:border-main"
+    ></textarea>
+    <div className="flex justify-between items-center mt-4">
+      <div className="flex items-center gap-2 text-text-grey">
+        <button className="p-2 hover:bg-grey-1 rounded-full">{React.createElement(ICONS.bold, { className: "w-5 h-5" })}</button>
+        <button className="p-2 hover:bg-grey-1 rounded-full">{React.createElement(ICONS.italic, { className: "w-5 h-5" })}</button>
+        <button className="p-2 hover:bg-grey-1 rounded-full">{React.createElement(ICONS.underline, { className: "w-5 h-5" })}</button>
+        <button className="p-2 hover:bg-grey-1 rounded-full">{React.createElement(ICONS.strikethrough, { className: "w-5 h-5" })}</button>
+        <div className="border-l border-grey-2 h-6 mx-2"></div>
+        <button className="p-2 hover:bg-grey-1 rounded-full">{React.createElement(ICONS.alignLeft, { className: "w-5 h-5" })}</button>
+        <button className="p-2 hover:bg-grey-1 rounded-full">{React.createElement(ICONS.alignCenter, { className: "w-5 h-5" })}</button>
+        <button className="p-2 hover:bg-grey-1 rounded-full">{React.createElement(ICONS.alignRight, { className: "w-5 h-5" })}</button>
+        <div className="border-l border-grey-2 h-6 mx-2"></div>
+        <button className="p-2 hover:bg-grey-1 rounded-full">{React.createElement(ICONS.attachImage, { className: "w-5 h-5" })}</button>
+        <button className="p-2 hover:bg-grey-1 rounded-full">{React.createElement(ICONS.attachVideo, { className: "w-5 h-5" })}</button>
+        <button className="p-2 hover:bg-grey-1 rounded-full">{React.createElement(ICONS.attachFile, { className: "w-5 h-5" })}</button>
+      </div>
+      <Button variant="small-classic" className="rounded-full !px-6 !py-2.5 !bg-orange !rounded-full">Опубликовать</Button>
+    </div>
+  </div>
+);
+
+const FeedPage = () => {
+  const [activeTab, setActiveTab] = useState('Все');
+  const tabs = ['Все', 'Подписки', 'Рекомендации', 'Популярные'];
+
+  return (
+    <div className="flex gap-6">
+      <div className="flex-grow">
+        <PostCreator />
+        <div className="bg-white rounded-2xl shadow-sm mb-6">
+          <div className="border-b border-grey-2 flex items-center justify-between flex-wrap">
+            <nav className="flex">
+              {tabs.map(tab => (
+                <button key={tab} onClick={() => setActiveTab(tab)} className={`px-4 md:px-6 py-3 font-semibold transition-colors text-sm md:text-base ${activeTab === tab ? 'text-main border-b-2 border-main' : 'text-text-grey hover:bg-grey-2/30'}`}>
+                  {tab}
+                </button>
+              ))}
+            </nav>
+          </div>
+        </div>
+        <div>
+          {feedPosts.map(post => <PostCard key={post.id} post={post} />)}
+        </div>
+      </div>
+      <FeedSidebar />
+    </div>
+  );
+};
+
+
 const MainContent = ({ activePage, productCreated, onNavigate, botData, botImages }) => {
     const renderContent = () => {
-        if (productCreated) return <BotDetailsPage />;
+        if (productCreated) return <Marketplace onNavigate={onNavigate} botData={botData} botImages={botImages} />;
         switch (activePage) {
-            case 'Лента': return <div className="bg-white rounded-2xl p-8 shadow-sm"><h1 className="font-tt-travels text-3xl font-bold">Лента новостей</h1><p className="mt-4 text-text-grey">Здесь будет отображаться контент ленты.</p></div>;
+            case 'Лента': return <FeedPage />;
             case 'Маркетплейс': return <Marketplace onNavigate={onNavigate} botData={botData} botImages={botImages} />;
             case 'Персоны': return <div className="bg-white rounded-2xl p-8 shadow-sm"><h1 className="font-tt-travels text-3xl font-bold">Персоны</h1><p className="mt-4 text-text-grey">Здесь будет список персон.</p></div>;
             case 'Рабочий стол': return <div className="bg-white rounded-2xl p-8 shadow-sm"><h1 className="font-tt-travels text-3xl font-bold">Рабочий стол</h1><p className="mt-4 text-text-grey">Здесь будет ваш рабочий стол.</p></div>;
@@ -1247,6 +1607,7 @@ const MainContent = ({ activePage, productCreated, onNavigate, botData, botImage
             case 'Избранное': return <div className="bg-white rounded-2xl p-8 shadow-sm"><h1 className="font-tt-travels text-3xl font-bold">Избранное</h1><p className="mt-4 text-text-grey">Здесь будут ваши избранные элементы.</p></div>;
             case 'Помощь': return <div className="bg-white rounded-2xl p-8 shadow-sm"><h1 className="font-tt-travels text-3xl font-bold">Помощь</h1><p className="mt-4 text-text-grey">Здесь будет раздел помощи.</p></div>;
             case 'Главная': return <div className="bg-white rounded-2xl p-8 shadow-sm"><h1 className="font-tt-travels text-3xl font-bold">Главная страница</h1><p className="mt-4 text-text-grey">Здесь будет стартовая страница с картинками, видео-инструкциями и обновлениями платформы, а также новости платформы, также будут кнопки ведущие на разделы помощи для новичков и новых пользователей.</p></div>;
+            default: return <FeedPage />;
         }
     }
     return (<main className="flex-grow p-4 lg:p-0 lg:pt-[40px]">{renderContent()}</main>);

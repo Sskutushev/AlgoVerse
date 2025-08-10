@@ -148,7 +148,7 @@ const ICONS = {
   send: (props) => (
     <svg {...props} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <line x1="22" y1="2" x2="11" y2="13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      <polygon points="22 2 15 22 11 13 2 9 22 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   ),
   bold: (props) => (
@@ -588,7 +588,7 @@ const LandingPage = ({ onNavigate, botData, botImages }) => {
                 <div className="relative mb-4">
                   <img src={bot.image} alt={bot.name} className="w-full h-32 object-cover rounded-lg"/>
                   <div className="absolute top-2 left-2 flex items-center bg-white rounded-full px-2 py-1 shadow-md">
-                    {React.createElement(ICONS.favorites, { className: "w-4 h-4 text-yellow-500 mr-1" })}
+                    {React.createElement(ICONS.heart, { className: "w-4 h-4 text-yellow-500 mr-1" })}
                     <span className="text-sm font-semibold">{bot.rating}</span>
                   </div>
                   <div className="absolute top-2 left-16 flex items-center bg-white rounded-full px-2 py-1 shadow-md">
@@ -1066,7 +1066,7 @@ const BotDetailsPage = ({ bot, onBack }) => {
               <textarea placeholder="Ваш комментарий..." className="w-full p-3 border border-grey-2 rounded-lg"></textarea>
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-1">
-                  {[...Array(5)].map((_, i) => React.createElement(ICONS.favorites, { key: i, className: "w-6 h-6 text-grey-2 cursor-pointer hover:text-yellow-400" }))}
+                  {[...Array(5)].map((_, i) => React.createElement(ICONS.heart, { key: i, className: "w-6 h-6 text-grey-2 cursor-pointer hover:text-yellow-400" }))}
                 </div>
                 <Button variant="small-classic">Отправить</Button>
               </div>
@@ -1130,7 +1130,7 @@ const BotDetailsPage = ({ bot, onBack }) => {
           <div className="bg-white shadow-lg p-6 w-full lg:w-[380px] h-auto flex flex-col border border-grey-2" style={{ borderRadius: '65px' }}>
               <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center bg-white rounded-full px-2 py-1 shadow-md">
-                      {React.createElement(ICONS.favorites, { className: "w-4 h-4 text-yellow-500 mr-1" })}
+                      {React.createElement(ICONS.heart, { className: "w-4 h-4 text-yellow-500 mr-1" })}
                       <span className="text-sm font-semibold">{bot.rating}</span>
                   </div>
                   <div className="flex items-center bg-white rounded-full px-2 py-1 shadow-md">
@@ -1177,7 +1177,7 @@ const Marketplace = ({ onNavigate, botData, botImages }) => {
                 <div className="relative mb-4">
                   <img src={bot.image} alt={bot.name} className="w-full h-48 object-cover rounded-lg"/>
                   <div className="absolute top-2 left-2 flex items-center bg-white rounded-full px-2 py-1 shadow-md">
-                    {React.createElement(ICONS.favorites, { className: "w-4 h-4 text-yellow-500 mr-1" })}
+                    {React.createElement(ICONS.heart, { className: "w-4 h-4 text-yellow-500 mr-1" })}
                     <span className="text-sm font-semibold">{bot.rating}</span>
                   </div>
                   <div className="absolute top-2 left-16 flex items-center bg-white rounded-full px-2 py-1 shadow-md">
@@ -1245,15 +1245,15 @@ const Marketplace = ({ onNavigate, botData, botImages }) => {
             <div className="space-y-2">
               <label className="flex items-center cursor-pointer">
                 <input type="checkbox" className="form-checkbox text-main focus:ring-main rounded"/>
-                <span className="ml-2 flex items-center">Выше 3 {React.createElement(ICONS.favorites, { className: "w-4 h-4 text-yellow-400 ml-1" })}</span>
+                <span className="ml-2 flex items-center">Выше 3 {React.createElement(ICONS.heart, { className: "w-4 h-4 text-yellow-400 ml-1" })}</span>
               </label>
               <label className="flex items-center cursor-pointer">
                 <input type="checkbox" className="form-checkbox text-main focus:ring-main rounded"/>
-                <span className="ml-2 flex items-center">Выше 4 {React.createElement(ICONS.favorites, { className: "w-4 h-4 text-yellow-400 ml-1" })}</span>
+                <span className="ml-2 flex items-center">Выше 4 {React.createElement(ICONS.heart, { className: "w-4 h-4 text-yellow-400 ml-1" })}</span>
               </label>
               <label className="flex items-center cursor-pointer">
                 <input type="checkbox" className="form-checkbox text-main focus:ring-main rounded"/>
-                <span className="ml-2 flex items-center">Выше 5 {React.createElement(ICONS.favorites, { className: "w-4 h-4 text-yellow-400 ml-1" })}</span>
+                <span className="ml-2 flex items-center">Выше 5 {React.createElement(ICONS.heart, { className: "w-4 h-4 text-yellow-400 ml-1" })}</span>
               </label>
             </div>
           </div>

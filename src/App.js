@@ -1710,11 +1710,195 @@ const FeedPage = () => {
   );
 };
 
+const HomePage = () => {
+  const [selectedUpdate, setSelectedUpdate] = useState(null);
+
+  const platformUpdates = [
+    {
+      id: 1,
+      image: botImages[10],
+      title: "Запуск нового конструктора ботов",
+      date: "10.08.2025",
+      shortText: "Мы полностью переработали конструктор, сделав его еще более мощным и интуитивно понятным. Теперь вы можете...",
+      fullText: "Мы полностью переработали конструктор, сделав его еще более мощным и интуитивно понятным. Теперь вы можете использовать более 100 технических индикаторов, комбинировать их в сложные логические цепочки и тестировать на данных за последние 10 лет. Интерфейс стал чище, а подсказки на каждом шаге помогут новичкам быстрее освоиться и создать своего первого прибыльного бота."
+    },
+    {
+      id: 2,
+      image: botImages[11],
+      title: "Партнерская программа v2.0",
+      date: "05.08.2025",
+      shortText: "Представляем обновленную партнерскую программу с повышенными комиссиями и новыми инструментами для...",
+      fullText: "Представляем обновленную партнерскую программу с повышенными комиссиями и новыми инструментами для привлечения клиентов. Теперь вы будете получать до 50% от всех комиссий привлеченных вами пользователей пожизненно. Мы также добавили готовые рекламные материалы и подробную статистику в ваш личный кабинет для отслеживания эффективности."
+    },
+    {
+      id: 3,
+      image: botImages[12],
+      title: "Новые криптовалютные пары на споте",
+      date: "01.08.2025",
+      shortText: "Добавлена поддержка 25 новых криптовалютных пар для ваших торговых стратегий, включая популярные...",
+      fullText: "Добавлена поддержка 25 новых криптовалютных пар для ваших торговых стратегий, включая популярные мем-коины и токены из сектора GameFi. Теперь ваши боты могут работать с еще большим количеством активов, открывая новые возможности для диверсификации и поиска арбитражных ситуаций. Полный список доступен в разделе документации."
+    }
+  ];
+
+  const UpdateModal = ({ update, onClose }) => {
+    if (!update) return null;
+    return (
+      <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4" onClick={onClose}>
+        <div className="bg-white rounded-2xl w-full max-w-2xl max-h-[90vh] flex flex-col" onClick={(e) => e.stopPropagation()}>
+          <div className="p-4 border-b border-grey-2 flex justify-between items-center">
+            <h2 className="font-bold text-xl">{update.title}</h2>
+            <Button variant="icon" onClick={onClose}>{React.createElement(ICONS.close)}</Button>
+          </div>
+          <div className="flex-grow overflow-y-auto p-6">
+            <img src={update.image} alt={update.title} className="w-full h-64 object-cover rounded-lg mb-4" />
+            <p className="text-sm text-text-grey mb-4">{update.date}</p>
+            <p className="text-text-grey leading-relaxed">{update.fullText}</p>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="space-y-12">
+      {/* Welcome Banner */}
+      <section className="rounded-2xl p-8 flex items-center justify-between text-white relative overflow-hidden min-h-[250px]">
+        <img src={`${process.env.PUBLIC_URL}/Frame 5655.svg`} alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="relative z-10 max-w-lg">
+          <h1 className="font-bold text-4xl mb-4">Добро пожаловать</h1>
+          <p className="text-lg">Ознакомьтесь с основными возможностями платформы и выберите то, что нужно именно вам!</p>
+        </div>
+        <div className="relative z-10 w-1/2 h-full flex items-end justify-end">
+            <img src={`${process.env.PUBLIC_URL}/Group 996.svg`} alt="Welcome Illustration" className="h-full object-contain" />
+        </div>
+      </section>
+
+      {/* Partner Ads */}
+      <section>
+        <h2 className="font-bold text-2xl mb-4">Реклама партнеров</h2>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <AdCard image={botImages[5]} title="АТОН - ваш брокер" url="#!" />
+          <AdCard image={botImages[6]} title="БКС Инвестиции" url="#!" />
+          <AdCard image={botImages[7]} title="Альфа Инвестиции" url="#!" />
+          <AdCard image={botImages[8]} title="Брокер Цифра" url="#!" />
+          <AdCard image={botImages[9]} title="Еще один брокер" url="#!" />
+        </div>
+      </section>
+
+      {/* How to Start Section */}
+      <section>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="bg-orange text-white rounded-2xl p-6 flex flex-col">
+            {React.createElement(ICONS.help, { className: "w-10 h-10 mb-4" })}
+            <h3 className="font-bold text-2xl mb-2">С чего начать</h3>
+            <p className="text-white/90 mb-4 flex-grow">Первый шаг в мир алгоритмической торговли - это регистрация на нашей платформе. После этого вы получите доступ ко всем инструментам. Рекомендуем изучить основные разделы: Маркетплейс для готовых решений и Ленту для общения с сообществом. Не бойтесь экспериментировать с бесплатными ботами, чтобы понять механику.</p>
+            <button className="mt-auto text-white font-semibold border-b border-white/50 hover:border-white inline-flex items-center gap-2 self-start">Узнать больше {React.createElement(ICONS.arrowRight, { className: "w-4 h-4" })}</button>
+          </div>
+          <div className="bg-orange text-white rounded-2xl p-6 flex flex-col">
+            {React.createElement(ICONS.shoppingCart, { className: "w-10 h-10 mb-4" })}
+            <h3 className="font-bold text-2xl mb-2">Как подключиться к алго-боту</h3>
+            <p className="text-white/90 mb-4 flex-grow">В разделе Маркетплейс вы найдете сотни готовых ботов. Выберите понравившегося, изучите его статистику и описание. Нажмите кнопку "Купить" или "Арендовать", чтобы добавить его в свой портфель. После этого бот появится на вашем Рабочем столе, где вы сможете его активировать и следить за его работой в реальном времени.</p>
+            <button className="mt-auto text-white font-semibold border-b border-white/50 hover:border-white inline-flex items-center gap-2 self-start">Читать инструкцию {React.createElement(ICONS.arrowRight, { className: "w-4 h-4" })}</button>
+          </div>
+          <div className="bg-orange text-white rounded-2xl p-6 flex flex-col">
+            {React.createElement(ICONS.plus, { className: "w-10 h-10 mb-4" })}
+            <h3 className="font-bold text-2xl mb-2">Как создать алго-бота</h3>
+            <p className="text-white/90 mb-4 flex-grow">Для продвинутых пользователей мы предлагаем мощный, но простой конструктор ботов. Вам не нужно быть программистом. Выбирайте индикаторы, задавайте условия для входа и выхода из сделок, настраивайте управление рисками. Протестируйте свою стратегию на исторических данных и, если результат вас устроит, опубликуйте своего бота в Маркетплейсе.</p>
+            <button className="mt-auto text-white font-semibold border-b border-white/50 hover:border-white inline-flex items-center gap-2 self-start">Перейти в конструктор {React.createElement(ICONS.arrowRight, { className: "w-4 h-4" })}</button>
+          </div>
+        </div>
+      </section>
+
+      {/* Investments Section */}
+      <section>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div>
+            <h3 className="font-bold text-3xl mb-4">Инвесторам</h3>
+            <div className="space-y-4">
+              <div className="bg-white rounded-2xl p-6 flex items-start gap-6">
+                <img src={`${process.env.PUBLIC_URL}/assets_task_01jye4eggtfk7ahzf9qf79dmxy_1750673668_img_3 1.svg`} alt="" className="w-16 h-16"/>
+                <div>
+                  <h4 className="font-bold text-xl mb-1">Единый счет</h4>
+                  <p className="text-text-grey">Управляйте всеми вашими инвестициями с одного счета. Пополняйте баланс, выводите средства и отслеживайте финансовые потоки в одном месте. Мы обеспечиваем максимальную прозрачность и безопасность ваших активов.</p>
+                </div>
+              </div>
+              <div className="bg-white rounded-2xl p-6 flex items-start gap-6">
+                <img src={`${process.env.PUBLIC_URL}/assets_task_01jye57frdf2paxg768scs4s8p_1750674491_img_2 1.png`} alt="" className="w-16 h-16"/>
+                <div>
+                  <h4 className="font-bold text-xl mb-1">Инвестиционные продукты</h4>
+                  <p className="text-text-grey">Выбирайте из широкого спектра готовых продуктов: от консервативных ботов для долгосрочных инвестиций до высокорисковых стратегий для агрессивной торговли. Диверсифицируйте свой портфель в несколько кликов.</p>
+                </div>
+              </div>
+              <div className="bg-white rounded-2xl p-6 flex items-start gap-6">
+                <img src={`${process.env.PUBLIC_URL}/assets_task_01jye5x9b8faqtakmxk93mnj2t_1750675199_img_3 1.png`} alt="" className="w-16 h-16"/>
+                <div>
+                  <h4 className="font-bold text-xl mb-1">Личный рабочий стол</h4>
+                  <p className="text-text-grey">Ваш персональный центр управления. Отслеживайте доходность, анализируйте производительность каждого бота, получайте отчеты и настраивайте уведомления. Все ключевые метрики вашего портфеля на одном экране.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h3 className="font-bold text-3xl mb-4">Создателям алго-ботов и экспертов</h3>
+            <div className="space-y-4">
+              <div className="bg-white rounded-2xl p-6 flex items-start gap-6">
+                <img src={`${process.env.PUBLIC_URL}/assets_task_01jye5yc7pe6w9d2y08qzdf1xt_1750675239_img_1 1.png`} alt="" className="w-16 h-16"/>
+                <div>
+                  <h4 className="font-bold text-xl mb-1">Создание и продажа</h4>
+                  <p className="text-text-grey">Превратите свои торговые идеи в источник дохода. Наш интуитивно понятный конструктор позволяет создавать ботов без написания кода. Опубликуйте свой продукт в Маркетплейсе и начните зарабатывать на продажах и аренде.</p>
+                </div>
+              </div>
+              <div className="bg-white rounded-2xl p-6 flex items-start gap-6">
+                <img src={`${process.env.PUBLIC_URL}/Analytics_set.svg`} alt="" className="w-16 h-16"/>
+                <div>
+                  <h4 className="font-bold text-xl mb-1">Аналитика по продуктам</h4>
+                  <p className="text-text-grey">Получайте подробную статистику по вашим ботам: количество подписчиков, доходность, максимальная просадка и другие ключевые показатели. Анализируйте данные, чтобы улучшать свои стратегии и привлекать больше клиентов.</p>
+                </div>
+              </div>
+              <div className="bg-white rounded-2xl p-6 flex items-start gap-6">
+                <img src={`${process.env.PUBLIC_URL}/assets_task_01jye63bnrfm2vt0y8at6hvj98_1750675399_img_1 1.png`} alt="" className="w-16 h-16"/>
+                <div>
+                  <h4 className="font-bold text-xl mb-1">Платформа для продажи ботов</h4>
+                  <p className="text-text-grey">Мы предоставляем вам готовую инфраструктуру для ведения бизнеса. Управляйте ценами, предлагайте скидки, общайтесь с клиентами и получайте пассивный доход. Сосредоточьтесь на разработке, а мы позаботимся об остальном.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Platform Updates Section */}
+      <section>
+        <h2 className="font-bold text-3xl mb-4">Обновления платформы</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {platformUpdates.map(update => (
+            <div key={update.id} className="bg-white rounded-2xl shadow-lg flex flex-col cursor-pointer" onClick={() => setSelectedUpdate(update)}>
+              <img src={update.image} alt={update.title} className="w-full h-40 object-cover rounded-t-2xl" />
+              <div className="p-6 flex flex-col flex-grow">
+                <h3 className="font-bold text-xl mb-2">{update.title}</h3>
+                <p className="text-sm text-text-grey mb-2">{update.date}</p>
+                <p className="text-text-grey text-sm mb-4 flex-grow">{update.shortText}</p>
+                <div className="flex justify-end mt-auto">
+                   <Button variant="small-outline" style={{width: '90px'}} className="!border-orange !text-orange hover:!bg-orange hover:!text-white">
+                    Подробнее
+                  </Button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+      <UpdateModal update={selectedUpdate} onClose={() => setSelectedUpdate(null)} />
+    </div>
+  );
+};
+
 
 const MainContent = ({ activePage, productCreated, onNavigate, botData, botImages }) => {
     const renderContent = () => {
         if (productCreated) return <Marketplace onNavigate={onNavigate} botData={botData} botImages={botImages} />;
         switch (activePage) {
+            case 'Главная': return <HomePage />;
             case 'Лента': return <FeedPage />;
             case 'Маркетплейс': return <Marketplace onNavigate={onNavigate} botData={botData} botImages={botImages} />;
             case 'Персоны': return <div className="bg-white rounded-2xl p-8 shadow-sm"><h1 className="font-tt-travels text-3xl font-bold">Персоны</h1><p className="mt-4 text-text-grey">Здесь будет список персон.</p></div>;
@@ -1722,8 +1906,7 @@ const MainContent = ({ activePage, productCreated, onNavigate, botData, botImage
             case 'Сообщения': return <div className="bg-white rounded-2xl p-8 shadow-sm"><h1 className="font-tt-travels text-3xl font-bold">Сообщения</h1><p className="mt-4 text-text-grey">Здесь будут ваши сообщения.</p></div>;
             case 'Избранное': return <div className="bg-white rounded-2xl p-8 shadow-sm"><h1 className="font-tt-travels text-3xl font-bold">Избранное</h1><p className="mt-4 text-text-grey">Здесь будут ваши избранные элементы.</p></div>;
             case 'Помощь': return <div className="bg-white rounded-2xl p-8 shadow-sm"><h1 className="font-tt-travels text-3xl font-bold">Помощь</h1><p className="mt-4 text-text-grey">Здесь будет раздел помощи.</p></div>;
-            case 'Главная': return <div className="bg-white rounded-2xl p-8 shadow-sm"><h1 className="font-tt-travels text-3xl font-bold">Главная страница</h1><p className="mt-4 text-text-grey">Здесь будет стартовая страница с картинками, видео-инструкциями и обновлениями платформы, а также новости платформы, также будут кнопки ведущие на разделы помощи для новичков и новых пользователей.</p></div>;
-            default: return <FeedPage />;
+            default: return <HomePage />;
         }
     }
     return (<main className="flex-grow p-4 lg:p-0 lg:pt-[40px]">{renderContent()}</main>);

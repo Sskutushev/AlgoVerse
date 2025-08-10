@@ -46,9 +46,9 @@ const ICONS = {
       <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   ),
-  favorites: (props) => (
+  heart: (props) => (
     <svg {...props} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.77 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   ),
   help: (props) => (
@@ -868,7 +868,7 @@ const Sidebar = ({ activePage, onNavigate, isMobileMenuOpen, setMobileMenuOpen }
         <div className="space-y-2">
           {['Рабочий стол', 'Сообщения', 'Избранное'].map((item) => (
             <a key={item} href="#" onClick={(e) => { e.preventDefault(); onNavigate(item); setMobileMenuOpen(false); }} className={`flex items-center gap-5 px-4 py-3 rounded-lg transition-colors ${activePage === item ? 'bg-main text-white' : 'text-text-grey hover:bg-grey-2/50 hover:text-text-black'}`}>
-              {React.createElement(ICONS[{'Рабочий стол': 'desktop', 'Сообщения': 'messages', 'Избранное': 'favorites'}[item]])}
+              {React.createElement(ICONS[{'Рабочий стол': 'desktop', 'Сообщения': 'messages', 'Избранное': 'heart'}[item]])}
               <span className="font-open-sans font-semibold">{item}</span>
             </a>
           ))}
@@ -1340,7 +1340,11 @@ const feedPosts = [
     views: '12.5k',
     likes: 1200,
     reposts: 45,
-    comments: 89,
+    commentsCount: 89,
+    comments: [
+      { id: 1, author: 'User1', avatar: 'https://placehold.co/32x32/333/fff?text=U1', text: 'Отличный анализ!', likes: 15 },
+      { id: 2, author: 'User2', avatar: 'https://placehold.co/32x32/4682B4/fff?text=U2', text: 'Согласен, но я бы еще добавил пару факторов.', likes: 8 },
+    ]
   },
   {
     id: 2,
@@ -1358,7 +1362,8 @@ const feedPosts = [
     views: '8.2k',
     likes: 850,
     reposts: 23,
-    comments: 45,
+    commentsCount: 45,
+    comments: []
   },
   {
     id: 3,
@@ -1372,7 +1377,8 @@ const feedPosts = [
     views: '25.1k',
     likes: 2300,
     reposts: 150,
-    comments: 210,
+    commentsCount: 210,
+    comments: []
   },
   {
     id: 4,
@@ -1389,7 +1395,8 @@ const feedPosts = [
     views: '5.7k',
     likes: 600,
     reposts: 15,
-    comments: 33,
+    commentsCount: 33,
+    comments: []
   },
   {
     id: 5,
@@ -1406,16 +1413,17 @@ const feedPosts = [
     views: '18.9k',
     likes: 1800,
     reposts: 98,
-    comments: 150,
+    commentsCount: 150,
+    comments: []
   }
 ];
 
 const AdCard = ({ image, title, url }) => (
-  <a href={url} target="_blank" rel="noopener noreferrer" className="block bg-white rounded-2xl shadow-sm p-4 mb-4 hover:shadow-md transition-shadow">
-    <div className="relative h-32 rounded-lg overflow-hidden">
+  <a href={url} target="_blank" rel="noopener noreferrer" className="block bg-white rounded-2xl shadow-sm p-4 hover:shadow-md transition-shadow">
+    <div className="relative h-24 rounded-lg overflow-hidden">
       <img src={image} alt={title} className="w-full h-full object-cover" />
       <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-        <h4 className="text-white font-bold text-lg text-center p-2">{title}</h4>
+        <h4 className="text-white font-bold text-center p-2">{title}</h4>
       </div>
     </div>
   </a>
@@ -1433,9 +1441,9 @@ const FeedSidebar = () => {
   };
 
   return (
-    <aside className="w-80 flex-shrink-0 hidden lg:block">
-      <div className="sticky top-24 space-y-6">
-        <div className="bg-white rounded-2xl shadow-sm p-6">
+    <aside className="w-96 flex-shrink-0 hidden lg:block">
+      <div className="sticky top-24 space-y-4">
+        <div className="bg-white rounded-2xl shadow-sm p-4">
           <label className="font-semibold mb-2 block">Сортировка</label>
           <select className="w-full p-3 border border-grey-2 rounded-lg">
             <option>Новые</option>
@@ -1444,7 +1452,7 @@ const FeedSidebar = () => {
             <option>По репостам</option>
           </select>
         </div>
-        <div className="bg-white rounded-2xl shadow-sm p-6">
+        <div className="bg-white rounded-2xl shadow-sm p-4">
           <label className="font-semibold mb-2 block">Хештеги</label>
           <input
             type="text"
@@ -1462,77 +1470,141 @@ const FeedSidebar = () => {
             ))}
           </div>
         </div>
-        <div className="bg-white rounded-2xl shadow-sm p-6">
+        <div className="bg-white rounded-2xl shadow-sm p-4">
           <label className="font-semibold mb-2 block">Вложения</label>
-          <div className="space-y-2">
+          <div className="grid grid-cols-3 gap-2">
             {['Фото', 'Видео', 'Без вложений', 'Документы', 'Опросы'].map(type => (
-              <label key={type} className="flex items-center">
+              <label key={type} className="flex items-center text-sm">
                 <input type="checkbox" className="form-checkbox text-main focus:ring-main rounded" />
                 <span className="ml-2">{type}</span>
               </label>
             ))}
           </div>
         </div>
-        <div>
+        <div className="space-y-2">
           <AdCard image={botImages[5]} title="АТОН - ваш брокер" url="#" />
           <AdCard image={botImages[6]} title="БКС Инвестиции" url="#" />
           <AdCard image={botImages[7]} title="Альфа Инвестиции" url="#" />
+          <AdCard image={botImages[8]} title="Брокер Цифра" url="#" />
+          <AdCard image={botImages[9]} title="Еще один брокер" url="#" />
         </div>
       </div>
     </aside>
   );
 };
 
-const PostCard = ({ post }) => (
-  <div className="bg-white rounded-2xl shadow-sm mb-6">
-    <div className="p-6">
-      <div className="flex items-center mb-4">
-        <img src={post.author.avatar} alt={post.author.name} className="w-10 h-10 rounded-full mr-4" />
+const Comment = ({ comment }) => (
+  <div className="flex items-start gap-3 py-3 border-b border-grey-2">
+    <img src={comment.author.avatar} alt={comment.author.name} className="w-8 h-8 rounded-full" />
+    <div className="flex-grow">
+      <p className="font-semibold text-sm">{comment.author.name}</p>
+      <p className="text-text-grey text-sm">{comment.text}</p>
+      <div className="flex items-center gap-3 text-xs text-text-grey mt-1">
+        <button className="flex items-center gap-1 hover:text-main">
+          {React.createElement(ICONS.heart, { className: "w-4 h-4" })}
+          <span>{comment.likes}</span>
+        </button>
+        <span>·</span>
+        <button>Ответить</button>
+      </div>
+    </div>
+  </div>
+);
+
+const PostModal = ({ post, onClose }) => {
+  if (!post) return null;
+
+  return (
+    <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4" onClick={onClose}>
+      <div className="bg-white rounded-2xl w-full max-w-2xl max-h-[90vh] flex flex-col" onClick={(e) => e.stopPropagation()}>
+        <div className="p-4 border-b border-grey-2 flex justify-between items-center">
+          <h2 className="font-bold text-xl">Публикация</h2>
+          <Button variant="icon" onClick={onClose}>{React.createElement(ICONS.close)}</Button>
+        </div>
+        <div className="flex-grow overflow-y-auto p-6">
+          <div className="flex items-center mb-4">
+            <img src={post.author.avatar} alt={post.author.name} className="w-10 h-10 rounded-full mr-4" />
+            <div>
+              <p className="font-semibold">{post.author.name}</p>
+            </div>
+          </div>
+          {post.media && (
+            <div className="mb-4 rounded-lg overflow-hidden">
+              {post.media.type === 'image' ? (
+                <img src={post.media.url} alt={post.title} className="w-full h-auto object-cover" />
+              ) : (
+                <div className="relative">
+                  <img src={post.media.thumbnail} alt={post.title} className="w-full h-auto object-cover" />
+                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                    <svg className="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"></path></svg>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+          <h3 className="font-bold text-2xl mb-2">{post.title}</h3>
+          <p className="text-text-grey leading-relaxed">{post.description}</p>
+        </div>
+        <div className="p-6 border-t border-grey-2">
+          <div className="relative mb-4">
+            <input type="text" placeholder="Написать комментарий..." className="w-full bg-grey-1 border border-grey-2 rounded-full py-3 pl-4 pr-12" />
+            <button className="absolute right-3 top-1/2 -translate-y-1/2 text-orange">
+              {React.createElement(ICONS.send, { className: "w-6 h-6" })}
+            </button>
+          </div>
+          <div className="space-y-2">
+            {post.comments.map(comment => <Comment key={comment.id} comment={comment} />)}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const PostCard = ({ post, onClick }) => (
+  <div className="bg-white rounded-2xl shadow-sm mb-4 cursor-pointer hover:shadow-lg transition-shadow" onClick={() => onClick(post)}>
+    <div className="p-4">
+      <div className="flex items-center mb-3">
+        <img src={post.author.avatar} alt={post.author.name} className="w-8 h-8 rounded-full mr-3" />
         <div>
-          <p className="font-semibold">{post.author.name}</p>
+          <p className="font-semibold text-sm">{post.author.name}</p>
         </div>
       </div>
       {post.media && (
-        <div className="mb-4 rounded-lg overflow-hidden">
+        <div className="mb-3 rounded-lg overflow-hidden">
           {post.media.type === 'image' ? (
             <img src={post.media.url} alt={post.title} className="w-full h-auto object-cover" />
           ) : (
             <div className="relative">
               <img src={post.media.thumbnail} alt={post.title} className="w-full h-auto object-cover" />
               <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                <svg className="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"></path></svg>
+                <svg className="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"></path></svg>
               </div>
             </div>
           )}
         </div>
       )}
-      <h3 className="font-bold text-xl mb-2">{post.title}</h3>
-      <p className="text-text-grey">{post.description}</p>
+      <h3 className="font-bold text-md mb-2">{post.title}</h3>
+      <p className="text-text-grey text-sm line-clamp-3">{post.description}</p>
     </div>
-    <div className="px-6 pb-4">
-      <div className="relative mb-4">
-        <input type="text" placeholder="Написать комментарий..." className="w-full bg-grey-1 border border-grey-2 rounded-full py-2 pl-4 pr-12" />
-        <button className="absolute right-2 top-1/2 -translate-y-1/2 text-orange">
-          {React.createElement(ICONS.send)}
-        </button>
-      </div>
-      <div className="flex justify-between items-center text-text-grey">
-        <div className="flex items-center gap-2">
-          {React.createElement(ICONS.eye, { className: "w-5 h-5" })}
+    <div className="px-4 pb-3">
+      <div className="flex justify-between items-center text-text-grey text-sm">
+        <div className="flex items-center gap-1">
+          {React.createElement(ICONS.eye, { className: "w-4 h-4" })}
           <span>{post.views}</span>
         </div>
-        <div className="flex items-center gap-4">
-          <button className="flex items-center gap-2 hover:text-main">
-            {React.createElement(ICONS.favorites, { className: "w-5 h-5" })}
+        <div className="flex items-center gap-3">
+          <button className="flex items-center gap-1 hover:text-main">
+            {React.createElement(ICONS.heart, { className: "w-4 h-4" })}
             <span>{post.likes}</span>
           </button>
-          <button className="flex items-center gap-2 hover:text-main">
-            {React.createElement(ICONS.repost, { className: "w-5 h-5" })}
+          <button className="flex items-center gap-1 hover:text-main">
+            {React.createElement(ICONS.repost, { className: "w-4 h-4" })}
             <span>{post.reposts}</span>
           </button>
-          <button className="flex items-center gap-2 hover:text-main">
-            {React.createElement(ICONS.messages, { className: "w-5 h-5" })}
-            <span>{post.comments}</span>
+          <button className="flex items-center gap-1 hover:text-main">
+            {React.createElement(ICONS.messages, { className: "w-4 h-4" })}
+            <span>{post.commentsCount}</span>
           </button>
         </div>
       </div>
@@ -1540,57 +1612,63 @@ const PostCard = ({ post }) => (
   </div>
 );
 
-const PostCreator = () => (
-  <div className="bg-white rounded-2xl shadow-sm p-6 mb-6">
+const PostCreator = ({ className }) => (
+  <div className={`bg-white rounded-2xl shadow-sm p-4 mb-4 ${className}`}>
     <textarea
       placeholder="Что у вас нового?"
-      className="w-full h-24 p-3 border border-grey-2 rounded-lg resize-none focus:outline-none focus:border-main"
+      className="w-full h-20 p-2 border border-grey-2 rounded-lg resize-none focus:outline-none focus:border-main"
     ></textarea>
-    <div className="flex justify-between items-center mt-4">
-      <div className="flex items-center gap-2 text-text-grey">
+    <div className="flex justify-between items-center mt-2">
+      <div className="flex items-center gap-1 text-text-grey">
         <button className="p-2 hover:bg-grey-1 rounded-full">{React.createElement(ICONS.bold, { className: "w-5 h-5" })}</button>
         <button className="p-2 hover:bg-grey-1 rounded-full">{React.createElement(ICONS.italic, { className: "w-5 h-5" })}</button>
         <button className="p-2 hover:bg-grey-1 rounded-full">{React.createElement(ICONS.underline, { className: "w-5 h-5" })}</button>
         <button className="p-2 hover:bg-grey-1 rounded-full">{React.createElement(ICONS.strikethrough, { className: "w-5 h-5" })}</button>
-        <div className="border-l border-grey-2 h-6 mx-2"></div>
+        <div className="border-l border-grey-2 h-5 mx-1"></div>
         <button className="p-2 hover:bg-grey-1 rounded-full">{React.createElement(ICONS.alignLeft, { className: "w-5 h-5" })}</button>
         <button className="p-2 hover:bg-grey-1 rounded-full">{React.createElement(ICONS.alignCenter, { className: "w-5 h-5" })}</button>
         <button className="p-2 hover:bg-grey-1 rounded-full">{React.createElement(ICONS.alignRight, { className: "w-5 h-5" })}</button>
-        <div className="border-l border-grey-2 h-6 mx-2"></div>
+        <div className="border-l border-grey-2 h-5 mx-1"></div>
         <button className="p-2 hover:bg-grey-1 rounded-full">{React.createElement(ICONS.attachImage, { className: "w-5 h-5" })}</button>
         <button className="p-2 hover:bg-grey-1 rounded-full">{React.createElement(ICONS.attachVideo, { className: "w-5 h-5" })}</button>
         <button className="p-2 hover:bg-grey-1 rounded-full">{React.createElement(ICONS.attachFile, { className: "w-5 h-5" })}</button>
       </div>
-      <Button variant="small-classic" className="rounded-full !px-6 !py-2.5 !bg-orange !rounded-full">Опубликовать</Button>
+      <Button variant="small-classic" className="!rounded-full !px-6 !py-2 !bg-orange">Опубликовать</Button>
     </div>
   </div>
 );
 
 const FeedPage = () => {
   const [activeTab, setActiveTab] = useState('Все');
+  const [selectedPost, setSelectedPost] = useState(null);
   const tabs = ['Все', 'Подписки', 'Рекомендации', 'Популярные'];
 
   return (
-    <div className="flex gap-6">
-      <div className="flex-grow">
-        <PostCreator />
-        <div className="bg-white rounded-2xl shadow-sm mb-6">
-          <div className="border-b border-grey-2 flex items-center justify-between flex-wrap">
-            <nav className="flex">
-              {tabs.map(tab => (
-                <button key={tab} onClick={() => setActiveTab(tab)} className={`px-4 md:px-6 py-3 font-semibold transition-colors text-sm md:text-base ${activeTab === tab ? 'text-main border-b-2 border-main' : 'text-text-grey hover:bg-grey-2/30'}`}>
-                  {tab}
-                </button>
-              ))}
-            </nav>
+    <>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="lg:col-span-2">
+          <PostCreator className="w-full" />
+          <div className="bg-white rounded-2xl shadow-sm mb-4">
+            <div className="border-b border-grey-2 flex items-center justify-between flex-wrap">
+              <nav className="flex">
+                {tabs.map(tab => (
+                  <button key={tab} onClick={() => setActiveTab(tab)} className={`px-4 md:px-6 py-3 font-semibold transition-colors text-sm md:text-base ${activeTab === tab ? 'text-main border-b-2 border-main' : 'text-text-grey hover:bg-grey-2/30'}`}>
+                    {tab}
+                  </button>
+                ))}
+              </nav>
+            </div>
+          </div>
+          <div>
+            {feedPosts.map(post => <PostCard key={post.id} post={post} onClick={setSelectedPost} />)}
           </div>
         </div>
-        <div>
-          {feedPosts.map(post => <PostCard key={post.id} post={post} />)}
+        <div className="lg:col-span-1">
+          <FeedSidebar />
         </div>
       </div>
-      <FeedSidebar />
-    </div>
+      <PostModal post={selectedPost} onClose={() => setSelectedPost(null)} />
+    </>
   );
 };
 

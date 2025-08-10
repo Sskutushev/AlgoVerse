@@ -352,7 +352,7 @@ const LandingPage = ({ onNavigate, botData, botImages }) => {
           </div>
         </div>
         {/* Mobile Menu */}
-        <div className={`fixed inset-0 z-50 bg-white p-6 transform ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 ease-in-out md:hidden`}>
+        <div className={`fixed inset-0 z-50 bg-white bg-opacity-100 p-6 transform ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 ease-in-out md:hidden`}>
             <div className="flex justify-between items-center mb-8">
                 <a href="#" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-4">
                     <Logo className="h-10 w-10"/>
@@ -952,7 +952,7 @@ const BotDetailsPage = ({ bot, onBack }) => {
               <p className="text-text-grey">{bot.description} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec ultricies lacinia, nisl nisl aliquet nisl, eget aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec ultricies lacinia, nisl nisl aliquet nisl, eget aliquam nisl nisl sit amet nisl.</p>
               
               <h4 className="font-bold text-xl my-4">Скриншоты</h4>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <img src={bot.image} alt="Screenshot 1" className="rounded-lg w-full h-auto" />
                 <img src={bot.image} alt="Screenshot 2" className="rounded-lg w-full h-auto" />
               </div>
@@ -1017,9 +1017,9 @@ const BotDetailsPage = ({ bot, onBack }) => {
         <h2 className="font-bold text-2xl">Подробная информация</h2>
       </div>
       <div className="flex justify-center">
-        <div className="flex items-start" style={{ gap: '50px' }}>
+        <div className="flex flex-col lg:flex-row items-start" style={{ gap: '50px' }}>
           {/* Left Card Container */}
-          <div className="w-[640px] bg-white p-8" style={{ borderRadius: '65px' }}>
+          <div className="w-full lg:w-[640px] bg-white p-8" style={{ borderRadius: '65px' }}>
             <div className="flex items-center gap-4 mb-4">
               <span className="bg-green-service/20 text-green-service font-semibold px-4 py-1 rounded-full text-sm">Алго-боты</span>
             </div>
@@ -1037,8 +1037,8 @@ const BotDetailsPage = ({ bot, onBack }) => {
           </div>
 
           {/* Right Purchase Container */}
-          <aside className="w-[380px] flex-shrink-0">
-          <div className="bg-white shadow-lg p-6 w-[380px] h-auto flex flex-col border border-grey-2" style={{ borderRadius: '65px' }}>
+          <aside className="w-full lg:w-[380px] flex-shrink-0">
+          <div className="bg-white shadow-lg p-6 w-full lg:w-[380px] h-auto flex flex-col border border-grey-2" style={{ borderRadius: '65px' }}>
               <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center bg-white rounded-full px-2 py-1 shadow-md">
                       <ICONS.favorites className="w-4 h-4 text-yellow-500 mr-1"/>

@@ -330,7 +330,7 @@ const LandingPage = ({ onNavigate, botData, botImages }) => {
   return (
     <div className="bg-white font-open-sans text-text-black">
       {/* Header */}
-      <header className="sticky top-0 bg-white/80 backdrop-blur-sm z-20">
+      <header className="sticky top-0 bg-white shadow-md z-20">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           <a href="#" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center gap-4">
             <Logo className="h-10 w-10"/>

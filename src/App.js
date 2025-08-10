@@ -196,7 +196,7 @@ const Button = ({ children, variant = 'big-classic', icon: Icon, iconPosition = 
 //=========== НОВЫЕ КОМПОНЕНТЫ: ЛЕНДИНГ И РЕГИСТРАЦИЯ ===========//
 
 const LandingPage = ({ onNavigate, botData, botImages }) => {
-
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const cardsPerPage = 3;
   const carouselRef = useRef(null);
@@ -330,21 +330,47 @@ const LandingPage = ({ onNavigate, botData, botImages }) => {
   return (
     <div className="bg-white font-open-sans text-text-black">
       {/* Header */}
-      <header className="sticky top-0 bg-white/80 backdrop-blur-sm z-10">
+      <header className="sticky top-0 bg-white/80 backdrop-blur-sm z-20">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           <a href="#" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center gap-4">
             <Logo className="h-10 w-10"/>
-            <span className="font-tt-travels text-2xl font-bold">AlgoVerse</span>
+            <span className="font-tt-travels text-2xl font-bold hidden sm:inline">AlgoVerse</span>
           </a>
           <nav className="hidden md:flex items-center gap-8">
             <a href="#about" onClick={(e) => { e.preventDefault(); document.getElementById('about').scrollIntoView({ behavior: 'smooth' }); }} className="hover:text-main">О нас</a>
             <a href="#features" onClick={(e) => { e.preventDefault(); document.getElementById('features').scrollIntoView({ behavior: 'smooth' }); }} className="hover:text-main">Возможности</a>
             <a href="#showcase" onClick={(e) => { e.preventDefault(); document.getElementById('showcase').scrollIntoView({ behavior: 'smooth' }); }} className="hover:text-main">Витрина</a>
           </nav>
-          <div className="flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-4">
             <Button variant="text" onClick={() => onNavigate('app')}>Войти</Button>
             <Button variant="big-classic" onClick={() => onNavigate('register')}>Регистрация</Button>
           </div>
+          <div className="md:hidden">
+            <Button variant="icon" onClick={() => setMobileMenuOpen(true)}>
+              <ICONS.burger />
+            </Button>
+          </div>
+        </div>
+        {/* Mobile Menu */}
+        <div className={`fixed inset-0 z-50 bg-white p-6 transform ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 ease-in-out md:hidden`}>
+            <div className="flex justify-between items-center mb-8">
+                <a href="#" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-4">
+                    <Logo className="h-10 w-10"/>
+                    <span className="font-tt-travels text-2xl font-bold">AlgoVerse</span>
+                </a>
+                <Button variant="icon" onClick={() => setMobileMenuOpen(false)}>
+                    <ICONS.close />
+                </Button>
+            </div>
+            <nav className="flex flex-col gap-6 text-lg">
+                <a href="#about" onClick={(e) => { e.preventDefault(); document.getElementById('about').scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }} className="hover:text-main">О нас</a>
+                <a href="#features" onClick={(e) => { e.preventDefault(); document.getElementById('features').scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }} className="hover:text-main">Возможности</a>
+                <a href="#showcase" onClick={(e) => { e.preventDefault(); document.getElementById('showcase').scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }} className="hover:text-main">Витрина</a>
+            </nav>
+            <div className="mt-8 pt-6 border-t border-grey-2 flex flex-col gap-4">
+                <Button variant="big-outline" className="w-full" onClick={() => { onNavigate('app'); setMobileMenuOpen(false); }}>Войти</Button>
+                <Button variant="big-classic" className="w-full" onClick={() => { onNavigate('register'); setMobileMenuOpen(false); }}>Регистрация</Button>
+            </div>
         </div>
       </header>
 

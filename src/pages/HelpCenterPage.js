@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import helpData from '../data/helpData';
 import { ReactComponent as Logo } from '../assets/icon.svg';
+import ArticleDetailPage from './ArticleDetailPage';
+import VideoDetailPage from './VideoDetailPage';
+import ArticleDetailPage from './ArticleDetailPage';
+import VideoDetailPage from './VideoDetailPage';
 
 // Re-using ICONS from App.js for consistency
 const ICONS = {
@@ -232,8 +236,25 @@ const ICONS = {
 
 const HelpCenterPage = ({ onNavigate }) => {
   const [activeSection, setActiveSection] = useState('siteInfo');
+  const [selectedArticle, setSelectedArticle] = useState(null);
+  const [selectedVideo, setSelectedVideo] = useState(null);
+  const [selectedUpdate, setSelectedUpdate] = useState(null);
+  const [selectedNews, setSelectedNews] = useState(null);
 
   const renderContent = () => {
+    if (selectedArticle) {
+      return <ArticleDetailPage article={selectedArticle} onBack={() => setSelectedArticle(null)} />;
+    }
+    if (selectedVideo) {
+      return <VideoDetailPage video={selectedVideo} onBack={() => setSelectedVideo(null)} />;
+    }
+    if (selectedUpdate) {
+      return <ArticleDetailPage article={selectedUpdate} onBack={() => setSelectedUpdate(null)} />;
+    }
+    if (selectedNews) {
+      return <ArticleDetailPage article={selectedNews} onBack={() => setSelectedNews(null)} />;
+    }
+
     switch (activeSection) {
       case 'siteInfo':
         return (
@@ -250,7 +271,7 @@ const HelpCenterPage = ({ onNavigate }) => {
                 <img src={article.image} alt={article.title} className="w-full h-40 object-cover rounded-lg mb-4" />
                 <h3 className="font-tt-travels text-xl font-bold mb-2">{article.title}</h3>
                 <p className="text-text-grey text-sm mb-4 flex-grow">{article.description}</p>
-                <button className="text-main font-semibold text-left hover:underline">Читать далее</button>
+                <button className="text-main font-semibold text-left hover:underline" onClick={() => setSelectedArticle(article)}>Читать далее</button>
               </div>
             ))}
           </div>
@@ -268,7 +289,7 @@ const HelpCenterPage = ({ onNavigate }) => {
                 </div>
                 <h3 className="font-tt-travels text-xl font-bold mb-2">{video.title}</h3>
                 <p className="text-text-grey text-sm mb-4 flex-grow">{video.description}</p>
-                <button className="text-main font-semibold text-left hover:underline">Смотреть видео</button>
+                <button className="text-main font-semibold text-left hover:underline" onClick={() => setSelectedVideo(video)}>Смотреть видео</button>
               </div>
             ))}
           </div>
@@ -294,10 +315,13 @@ const HelpCenterPage = ({ onNavigate }) => {
           <div className="space-y-6">
             {helpData.updates.map(update => (
               <div key={update.id} className="bg-white p-6 rounded-2xl shadow-sm">
+                {update.image && (
+                  <img src={update.image} alt={update.title} className="w-full h-40 object-cover rounded-lg mb-4" />
+                )}
                 <h3 className="font-tt-travels text-xl font-bold mb-2">{update.title}</h3>
                 <p className="text-text-grey text-sm mb-2">{update.date}</p>
                 <p className="text-text-grey leading-relaxed line-clamp-3">{update.description}</p>
-                <button className="text-main font-semibold text-left hover:underline mt-2">Подробнее</button>
+                <button className="text-main font-semibold text-left hover:underline mt-2" onClick={() => setSelectedUpdate(update)}>Подробнее</button>
               </div>
             ))}
           </div>
@@ -323,7 +347,7 @@ const HelpCenterPage = ({ onNavigate }) => {
                 )}
                 <h3 className="font-tt-travels text-xl font-bold mb-2">{post.title}</h3>
                 <p className="text-text-grey text-sm mb-4 flex-grow line-clamp-3">{post.description}</p>
-                <button className="text-main font-semibold text-left hover:underline">Читать далее</button>
+                <button className="text-main font-semibold text-left hover:underline" onClick={() => setSelectedNews(post)}>Читать далее</button>
               </div>
             ))}
           </div>
@@ -343,37 +367,37 @@ const HelpCenterPage = ({ onNavigate }) => {
         </div>
         <nav className="space-y-2">
           <button
-            onClick={() => setActiveSection('siteInfo')}
+            onClick={() => handleSectionChange('siteInfo')}
             className={`w-full text-left px-4 py-2 rounded-lg font-semibold transition-colors ${activeSection === 'siteInfo' ? 'bg-main text-white' : 'text-text-grey hover:bg-grey-1'}`}
           >
             Информация по сайту
           </button>
           <button
-            onClick={() => setActiveSection('articles')}
+            onClick={() => handleSectionChange('articles')}
             className={`w-full text-left px-4 py-2 rounded-lg font-semibold transition-colors ${activeSection === 'articles' ? 'bg-main text-white' : 'text-text-grey hover:bg-grey-1'}`}
           >
             Полезные статьи
           </button>
           <button
-            onClick={() => setActiveSection('videoTutorials')}
+            onClick={() => handleSectionChange('videoTutorials')}
             className={`w-full text-left px-4 py-2 rounded-lg font-semibold transition-colors ${activeSection === 'videoTutorials' ? 'bg-main text-white' : 'text-text-grey hover:bg-grey-1'}`}
           >
             Видео-инструкции
           </button>
           <button
-            onClick={() => setActiveSection('instructions')}
+            onClick={() => handleSectionChange('instructions')}
             className={`w-full text-left px-4 py-2 rounded-lg font-semibold transition-colors ${activeSection === 'instructions' ? 'bg-main text-white' : 'text-text-grey hover:bg-grey-1'}`}
           >
             Просто инструкции
           </button>
           <button
-            onClick={() => setActiveSection('updates')}
+            onClick={() => handleSectionChange('updates')}
             className={`w-full text-left px-4 py-2 rounded-lg font-semibold transition-colors ${activeSection === 'updates' ? 'bg-main text-white' : 'text-text-grey hover:bg-grey-1'}`}
           >
             Обновления
           </button>
           <button
-            onClick={() => setActiveSection('news')}
+            onClick={() => handleSectionChange('news')}
             className={`w-full text-left px-4 py-2 rounded-lg font-semibold transition-colors ${activeSection === 'news' ? 'bg-main text-white' : 'text-text-grey hover:bg-grey-1'}`}
           >
             Новости

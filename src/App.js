@@ -10,7 +10,6 @@ import ReactSlider from 'react-slider';
 import HelpCenterPage from './pages/HelpCenterPage';
 
 
-
 //=========== ИКОНКИ (SVG) ===========//
 const ICONS = {
   feed: (props) => (
@@ -1182,11 +1181,43 @@ const BotDetailsPage = ({ bot, onBack }) => {
   );
 };
 
+const personasData = [
+  { id: 1, name: 'Александр Волков', specialization: 'Алго-боты, Сигналы', rating: 4.9, reviews: 124, avatar: 'https://placehold.co/96x96/E2BAA4/000000?text=АВ' },
+  { id: 2, name: 'Елена Петрова', specialization: 'Услуги, Софт', rating: 4.8, reviews: 98, avatar: 'https://placehold.co/96x96/A4E2B9/000000?text=ЕП' },
+  { id: 3, name: 'Дмитрий Сидоров', specialization: 'Алго-боты', rating: 4.7, reviews: 75, avatar: 'https://placehold.co/96x96/A4A4E2/000000?text=ДС' },
+  { id: 4, name: 'Анна Кузнецова', specialization: 'Сигналы', rating: 4.6, reviews: 62, avatar: 'https://placehold.co/96x96/E2A4A4/000000?text=АК' },
+  { id: 5, name: 'Сергей Иванов', specialization: 'Алго-боты, Услуги', rating: 4.5, reviews: 51, avatar: 'https://placehold.co/96x96/E2E2A4/000000?text=СИ' },
+  { id: 6, name: 'Мария Васильева', specialization: 'Софт', rating: 4.4, reviews: 43, avatar: 'https://placehold.co/96x96/A4E2E2/000000?text=МВ' },
+  { id: 7, name: 'Николай Смирнов', specialization: 'Алго-боты', rating: 4.3, reviews: 38, avatar: 'https://placehold.co/96x96/E2A4E2/000000?text=НС' },
+  { id: 8, name: 'Ольга Попова', specialization: 'Сигналы, Услуги', rating: 4.2, reviews: 31, avatar: 'https://placehold.co/96x96/B9E2A4/000000?text=ОП' },
+  { id: 9, name: 'Павел Козлов', specialization: 'Алго-боты', rating: 4.1, reviews: 25, avatar: 'https://placehold.co/96x96/A4B9E2/000000?text=ПК' },
+  { id: 10, name: 'Виктория Лебедева', specialization: 'Услуги', rating: 4.0, reviews: 20, avatar: 'https://placehold.co/96x96/E2B9A4/000000?text=ВЛ' },
+  { id: 11, name: 'Иван Морозов', specialization: 'Алго-боты, Софт', rating: 3.9, reviews: 18, avatar: 'https://placehold.co/96x96/A4E2B9/000000?text=ИМ' },
+  { id: 12, name: 'Дарья Новикова', specialization: 'Сигналы', rating: 3.8, reviews: 15, avatar: 'https://placehold.co/96x96/A4A4E2/000000?text=ДН' },
+  { id: 13, name: 'Андрей Захаров', specialization: 'Алго-боты', rating: 3.7, reviews: 12, avatar: 'https://placehold.co/96x96/E2A4A4/000000?text=АЗ' },
+  { id: 14, name: 'Екатерина Соловьева', specialization: 'Услуги', rating: 3.6, reviews: 9, avatar: 'https://placehold.co/96x96/E2E2A4/000000?text=ЕС' },
+  { id: 15, name: 'Максим Борисов', specialization: 'Алго-боты, Сигналы', rating: 3.5, reviews: 7, avatar: 'https://placehold.co/96x96/A4E2E2/000000?text=МБ' },
+];
 
-
-
-const messagesData = {
-  'support': {
+const ProfileCard = ({ profile, isFavorited }) => (
+  <div className="bg-white p-4 rounded-2xl text-center transform hover:-translate-y-1 transition-all duration-300 relative">
+    <Button variant="icon" className={`absolute top-2 right-2 ${isFavorited ? 'text-orange' : 'text-text-grey'} hover:text-orange`}>
+        {React.createElement(ICONS.bookmark, { className: "w-5 h-5" })}
+    </Button>
+    <img src={profile.avatar} alt={profile.name} className="w-24 h-24 rounded-full mx-auto mb-4" />
+    <h4 className="font-bold text-lg">{profile.name}</h4>
+    <p className="text-sm text-text-grey mb-2">{profile.specialization}</p>
+    <div className="flex justify-center items-center gap-2 text-sm mb-4">
+      {React.createElement(ICONS.star, { className: "w-4 h-4 text-yellow-500" })}
+      <span>{profile.rating}</span>
+      <span className="text-text-grey">({profile.reviews} отзывов)</span>
+    </div>
+    <Button variant="small-classic" className="w-full">Подписаться</Button>
+  </div>
+);
+// Моковые данные для чата (support, promo, seller-1 и т.д.)
+const chatMockData = {
+  support: {
     name: 'Поддержка',
     avatar: 'https://placehold.co/40x40/4682B4/fff?text=S',
     messages: [
@@ -1199,7 +1230,7 @@ const messagesData = {
       { id: 7, text: 'Рады были помочь! Если возникнут еще вопросы - обращайтесь.', sender: 'contact', time: '11:16', status: 'delivered' },
     ],
   },
-  'promo': {
+  promo: {
     name: 'Акции и предложения',
     avatar: 'https://placehold.co/40x40/FF69B4/fff?text=P',
     messages: [
@@ -1239,6 +1270,245 @@ const messagesData = {
     ],
   },
 };
+
+const articlesData = [
+  {
+    id: 1,
+    title: "Как начать торговать на AlgoVerse",
+    description: "Пошаговое руководство для новичков: от регистрации до первой сделки.",
+    image: botImages[0],
+    content: "Полное содержание статьи 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    id: 2,
+    title: "Основы алгоритмической торговли",
+    description: "Погружение в мир автоматизированных стратегий: термины, принципы, преимущества.",
+    image: botImages[1],
+    content: "Полное содержание статьи 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    id: 3,
+    title: "Выбор первого алго-бота: на что обратить внимание",
+    description: "Советы по выбору подходящего торгового робота для ваших целей и уровня риска.",
+    image: botImages[2],
+    content: "Полное содержание статьи 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    id: 4,
+    title: "Управление рисками в автоматической торговле",
+    description: "Как минимизировать потенциальные убытки и защитить свой капитал.",
+    image: botImages[3],
+    content: "Полное содержание статьи 4. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    id: 5,
+    title: "Психология трейдинга: как сохранить спокойствие",
+    description: "Важность эмоционального контроля и дисциплины в торговле.",
+    image: botImages[4],
+    content: "Полное содержание статьи 5. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    id: 6,
+    title: "Настройка торгового терминала для AlgoVerse",
+    description: "Подробная инструкция по подключению и настройке вашего терминала.",
+    image: botImages[5],
+    content: "Полное содержание статьи 6. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    id: 7,
+    title: "Использование индикаторов для анализа рынка",
+    description: "Обзор популярных индикаторов и их применение в торговых стратегиях.",
+    image: botImages[6],
+    content: "Полное содержание статьи 7. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    id: 8,
+    title: "Бэктестинг и оптимизация алго-ботов",
+    description: "Как тестировать и улучшать производительность ваших торговых роботов.",
+    image: botImages[7],
+    content: "Полное содержание статьи 8. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    id: 9,
+    title: "Торговля на новостях с помощью алго-ботов",
+    description: "Стратегии автоматической торговли во время важных экономических событий.",
+    image: botImages[8],
+    content: "Полное содержание статьи 9. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    id: 10,
+    title: "Распространенные ошибки новичков в алго-трейдинге",
+    description: "Чего следует избегать, чтобы не потерять капитал.",
+    image: botImages[9],
+    content: "Полное содержание статьи 10. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+];
+
+const videosData = [
+  {
+    id: 1,
+    title: "Видеоурок: Создание своего первого алго-бота",
+    description: "Подробный видеоурок по созданию и настройке вашего первого торгового робота на платформе AlgoVerse.",
+    image: botImages[10],
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ", // Placeholder YouTube video
+    content: "Полное описание видео 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    id: 2,
+    title: "Обзор интерфейса AlgoVerse",
+    description: "Знакомство с основными разделами платформы и их функционалом.",
+    image: botImages[11],
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    content: "Полное описание видео 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    id: 3,
+    title: "Как подключить API ключи от биржи",
+    description: "Пошаговая видеоинструкция по безопасной интеграции ваших API ключей.",
+    image: botImages[12],
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    content: "Полное описание видео 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    id: 4,
+    title: "Стратегии скальпинга для начинающих",
+    description: "Практический видеоурок по основам скальпинга с использованием алго-ботов.",
+    image: botImages[13],
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    content: "Полное описание видео 4. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    id: 5,
+    title: "Обзор новых функций AlgoVerse",
+    description: "Видеопрезентация последних обновлений и добавленных возможностей платформы.",
+    image: botImages[14],
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    content: "Полное описание видео 5. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    id: 6,
+    title: "Как анализировать отчеты по торговле",
+    description: "Видеоурок по интерпретации данных и улучшению торговых результатов.",
+    image: botImages[0],
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    content: "Полное описание видео 6. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    id: 7,
+    title: "Создание собственного индикатора",
+    description: "Продвинутый видеоурок для разработчиков: как создать свой технический индикатор.",
+    image: botImages[1],
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    content: "Полное описание видео 7. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    id: 8,
+    title: "Оптимизация алго-ботов: практические советы",
+    description: "Видео с советами по повышению эффективности ваших торговых роботов.",
+    image: botImages[2],
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    content: "Полное описание видео 8. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    id: 9,
+    title: "Торговля на Форекс с AlgoVerse",
+    description: "Видеоурок по особенностям торговли на валютном рынке с использованием платформы.",
+    image: botImages[3],
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    content: "Полное описание видео 9. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    id: 10,
+    title: "Как использовать сигналы для торговли",
+    description: "Видеоинструкция по подписке и использованию торговых сигналов.",
+    image: botImages[4],
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    content: "Полное описание видео 10. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+];
+
+const newsUpdatesData = [
+  {
+    id: 1,
+    title: "Обновление платформы: Новые индикаторы и инструменты",
+    description: "Мы выпустили крупное обновление, добавляющее новые технические индикаторы и расширенные инструменты анализа для ваших торговых стратегий.",
+    image: botImages[5],
+    date: "10.08.2025",
+    content: "Полное содержание новости 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    id: 2,
+    title: "AlgoVerse запускает партнерскую программу",
+    description: "Приглашаем всех желающих присоединиться к нашей партнерской программе и зарабатывать на привлечении новых пользователей.",
+    image: botImages[6],
+    date: "05.08.2025",
+    content: "Полное содержание новости 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    id: 3,
+    title: "Новые возможности для создателей алго-ботов",
+    description: "Расширенные инструменты для разработки и монетизации ваших торговых роботов.",
+    image: botImages[7],
+    date: "01.08.2025",
+    content: "Полное содержание новости 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    id: 4,
+    title: "Вебинар: Эффективные стратегии алго-трейдинга",
+    description: "Приглашаем на бесплатный вебинар с ведущими экспертами AlgoVerse.",
+    image: botImages[8],
+    date: "25.07.2025",
+    content: "Полное содержание новости 4. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    id: 5,
+    title: "Интеграция с новыми биржами",
+    description: "Теперь AlgoVerse поддерживает торговлю на еще большем количестве популярных криптовалютных и фондовых бирж.",
+    image: botImages[9],
+    date: "20.07.2025",
+    content: "Полное содержание новости 5. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    id: 6,
+    title: "Улучшение аналитических отчетов",
+    description: "Мы обновили систему аналитики, предоставив еще более подробные и наглядные отчеты по вашей торговой активности.",
+    image: botImages[10],
+    date: "15.07.2025",
+    content: "Полное содержание новости 6. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    id: 7,
+    title: "Новый дизайн личного кабинета",
+    description: "Представляем обновленный, более интуитивно понятный и функциональный дизайн вашего личного кабинета.",
+    image: botImages[11],
+    date: "10.07.2025",
+    content: "Полное содержание новости 7. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    id: 8,
+    title: "Расширение библиотеки алго-ботов",
+    description: "В нашу библиотеку добавлены новые высокодоходные алго-боты для различных рынков.",
+    image: botImages[12],
+    date: "05.07.2025",
+    content: "Полное содержание новости 8. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    id: 9,
+    title: "Улучшение скорости исполнения ордеров",
+    description: "Мы оптимизировали инфраструктуру для обеспечения еще более быстрого и надежного исполнения ваших торговых ордеров.",
+    image: botImages[13],
+    date: "01.07.2025",
+    content: "Полное содержание новости 9. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    id: 10,
+    title: "Новые обучающие материалы для трейдеров",
+    description: "Мы добавили серию новых обучающих видео и статей, чтобы помочь вам освоить алго-трейдинг.",
+    image: botImages[14],
+    date: "28.06.2025",
+    content: "Полное содержание новости 10. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+];
 
 const FavoritesPage = () => {
   const [activeTab, setActiveTab] = useState('Персоны');
@@ -1297,7 +1567,7 @@ const MessagesPage = () => {
   const [message, setMessage] = useState('');
   const [showEmojis, setShowEmojis] = useState(false);
   const emojis = ['😀', '😂', '😍', '🤔', '👍', '🙏', '🚀', '🔥', '💰', '📈', '📉', '🎉'];
-  const activeChat = messagesData[activeChatId];
+  const activeChat = chatMockData[activeChatId];
 
   const MessageStatus = ({ status }) => {
     if (status === 'read') return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="#4F46E5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M22 4L12 14.01l-3-3" stroke="#4F46E5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>;
@@ -1313,12 +1583,12 @@ const MessagesPage = () => {
           <h2 className="font-bold text-xl">Сообщения</h2>
         </div>
         <div className="flex-grow overflow-y-auto">
-          {Object.keys(messagesData).map(chatId => (
+          {Object.keys(chatMockData).map(chatId => (
             <div key={chatId} onClick={() => setActiveChatId(chatId)} className={`flex items-center p-4 cursor-pointer ${activeChatId === chatId ? 'bg-main/10' : 'hover:bg-grey-1/50'}`}>
-              <img src={messagesData[chatId].avatar} alt={messagesData[chatId].name} className="w-12 h-12 rounded-full mr-4" />
+              <img src={chatMockData[chatId].avatar} alt={chatMockData[chatId].name} className="w-12 h-12 rounded-full mr-4" />
               <div className="flex-grow overflow-hidden">
-                <h3 className="font-semibold">{messagesData[chatId].name}</h3>
-                <p className="text-sm text-text-grey truncate">{messagesData[chatId].messages.slice(-1)[0].text}</p>
+                <h3 className="font-semibold">{chatMockData[chatId].name}</h3>
+                <p className="text-sm text-text-grey truncate">{chatMockData[chatId].messages.slice(-1)[0].text}</p>
               </div>
             </div>
           ))}
@@ -1927,6 +2197,24 @@ const FeedPage = () => {
   );
 };
 
+const StartCard = ({ title, description, icon }) => (
+  <div className="bg-white p-6 rounded-2xl shadow-sm text-center">
+    <img src={icon} alt={title} className="w-16 h-16 mx-auto mb-4" />
+    <h3 className="font-bold text-xl mb-2">{title}</h3>
+    <p className="text-text-grey text-sm">{description}</p>
+  </div>
+);
+
+const InvestmentCard = ({ title, description, image }) => (
+  <div className="bg-white p-6 rounded-2xl shadow-sm flex items-center gap-4">
+    <img src={image} alt={title} className="w-24 h-24 object-cover rounded-lg flex-shrink-0" />
+    <div>
+      <h3 className="font-bold text-lg mb-2">{title}</h3>
+      <p className="text-text-grey text-sm">{description}</p>
+    </div>
+  </div>
+);
+
 const FinancialQuoteItem = ({ name, price, change, isPositive }) => (
   <div className="p-2">
     <div className="font-semibold text-sm text-text-grey">{name}</div>
@@ -1946,23 +2234,7 @@ const QuoteCategory = ({ title, items }) => (
   </div>
 );
 
-const FinancialQuotes = () => {
-  const currencies = [
-    { name: 'USD/RUB', price: '91.80', change: 0.25, isPositive: true },
-    { name: 'EUR/RUB', price: '98.50', change: -0.11, isPositive: false },
-    { name: 'CNY/RUB', price: '12.60', change: 0.05, isPositive: true },
-  ];
-  const crypto = [
-    { name: 'BTC/USD', price: '69,420', change: 3.14, isPositive: true },
-    { name: 'ETH/USD', price: '3,420', change: 2.71, isPositive: true },
-    { name: 'TON/USD', price: '7.50', change: -1.62, isPositive: false },
-  ];
-  const stocks = [
-    { name: 'SBER', price: '315.40', change: 1.20, isPositive: true },
-    { name: 'GAZP', price: '125.80', change: -0.50, isPositive: false },
-    { name: 'LKOH', price: '7,420', change: 0.80, isPositive: true },
-  ];
-
+const FinancialQuotes = ({ currencies, crypto, stocks }) => {
   return (
     <div className="bg-white rounded-2xl shadow-sm p-6">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -1974,17 +2246,18 @@ const FinancialQuotes = () => {
   );
 };
 
+const updates = [
+  { id: 1, title: "Новые возможности API", date: "05.08.2025", description: "Мы расширили возможности нашего API, добавив новые методы для работы с историческими данными и управления торговыми счетами. Теперь вы можете проводить более глубокий анализ и автоматизировать еще больше рутинных задач. Подробности в документации.", image: `${process.env.PUBLIC_URL}/10.jpg` },
+  { id: 2, title: "Партнерская программа", date: "01.08.2025", description: "Запущена новая партнерская программа! Привлекайте новых пользователей и получайте процент от их торговых комиссий. Это отличная возможность для дополнительного заработка. Все условия и подробности вы найдете в личном кабинете.", image: `${process.env.PUBLIC_URL}/11.jpg` },
+  { id: 3, title: "Обновление маркета", date: "28.07.2025", description: "Мы полностью переработали дизайн и функционал маркета. Теперь находить и выбирать нужных ботов стало еще проще и удобнее. Добавлены новые фильтры, улучшена навигация и производительность. Оцените новый маркет уже сейчас!", image: `${process.env.PUBLIC_URL}/12.jpg` },
+  { id: 4, title: "Новый тип графиков", date: "25.07.2025", description: "Встречайте новый тип графиков для анализа — Renko! Этот инструмент поможет вам по-новому взглянуть на движение цен, отсекая рыночный шум и выделяя ключевые тренды. Renko-графики уже доступны в терминале для всех пользователей.", image: `${process.env.PUBLIC_URL}/13.jpeg` },
+  { id: 5, title: "Вебинар по скальпингу", date: "22.07.2025", description: "Приглашаем на бесплатный вебинар по скальпингу с использованием наших новых ботов. Ведущий эксперт поделится своими стратегиями и ответит на ваши вопросы. Запись будет доступна для всех зарегистрированных участников.", image: `${process.env.PUBLIC_URL}/2.jpg` },
+  { id: 6, title: "Улучшение безопасности", date: "18.07.2025", description: "Мы внедрили дополнительные меры для защиты ваших аккаунтов и данных. Теперь доступна двухфакторная аутентификация (2FA) через Google Authenticator. Настоятельно рекомендуем включить ее в настройках безопасности.", image: `${process.env.PUBLIC_URL}/3.jpg` },
+  { id: 7, title: "Мобильное приложение", date: "15.07.2025", description: "Мы начали разработку мобильного приложения для iOS и Android! Следите за новостями, чтобы первыми узнать о выходе бета-версии. Мы стремимся сделать торговлю еще более доступной и удобной для вас.", image: `${process.env.PUBLIC_URL}/4.jpg` },
+  { id: 8, title: "Технические работы", date: "12.07.2025", description: "В ночь с 15 на 16 июля на платформе будут проводиться плановые технические работы. Возможны кратковременные перебои в достусупе. Приносим извинения за возможные неудобства и благодарим за понимание.", image: `${process.env.PUBLIC_URL}/5.jpg` },
+];
+
 const HomePage = ({ onNavigate }) => {
-  const updates = [
-    { id: 1, title: "Новые возможности API", date: "05.08.2025", description: "Мы расширили возможности нашего API, добавив новые методы для работы с историческими данными и управления торговыми счетами. Теперь вы можете проводить более глубокий анализ и автоматизировать еще больше рутинных задач. Подробности в документации." },
-    { id: 2, title: "Партнерская программа", date: "01.08.2025", description: "Запущена новая партнерская программа! Привлекайте новых пользователей и получайте процент от их торговых комиссий. Это отличная возможность для дополнительного заработка. Все условия и подробности вы найдете в личном кабинете." },
-    { id: 3, title: "Обновление маркета", date: "28.07.2025", description: "Мы полностью переработали дизайн и функционал маркета. Теперь находить и выбирать нужных ботов стало еще проще и удобнее. Добавлены новые фильтры, улучшена навигация и производительность. Оцените новый маркет уже сейчас!" },
-    { id: 4, title: "Новый тип графиков", date: "25.07.2025", description: "Встречайте новый тип графиков для анализа — Renko! Этот инструмент поможет вам по-новому взглянуть на движение цен, отсекая рыночный шум и выделяя ключевые тренды. Renko-графики уже доступны в терминале для всех пользователей." },
-    { id: 5, title: "Вебинар по скальпингу", date: "22.07.2025", description: "Приглашаем на бесплатный вебинар по скальпингу с использованием наших новых ботов. Ведущий эксперт поделится своими стратегиями и ответит на ваши вопросы. Запись будет доступна для всех зарегистрированных участников." },
-    { id: 6, title: "Улучшение безопасности", date: "18.07.2025", description: "Мы внедрили дополнительные меры для защиты ваших аккаунтов и данных. Теперь доступна двухфакторная аутентификация (2FA) через Google Authenticator. Настоятельно рекомендуем включить ее в настройках безопасности." },
-    { id: 7, title: "Мобильное приложение", date: "15.07.2025", description: "Мы начали разработку мобильного приложения для iOS и Android! Следите за новостями, чтобы первыми узнать о выходе бета-версии. Мы стремимся сделать торговлю еще более доступной и удобной для вас." },
-    { id: 8, title: "Технические работы", date: "12.07.2025", description: "В ночь с 15 на 16 июля на платформе будут проводиться плановые технические работы. Возможны кратковременные перебои в доступе. Приносим извинения за возможные неудобства и благодарим за понимание." },
-  ];
 
   const [selectedUpdate, setSelectedUpdate] = useState(null);
 
@@ -1994,6 +2267,7 @@ const HomePage = ({ onNavigate }) => {
       <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={onClose}>
         <div className="bg-white rounded-2xl p-8 w-full max-w-2xl max-h-[90vh] overflow-y-auto relative" onClick={e => e.stopPropagation()}>
           <Button variant="icon" className="absolute top-4 right-4" onClick={onClose}>{React.createElement(ICONS.close)}</Button>
+          {update.image && <img src={update.image} alt={update.title} className="w-full h-48 object-cover rounded-lg mb-4" />}
           <h2 className="text-2xl font-bold mb-2 font-tt-travels">{update.title}</h2>
           <p className="text-sm text-text-grey mb-4">{update.date}</p>
           <p>{update.description}</p>
@@ -2002,113 +2276,128 @@ const HomePage = ({ onNavigate }) => {
     );
   };
 
+  const partnerBanners = [
+    { id: 1, image: `${process.env.PUBLIC_URL}/images (1).jpg`, url: "#!" },
+    { id: 2, image: `${process.env.PUBLIC_URL}/images (2).jpg`, url: "#!" },
+    { id: 3, image: `${process.env.PUBLIC_URL}/images (3).jpg`, url: "#!" },
+    { id: 4, image: `${process.env.PUBLIC_URL}/images (4).jpg`, url: "#!" },
+  ];
+
+  const startCards = [
+    { id: 1, title: "Создайте своего бота", description: "Пройдите пошаговое руководство по созданию вашей первой торговой стратегии.", icon: `${process.env.PUBLIC_URL}/assets_task_01jye4eggtfk7ahzf9qf79dmxy_1750673668_img_3 1.svg` },
+    { id: 2, title: "Изучите Маркетплейс", description: "Ознакомьтесь с готовыми алго-ботами и выберите подходящий для себя.", icon: `${process.env.PUBLIC_URL}/assets_task_01jye5x9b8faqtakmxk93mnj2t_1750675199_img_3 1.png` },
+    { id: 3, title: "Анализируйте и оптимизируйте", description: "Используйте наши инструменты для анализа и улучшения ваших торговых результатов.", icon: `${process.env.PUBLIC_URL}/Analytics_set.svg` },
+  ];
+
+  const investmentCards = [
+    { id: 1, title: "Для инвесторов", description: "Увеличьте свой капитал, инвестируя в проверенные алгоритмические стратегии.", image: `${process.env.PUBLIC_URL}/assets_task_01jye5yc7pe6w9d2y08qzdf1xt_1750675239_img_1 1.png` },
+    { id: 2, title: "Пассивный доход", description: "Получайте стабильный доход, копируя сделки успешных трейдеров.", image: `${process.env.PUBLIC_URL}/assets_task_01jye5yc7pe6w9d2y08qzdf1xt_1750675239_img_1 1.svg` },
+    { id: 3, title: "Диверсификация портфеля", description: "Распределите риски, инвестируя в различные активы и стратегии.", image: `${process.env.PUBLIC_URL}/assets_task_01jye57frdf2paxg768scs4s8p_1750674491_img_2 1.png` },
+  ];
+
+  const creatorCards = [
+    { id: 1, title: "Для создателей ботов", description: "Монетизируйте свои торговые стратегии, предлагая их другим пользователям.", image: `${process.env.PUBLIC_URL}/assets_task_01jye63bnrfm2vt0y8at6hvj98_1750675399_img_1 1.png` },
+    { id: 2, title: "Расширьте аудиторию", description: "Привлекайте новых клиентов и партнеров через нашу платформу.", image: `${process.env.PUBLIC_URL}/assets_task_01jye5x9b8faqtakmxk93mnj2t_1750675199_img_3 1.png` },
+    { id: 3, title: "Получайте вознаграждение", description: "Зарабатывайте процент от прибыли, которую приносят ваши боты пользователям.", image: `${process.env.PUBLIC_URL}/Analytics_set.svg` },
+  ];
+
+  const currencies = [
+    { name: 'USD/RUB', price: '91.80', change: 0.25, isPositive: true },
+    { name: 'EUR/RUB', price: '98.50', change: -0.11, isPositive: false },
+    { name: 'CNY/RUB', price: '12.60', change: 0.05, isPositive: true },
+    { name: 'GBP/RUB', price: '115.20', change: 0.15, isPositive: true },
+  ];
+  const crypto = [
+    { name: 'BTC/USD', price: '69,420', change: 3.14, isPositive: true },
+    { name: 'ETH/USD', price: '3,420', change: 2.71, isPositive: true },
+    { name: 'TON/USD', price: '7.50', change: -1.62, isPositive: false },
+    { name: 'SOL/USD', price: '150.00', change: 4.00, isPositive: true },
+  ];
+  const stocks = [
+    { name: 'SBER', price: '315.40', change: 1.20, isPositive: true },
+    { name: 'GAZP', price: '125.80', change: -0.50, isPositive: false },
+    { name: 'LKOH', price: '7,420', change: 0.80, isPositive: true },
+    { name: 'YNDX', price: '3,500', change: 2.10, isPositive: true },
+  ];
+
   return (
     <div className="space-y-8">
       {/* Welcome Banner */}
-      <div className="relative bg-blue-grad text-white rounded-2xl p-8 md:p-12 overflow-hidden flex items-center">
-        <div className="relative z-10 w-full md:w-2/3">
-          <h1 className="font-tt-travels text-4xl md:text-5xl font-bold mb-4">Добро пожаловать!</h1>
-          <p className="text-lg md:text-xl max-w-2xl">Мы рады видеть вас снова. Все готово для того, чтобы вы продолжили создавать, тестировать и запускать свои торговые стратегии.</p>
+      <section className="relative bg-gradient-to-r from-main to-main-light text-white rounded-2xl p-8 overflow-hidden">
+        <div className="absolute inset-0" style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/Frame 5655.svg)`, backgroundSize: 'cover', backgroundPosition: 'center', opacity: 0.2 }}></div>
+        <div className="relative z-10 flex flex-col md:flex-row items-center justify-between">
+          <div className="text-center md:text-left mb-6 md:mb-0">
+            <h1 className="font-tt-travels text-4xl font-bold mb-2">Добро пожаловать в AlgoVerse!</h1>
+            <p className="text-lg">Ваш путь к автоматизированной торговле начинается здесь.</p>
+          </div>
+          <img src={`${process.env.PUBLIC_URL}/Group 996.svg`} alt="Welcome Illustration" className="w-64 h-auto" />
         </div>
-        <div className="absolute right-0 bottom-0 w-1/2 md:w-1/3 h-full">
-          <img src={`${process.env.PUBLIC_URL}/Analytics_set.svg`} alt="Analytics" className="absolute bottom-0 right-0 h-full w-auto object-contain object-right-bottom" />
-        </div>
-      </div>
+      </section>
 
       {/* Financial Quotes */}
-      <FinancialQuotes />
+      <FinancialQuotes currencies={currencies} crypto={crypto} stocks={stocks} />
 
-      {/* Partners */}
-      <div className="bg-white rounded-2xl shadow-sm p-6">
-        <h2 className="font-bold text-xl mb-4 text-center">Наши партнеры</h2>
-        <div className="flex justify-around items-center flex-wrap gap-4">
-          {['logo1.png', 'logo2.png', 'logo3.png', 'logo4.png', 'logo5.png'].map((logo, index) => (
-            <img key={index} src={`https://placehold.co/120x40/F0F0F0/CCCCCC?text=Partner${index+1}`} alt={`Partner ${index+1}`} className="h-10" />
+      {/* Partner Banners */}
+      <section>
+        <h2 className="font-bold text-2xl mb-4">Наши партнеры</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          {partnerBanners.map(banner => (
+            <AdCard key={banner.id} image={banner.image} title="Партнер" url={banner.url} />
           ))}
         </div>
-      </div>
+      </section>
 
-      {/* How to Start */}
-      <div className="bg-white rounded-2xl shadow-sm p-6">
-        <h2 className="font-bold text-xl mb-4">С чего начать</h2>
+      {/* Start Section */}
+      <section>
+        <h2 className="font-bold text-2xl mb-4">С чего начать?</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-orange/10 p-6 rounded-xl flex flex-col">
-            <h3 className="font-bold text-lg mb-2">Создайте своего первого бота</h3>
-            <p className="text-text-grey text-sm flex-grow mb-4">Воспользуйтесь нашим интуитивно понятным конструктором, чтобы создать свою первую торговую стратегию без единой строчки кода.</p>
-            <Button variant="text" className="self-start" onClick={() => onNavigate('Помощь')}>Узнать больше {'>'}</Button>
-          </div>
-          <div className="bg-orange/10 p-6 rounded-xl flex flex-col">
-            <h3 className="font-bold text-lg mb-2">Изучите маркетплейс</h3>
-            <p className="text-text-grey text-sm flex-grow mb-4">Ознакомьтесь с готовыми решениями от других участников платформы. Возможно, вы найдете то, что идеально подходит для ваших целей.</p>
-            <Button variant="text" className="self-start" onClick={() => onNavigate('Маркетплейс')}>Перейти в маркетплейс {'>'}</Button>
-          </div>
-          <div className="bg-orange/10 p-6 rounded-xl flex flex-col">
-            <h3 className="font-bold text-lg mb-2">Подключите свой счет</h3>
-            <p className="text-text-grey text-sm flex-grow mb-4">Подключите свой брокерский счет или счет на криптовалютной бирже, чтобы начать торговлю в реальном времени.</p>
-            <Button variant="text" className="self-start" onClick={() => onNavigate('Помощь')}>Инструкция по подключению {'>'}</Button>
-          </div>
+          {startCards.map(card => (
+            <StartCard key={card.id} title={card.title} description={card.description} icon={card.icon} />
+          ))}
         </div>
-      </div>
+      </section>
 
-      {/* Investments */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div className="bg-white rounded-2xl shadow-sm p-6 flex items-center gap-6">
-          <img src={`${process.env.PUBLIC_URL}/инвестиционные-инструменты-300x212.jpg`} alt="For Investors" className="w-32 h-32 object-cover rounded-lg"/>
-          <div>
-            <h3 className="font-bold text-xl mb-2">Для инвесторов</h3>
-            <p className="text-text-grey mb-4">Копируйте сделки успешных трейдеров, инвестируйте в готовые портфели и получайте пассивный доход.</p>
-            <Button variant="small-outline">Начать</Button>
+      {/* Investment Sections */}
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="bg-bg-light p-6 rounded-2xl shadow-sm">
+          <h2 className="font-bold text-2xl mb-4">Инвестиции</h2>
+          <div className="flex flex-col gap-4">
+            {investmentCards.map(card => (
+              <InvestmentCard key={card.id} title={card.title} description={card.description} image={card.image} />
+            ))}
           </div>
         </div>
-        <div className="bg-white rounded-2xl shadow-sm p-6 flex items-center gap-6">
-          <img src={`${process.env.PUBLIC_URL}/34653 1.svg`} alt="For Creators" className="w-32 h-32 object-cover rounded-lg"/>
-          <div>
-            <h3 className="font-bold text-xl mb-2">Для создателей ботов</h3>
-            <p className="text-text-grey mb-4">Монетизируйте свои стратегии, продавая доступ к ним или привлекая инвесторов в свой собственный мини-фонд.</p>
-            <Button variant="small-outline">Создать</Button>
+        <div className="bg-bg-light p-6 rounded-2xl shadow-sm">
+          <h2 className="font-bold text-2xl mb-4">Создание ботов</h2>
+          <div className="flex flex-col gap-4">
+            {creatorCards.map(card => (
+              <InvestmentCard key={card.id} title={card.title} description={card.description} image={card.image} />
+            ))}
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Platform Updates */}
-      <div className="bg-white rounded-2xl shadow-sm p-6">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="font-bold text-xl">Обновления платформы</h2>
-          <Button variant="text" onClick={() => onNavigate('Помощь')}>Смотреть все</Button>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <section>
+        <h2 className="font-bold text-2xl mb-4">Обновления платформы</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {updates.slice(0, 8).map(update => (
-            <div key={update.id} className="bg-grey-1 p-4 rounded-lg cursor-pointer hover:bg-grey-2/50" onClick={() => setSelectedUpdate(update)}>
-              <p className="font-semibold text-sm mb-1">{update.title}</p>
-              <p className="text-xs text-text-grey">{update.date}</p>
+            <div key={update.id} className="bg-white p-6 rounded-2xl shadow-sm cursor-pointer hover:shadow-md transition-shadow" onClick={() => setSelectedUpdate(update)}>
+              <img src={update.image} alt={update.title} className="w-full h-32 object-cover rounded-lg mb-4" />
+              <h3 className="font-tt-travels text-xl font-bold mb-2">{update.title}</h3>
+              <p className="text-sm text-text-grey mb-2">{update.date}</p>
+              <p className="text-text-grey text-sm line-clamp-3">{update.description}</p>
             </div>
           ))}
         </div>
-      </div>
+        <div className="text-center mt-8">
+          <Button variant="big-outline" onClick={() => onNavigate('Помощь')}>Смотреть все обновления</Button>
+        </div>
+      </section>
+
       <UpdateModal update={selectedUpdate} onClose={() => setSelectedUpdate(null)} />
     </div>
   );
-};
-
-const MainContent = ({ activePage, productCreated, onNavigate, botData, botImages }) => {
-  switch (activePage) {
-    case 'Главная':
-      return <HomePage onNavigate={onNavigate} />;
-    case 'Лента':
-      return <FeedPage />;
-    case 'Маркетплейс':
-      return <Marketplace onNavigate={onNavigate} botData={botData} botImages={botImages} />;
-    case 'Персоны':
-      return <PersonasPage />;
-    case 'Сообщения':
-      return <MessagesPage />;
-    case 'Избранное':
-      return <FavoritesPage />;
-    case 'Помощь':
-      return <HelpCenterPage onNavigate={onNavigate} />;
-    default:
-      return <HomePage onNavigate={onNavigate} />;
-  }
 };
 
 const PersonasPage = () => {
@@ -2126,8 +2415,40 @@ const PersonasPage = () => {
     setFilters(prev => ({ ...prev, [key]: value }));
   };
 
+  const personasData = [
+    { id: 1, name: 'Александр Волков', specialization: 'Алго-боты, Сигналы', rating: 4.9, reviews: 124, avatar: 'https://placehold.co/96x96/E2BAA4/000000?text=АВ' },
+    { id: 2, name: 'Елена Петрова', specialization: 'Услуги, Софт', rating: 4.8, reviews: 98, avatar: 'https://placehold.co/96x96/A4E2B9/000000?text=ЕП' },
+    { id: 3, name: 'Дмитрий Сидоров', specialization: 'Алго-боты', rating: 4.7, reviews: 75, avatar: 'https://placehold.co/96x96/A4A4E2/000000?text=ДС' },
+    { id: 4, name: 'Анна Кузнецова', specialization: 'Сигналы', rating: 4.6, reviews: 62, avatar: 'https://placehold.co/96x96/E2A4A4/000000?text=АК' },
+    { id: 5, name: 'Сергей Иванов', specialization: 'Алго-боты, Услуги', rating: 4.5, reviews: 51, avatar: 'https://placehold.co/96x96/E2E2A4/000000?text=СИ' },
+    { id: 6, name: 'Мария Васильева', specialization: 'Софт', rating: 4.4, reviews: 43, avatar: 'https://placehold.co/96x96/A4E2E2/000000?text=МВ' },
+    { id: 7, name: 'Николай Смирнов', specialization: 'Алго-боты', rating: 4.3, reviews: 38, avatar: 'https://placehold.co/96x96/E2A4E2/000000?text=НС' },
+    { id: 8, name: 'Ольга Попова', specialization: 'Сигналы, Услуги', rating: 4.2, reviews: 31, avatar: 'https://placehold.co/96x96/B9E2A4/000000?text=ОП' },
+    { id: 9, name: 'Павел Козлов', specialization: 'Алго-боты', rating: 4.1, reviews: 25, avatar: 'https://placehold.co/96x96/A4B9E2/000000?text=ПК' },
+    { id: 10, name: 'Виктория Лебедева', specialization: 'Услуги', rating: 4.0, reviews: 20, avatar: 'https://placehold.co/96x96/E2B9A4/000000?text=ВЛ' },
+    { id: 11, name: 'Иван Морозов', specialization: 'Алго-боты, Софт', rating: 3.9, reviews: 18, avatar: 'https://placehold.co/96x96/A4E2B9/000000?text=ИМ' },
+    { id: 12, name: 'Дарья Новикова', specialization: 'Сигналы', rating: 3.8, reviews: 15, avatar: 'https://placehold.co/96x96/A4A4E2/000000?text=ДН' },
+    { id: 13, name: 'Андрей Захаров', specialization: 'Алго-боты', rating: 3.7, reviews: 12, avatar: 'https://placehold.co/96x96/E2A4A4/000000?text=АЗ' },
+    { id: 14, name: 'Екатерина Соловьева', specialization: 'Услуги', rating: 3.6, reviews: 9, avatar: 'https://placehold.co/96x96/E2E2A4/000000?text=ЕС' },
+    { id: 15, name: 'Максим Борисов', specialization: 'Алго-боты, Сигналы', rating: 3.5, reviews: 7, avatar: 'https://placehold.co/96x96/A4E2E2/000000?text=МБ' },
+  ];
+
   const podium = personasData.slice(0, 3);
   const others = personasData.slice(3);
+
+  const ProfileCard = ({ profile, isFavorited }) => (
+    <div className="bg-grey-1 p-4 rounded-2xl text-center transform hover:-translate-y-1 transition-all duration-300">
+      <img src={profile.avatar} alt={profile.name} className="w-24 h-24 rounded-full mx-auto mb-4" />
+      <h4 className="font-bold text-lg">{profile.name}</h4>
+      <p className="text-sm text-text-grey mb-2">{profile.specialization}</p>
+      <div className="flex justify-center items-center gap-2 text-sm mb-4">
+        {React.createElement(ICONS.star, { className: "w-4 h-4 text-yellow-500" })}
+        <span>{profile.rating}</span>
+        <span className="text-text-grey">({profile.reviews} отзывов)</span>
+      </div>
+      <Button variant="small-classic" className="w-full">Подписаться</Button>
+    </div>
+  );
 
   return (
     <div className="flex flex-col lg:flex-row gap-6">
@@ -2247,37 +2568,28 @@ const PersonasPage = () => {
   );
 };
 
-const ProfileCard = ({ profile, isFavorited }) => (
-  <div className="bg-grey-1 p-4 rounded-2xl text-center transform hover:-translate-y-1 transition-all duration-300">
-    <img src={profile.avatar} alt={profile.name} className="w-24 h-24 rounded-full mx-auto mb-4" />
-    <h4 className="font-bold text-lg">{profile.name}</h4>
-    <p className="text-sm text-text-grey mb-2">{profile.specialization}</p>
-    <div className="flex justify-center items-center gap-2 text-sm mb-4">
-      {React.createElement(ICONS.star, { className: "w-4 h-4 text-yellow-500" })}
-      <span>{profile.rating}</span>
-      <span className="text-text-grey">({profile.reviews} отзывов)</span>
-    </div>
-    <Button variant="small-classic" className="w-full">Подписаться</Button>
-  </div>
-);
-
-const personasData = [
-  { id: 1, name: 'Александр Волков', specialization: 'Алго-боты, Сигналы', rating: 4.9, reviews: 124, avatar: 'https://placehold.co/96x96/E2BAA4/000000?text=АВ' },
-  { id: 2, name: 'Елена Петрова', specialization: 'Услуги, Софт', rating: 4.8, reviews: 98, avatar: 'https://placehold.co/96x96/A4E2B9/000000?text=ЕП' },
-  { id: 3, name: 'Дмитрий Сидоров', specialization: 'Алго-боты', rating: 4.7, reviews: 75, avatar: 'https://placehold.co/96x96/A4A4E2/000000?text=ДС' },
-  { id: 4, name: 'Анна Кузнецова', specialization: 'Сигналы', rating: 4.6, reviews: 62, avatar: 'https://placehold.co/96x96/E2A4A4/000000?text=АК' },
-  { id: 5, name: 'Сергей Иванов', specialization: 'Алго-боты, Услуги', rating: 4.5, reviews: 51, avatar: 'https://placehold.co/96x96/E2E2A4/000000?text=СИ' },
-  { id: 6, name: 'Мария Васильева', specialization: 'Софт', rating: 4.4, reviews: 43, avatar: 'https://placehold.co/96x96/A4E2E2/000000?text=МВ' },
-  { id: 7, name: 'Николай Смирнов', specialization: 'Алго-боты', rating: 4.3, reviews: 38, avatar: 'https://placehold.co/96x96/E2A4E2/000000?text=НС' },
-  { id: 8, name: 'Ольга Попова', specialization: 'Сигналы, Услуги', rating: 4.2, reviews: 31, avatar: 'https://placehold.co/96x96/B9E2A4/000000?text=ОП' },
-  { id: 9, name: 'Павел Козлов', specialization: 'Алго-боты', rating: 4.1, reviews: 25, avatar: 'https://placehold.co/96x96/A4B9E2/000000?text=ПК' },
-  { id: 10, name: 'Виктория Лебедева', specialization: 'Услуги', rating: 4.0, reviews: 20, avatar: 'https://placehold.co/96x96/E2B9A4/000000?text=ВЛ' },
-  { id: 11, name: 'Иван Морозов', specialization: 'Алго-боты, Софт', rating: 3.9, reviews: 18, avatar: 'https://placehold.co/96x96/A4E2B9/000000?text=ИМ' },
-  { id: 12, name: 'Дарья Новикова', specialization: 'Сигналы', rating: 3.8, reviews: 15, avatar: 'https://placehold.co/96x96/A4A4E2/000000?text=ДН' },
-  { id: 13, name: 'Андрей Захаров', specialization: 'Алго-боты', rating: 3.7, reviews: 12, avatar: 'https://placehold.co/96x96/E2A4A4/000000?text=АЗ' },
-  { id: 14, name: 'Екатерина Соловьева', specialization: 'Услуги', rating: 3.6, reviews: 9, avatar: 'https://placehold.co/96x96/E2E2A4/000000?text=ЕС' },
-  { id: 15, name: 'Максим Борисов', specialization: 'Алго-боты, Сигналы', rating: 3.5, reviews: 7, avatar: 'https://placehold.co/96x96/A4E2E2/000000?text=МБ' },
-];
+const MainContent = ({ activePage, productCreated, onNavigate, botData, botImages }) => {
+  switch (activePage) {
+    case 'Главная':
+      return <HomePage onNavigate={onNavigate} />;
+    case 'Лента':
+      return <FeedPage />;
+    case 'Маркетплейс':
+      return <Marketplace onNavigate={onNavigate} botData={botData} botImages={botImages} />;
+    case 'Персоны':
+      return <PersonasPage />;
+    case 'Сообщения':
+      return <MessagesPage />;
+    case 'Избранное':
+      return <FavoritesPage />;
+    case 'Помощь':
+      return <HelpCenterPage onNavigate={onNavigate} />;
+    case 'Рабочий стол':
+      return <div className="p-4 text-center text-text-grey">Здесь будет ваш рабочий стол. Функционал в разработке.</div>;
+    default:
+      return <HomePage onNavigate={onNavigate} />;
+  }
+};
 
 const App = () => {
   const [page, setPage] = useState('landing'); // landing, app, login, register

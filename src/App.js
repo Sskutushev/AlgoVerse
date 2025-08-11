@@ -7,6 +7,8 @@ import { ReactComponent as ExitIcon } from './assets/exit.svg';
 import UnionIcon from './assets/Union.png';
 import Group12Icon from './assets/Group12.png';
 import ReactSlider from 'react-slider';
+import HelpCenterPage from './pages/HelpCenterPage';
+
 
 
 //=========== ИКОНКИ (SVG) ===========//
@@ -1946,520 +1948,397 @@ const QuoteCategory = ({ title, items }) => (
 
 const FinancialQuotes = () => {
   const currencies = [
-    { name: 'EUR/USD', price: '1.0850', change: 0.25, isPositive: true },
-    { name: 'GBP/USD', price: '1.2580', change: -0.11, isPositive: false },
-    { name: 'USD/JPY', price: '155.70', change: 0.45, isPositive: true },
-    { name: 'USD/CHF', price: '0.9115', change: -0.05, isPositive: false },
+    { name: 'USD/RUB', price: '91.80', change: 0.25, isPositive: true },
+    { name: 'EUR/RUB', price: '98.50', change: -0.11, isPositive: false },
+    { name: 'CNY/RUB', price: '12.60', change: 0.05, isPositive: true },
   ];
   const crypto = [
-    { name: 'BTC/USD', price: '68,540.1', change: 2.15, isPositive: true },
-    { name: 'ETH/USD', price: '3,550.80', change: 1.80, isPositive: true },
-    { name: 'USDT/USD', price: '1.0001', change: 0.01, isPositive: true },
-    { name: 'LTC/USD', price: '85.30', change: -1.20, isPositive: false },
+    { name: 'BTC/USD', price: '69,420', change: 3.14, isPositive: true },
+    { name: 'ETH/USD', price: '3,420', change: 2.71, isPositive: true },
+    { name: 'TON/USD', price: '7.50', change: -1.62, isPositive: false },
   ];
   const stocks = [
-    { name: 'MOEX', price: '3,450.50', change: 0.80, isPositive: true },
-    { name: 'S&P 500', price: '5,250.00', change: -0.20, isPositive: false },
-    { name: 'NASDAQ', price: '16,300.1', change: 0.15, isPositive: true },
-    { name: 'DAX', price: '18,400.7', change: 0.50, isPositive: true },
+    { name: 'SBER', price: '315.40', change: 1.20, isPositive: true },
+    { name: 'GAZP', price: '125.80', change: -0.50, isPositive: false },
+    { name: 'LKOH', price: '7,420', change: 0.80, isPositive: true },
   ];
 
   return (
-    <section className="bg-white rounded-2xl p-6 shadow-sm">
+    <div className="bg-white rounded-2xl shadow-sm p-6">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <QuoteCategory title="Валюты" items={currencies} />
         <QuoteCategory title="Криптовалюты" items={crypto} />
         <QuoteCategory title="Фондовый рынок" items={stocks} />
       </div>
-    </section>
+    </div>
   );
 };
 
-const HomePage = () => {
-  const [selectedUpdate, setSelectedUpdate] = useState(null);
-
-  const platformUpdates = [
-    {
-      id: 1,
-      image: botImages[10],
-      title: "Запуск нового конструктора ботов",
-      date: "10.08.2025",
-      shortText: "Мы полностью переработали конструктор, сделав его еще более мощным и интуитивно понятным. Теперь вы можете...",
-      fullText: "Мы полностью переработали конструктор, сделав его еще более мощным и интуитивно понятным. Теперь вы можете использовать более 100 технических индикаторов, комбинировать их в сложные логические цепочки и тестировать на данных за последние 10 лет. Интерфейс стал чище, а подсказки на каждом шаге помогут новичкам быстрее освоиться и создать своего первого прибыльного бота."
-    },
-    {
-      id: 2,
-      image: botImages[11],
-      title: "Партнерская программа v2.0",
-      date: "05.08.2025",
-      shortText: "Представляем обновленную партнерскую программу с повышенными комиссиями и новыми инструментами для...",
-      fullText: "Представляем обновленную партнерскую программу с повышенными комиссиями и новыми инструментами для привлечения клиентов. Теперь вы будете получать до 50% от всех комиссий привлеченных вами пользователей пожизненно. Мы также добавили готовые рекламные материалы и подробную статистику в ваш личный кабинет для отслеживания эффективности."
-    },
-    {
-      id: 3,
-      image: botImages[12],
-      title: "Новые криптовалютные пары на споте",
-      date: "01.08.2025",
-      shortText: "Добавлена поддержка 25 новых криптовалютных пар для ваших торговых стратегий, включая популярные...",
-      fullText: "Добавлена поддержка 25 новых криптовалютных пар для ваших торговых стратегий, включая популярные мем-коины и токены из сектора GameFi. Теперь ваши боты могут работать с еще большим количеством активов, открывая новые возможности для диверсификации и поиска арбитражных ситуаций. Полный список доступен в разделе документации."
-    },
-    {
-      id: 4,
-      image: botImages[0],
-      title: "Улучшения безопасности",
-      date: "28.07.2025",
-      shortText: "Мы внедрили двухфакторную аутентификацию (2FA) и расширенные настройки безопасности для всех аккаунтов...",
-      fullText: "Мы внедрили двухфакторную аутентификацию (2FA) и расширенные настройки безопасности для всех аккаунтов. Теперь вы можете защитить свой аккаунт с помощью Google Authenticator или SMS-кодов. Мы настоятельно рекомендуем всем пользователям включить 2FA для максимальной защиты своих средств и данных."
-    },
-    {
-      id: 5,
-      image: botImages[1],
-      title: "Снижение торговых комиссий",
-      date: "25.07.2025",
-      shortText: "Отличные новости! Мы снижаем торговые комиссии для всех пользователей на 20% навсегда. Торгуйте больше, платите меньше...",
-      fullText: "Отличные новости! Мы снижаем торговые комиссии для всех пользователей на 20% навсегда. Торгуйте больше, платите меньше. Это изменение касается как мейкеров, так и тейкеров на всех торговых парах. Новая сетка комиссий уже доступна на соответствующей странице нашего сайта."
-    },
-    {
-      id: 6,
-      image: botImages[2],
-      title: "Мобильное приложение AlgoVerse",
-      date: "20.07.2025",
-      shortText: "Мы рады объявить о запуске нашего мобильного приложения для iOS и Android. Теперь вы можете управлять своими ботами...",
-      fullText: "Мы рады объявить о запуске нашего мобильного приложения для iOS и Android. Теперь вы можете управлять своими ботами, следить за рынком и получать уведомления прямо на своем смартфоне. Приложение уже доступно для скачивания в App Store и Google Play."
-    },
-    {
-      id: 7,
-      image: botImages[3],
-      title: "Новый API для разработчиков",
-      date: "15.07.2025",
-      shortText: "Запускаем новый, более быстрый и функциональный REST API и WebSocket API для разработчиков...",
-      fullText: "Запускаем новый, более быстрый и функциональный REST API и WebSocket API для разработчиков. Новая версия API позволяет получать рыночные данные в реальном времени, управлять ордерами и ботами с минимальной задержкой. Подробная документация уже доступна в разделе для разработчиков."
-    },
-    {
-      id: 8,
-      image: botImages[4],
-      title: "Вебинар: Стратегии на волатильном рынке",
-      date: "10.07.2025",
-      shortText: "Приглашаем вас на бесплатный вебинар, где наши лучшие эксперты поделятся своими стратегиями торговли...",
-      fullText: "Приглашаем вас на бесплатный вебинар, где наши лучшие эксперты поделятся своими стратегиями торговли в условиях высокой волатильности. Вы узнаете, как использовать индикаторы, как управлять рисками и какие возможности открываются на падающем рынке. Запись будет доступна всем зарегистрированным участникам."
-    }
+const HomePage = ({ onNavigate }) => {
+  const updates = [
+    { id: 1, title: "Новые возможности API", date: "05.08.2025", description: "Мы расширили возможности нашего API, добавив новые методы для работы с историческими данными и управления торговыми счетами. Теперь вы можете проводить более глубокий анализ и автоматизировать еще больше рутинных задач. Подробности в документации." },
+    { id: 2, title: "Партнерская программа", date: "01.08.2025", description: "Запущена новая партнерская программа! Привлекайте новых пользователей и получайте процент от их торговых комиссий. Это отличная возможность для дополнительного заработка. Все условия и подробности вы найдете в личном кабинете." },
+    { id: 3, title: "Обновление маркета", date: "28.07.2025", description: "Мы полностью переработали дизайн и функционал маркета. Теперь находить и выбирать нужных ботов стало еще проще и удобнее. Добавлены новые фильтры, улучшена навигация и производительность. Оцените новый маркет уже сейчас!" },
+    { id: 4, title: "Новый тип графиков", date: "25.07.2025", description: "Встречайте новый тип графиков для анализа — Renko! Этот инструмент поможет вам по-новому взглянуть на движение цен, отсекая рыночный шум и выделяя ключевые тренды. Renko-графики уже доступны в терминале для всех пользователей." },
+    { id: 5, title: "Вебинар по скальпингу", date: "22.07.2025", description: "Приглашаем на бесплатный вебинар по скальпингу с использованием наших новых ботов. Ведущий эксперт поделится своими стратегиями и ответит на ваши вопросы. Запись будет доступна для всех зарегистрированных участников." },
+    { id: 6, title: "Улучшение безопасности", date: "18.07.2025", description: "Мы внедрили дополнительные меры для защиты ваших аккаунтов и данных. Теперь доступна двухфакторная аутентификация (2FA) через Google Authenticator. Настоятельно рекомендуем включить ее в настройках безопасности." },
+    { id: 7, title: "Мобильное приложение", date: "15.07.2025", description: "Мы начали разработку мобильного приложения для iOS и Android! Следите за новостями, чтобы первыми узнать о выходе бета-версии. Мы стремимся сделать торговлю еще более доступной и удобной для вас." },
+    { id: 8, title: "Технические работы", date: "12.07.2025", description: "В ночь с 15 на 16 июля на платформе будут проводиться плановые технические работы. Возможны кратковременные перебои в доступе. Приносим извинения за возможные неудобства и благодарим за понимание." },
   ];
+
+  const [selectedUpdate, setSelectedUpdate] = useState(null);
 
   const UpdateModal = ({ update, onClose }) => {
     if (!update) return null;
     return (
-      <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4" onClick={onClose}>
-        <div className="bg-white rounded-2xl w-full max-w-2xl max-h-[90vh] flex flex-col" onClick={(e) => e.stopPropagation()}>
-          <div className="p-4 border-b border-grey-2 flex justify-between items-center">
-            <h2 className="font-bold text-xl">{update.title}</h2>
-            <Button variant="icon" onClick={onClose}>{React.createElement(ICONS.close)}</Button>
-          </div>
-          <div className="flex-grow overflow-y-auto p-6">
-            <img src={update.image} alt={update.title} className="w-full h-64 object-cover rounded-lg mb-4" />
-            <p className="text-sm text-text-grey mb-4">{update.date}</p>
-            <p className="text-text-grey leading-relaxed">{update.fullText}</p>
-          </div>
+      <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={onClose}>
+        <div className="bg-white rounded-2xl p-8 w-full max-w-2xl max-h-[90vh] overflow-y-auto relative" onClick={e => e.stopPropagation()}>
+          <Button variant="icon" className="absolute top-4 right-4" onClick={onClose}>{React.createElement(ICONS.close)}</Button>
+          <h2 className="text-2xl font-bold mb-2 font-tt-travels">{update.title}</h2>
+          <p className="text-sm text-text-grey mb-4">{update.date}</p>
+          <p>{update.description}</p>
         </div>
       </div>
     );
   };
 
   return (
-    <div className="space-y-8 pb-12">
+    <div className="space-y-8">
       {/* Welcome Banner */}
-      <section className="rounded-2xl text-white relative overflow-hidden h-[280px]">
-        <img src={`${process.env.PUBLIC_URL}/Frame 5655.svg`} alt="" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 flex items-center justify-between p-8">
-          <div className="relative z-10 max-w-lg">
-            <h1 className="font-bold text-4xl mb-4">Добро пожаловать</h1>
-            <p className="text-lg">Ознакомьтесь с основными возможностями платформы и выберите то, что нужно именно вам!</p>
-          </div>
-          <div className="relative z-10 w-1/2 md:w-[45%] self-end -right-4">
-              <img src={`${process.env.PUBLIC_URL}/Group 996.svg`} alt="Welcome Illustration" className="w-full h-auto object-contain" />
-          </div>
+      <div className="relative bg-blue-grad text-white rounded-2xl p-8 md:p-12 overflow-hidden flex items-center">
+        <div className="relative z-10 w-full md:w-2/3">
+          <h1 className="font-tt-travels text-4xl md:text-5xl font-bold mb-4">Добро пожаловать!</h1>
+          <p className="text-lg md:text-xl max-w-2xl">Мы рады видеть вас снова. Все готово для того, чтобы вы продолжили создавать, тестировать и запускать свои торговые стратегии.</p>
         </div>
-      </section>
+        <div className="absolute right-0 bottom-0 w-1/2 md:w-1/3 h-full">
+          <img src={`${process.env.PUBLIC_URL}/Analytics_set.svg`} alt="Analytics" className="absolute bottom-0 right-0 h-full w-auto object-contain object-right-bottom" />
+        </div>
+      </div>
 
       {/* Financial Quotes */}
       <FinancialQuotes />
 
-      {/* Partner Ads */}
-      <section>
-        <h2 className="font-bold text-2xl mb-4">Реклама партнеров</h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-          <AdCard image={botImages[5]} title="АТОН - ваш брокер" url="#!" />
-          <AdCard image={botImages[6]} title="БКС Инвестиции" url="#!" />
-          <AdCard image={botImages[7]} title="Альфа Инвестиции" url="#!" />
-          <AdCard image={botImages[8]} title="Брокер Цифра" url="#!" />
-          <AdCard image={botImages[9]} title="Еще один брокер" url="#!" />
+      {/* Partners */}
+      <div className="bg-white rounded-2xl shadow-sm p-6">
+        <h2 className="font-bold text-xl mb-4 text-center">Наши партнеры</h2>
+        <div className="flex justify-around items-center flex-wrap gap-4">
+          {['logo1.png', 'logo2.png', 'logo3.png', 'logo4.png', 'logo5.png'].map((logo, index) => (
+            <img key={index} src={`https://placehold.co/120x40/F0F0F0/CCCCCC?text=Partner${index+1}`} alt={`Partner ${index+1}`} className="h-10" />
+          ))}
         </div>
-      </section>
+      </div>
 
-      {/* How to Start Section */}
-      <section>
+      {/* How to Start */}
+      <div className="bg-white rounded-2xl shadow-sm p-6">
+        <h2 className="font-bold text-xl mb-4">С чего начать</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-orange text-white rounded-2xl p-6 flex flex-col">
-            {React.createElement(ICONS.help, { className: "w-10 h-10 mb-4" })}
-            <h3 className="font-bold text-2xl mb-2">С чего начать</h3>
-            <p className="text-white/90 mb-4 flex-grow">Первый шаг в мир алгоритмической торговли - это регистрация на нашей платформе. После этого вы получите доступ ко всем инструментам. Рекомендуем изучить основные разделы: Маркетплейс для готовых решений и Ленту для общения с сообществом. Не бойтесь экспериментировать с бесплатными ботами, чтобы понять механику.</p>
-            <button className="mt-auto text-white font-semibold border-b border-white/50 hover:border-white inline-flex items-center gap-2 self-start">Узнать больше {React.createElement(ICONS.arrowRight, { className: "w-4 h-4" })}</button>
+          <div className="bg-orange/10 p-6 rounded-xl flex flex-col">
+            <h3 className="font-bold text-lg mb-2">Создайте своего первого бота</h3>
+            <p className="text-text-grey text-sm flex-grow mb-4">Воспользуйтесь нашим интуитивно понятным конструктором, чтобы создать свою первую торговую стратегию без единой строчки кода.</p>
+            <Button variant="text" className="self-start" onClick={() => onNavigate('Помощь')}>Узнать больше {'>'}</Button>
           </div>
-          <div className="bg-orange text-white rounded-2xl p-6 flex flex-col">
-            {React.createElement(ICONS.shoppingCart, { className: "w-10 h-10 mb-4" })}
-            <h3 className="font-bold text-2xl mb-2">Как подключиться к алго-боту</h3>
-            <p className="text-white/90 mb-4 flex-grow">В разделе Маркетплейс вы найдете сотни готовых ботов. Выберите понравившегося, изучите его статистику и описание. Нажмите кнопку "Купить" или "Арендовать", чтобы добавить его в свой портфель. После этого бот появится на вашем Рабочем столе, где вы сможете его активировать и следить за его работой в реальном времени.</p>
-            <button className="mt-auto text-white font-semibold border-b border-white/50 hover:border-white inline-flex items-center gap-2 self-start">Читать инструкцию {React.createElement(ICONS.arrowRight, { className: "w-4 h-4" })}</button>
+          <div className="bg-orange/10 p-6 rounded-xl flex flex-col">
+            <h3 className="font-bold text-lg mb-2">Изучите маркетплейс</h3>
+            <p className="text-text-grey text-sm flex-grow mb-4">Ознакомьтесь с готовыми решениями от других участников платформы. Возможно, вы найдете то, что идеально подходит для ваших целей.</p>
+            <Button variant="text" className="self-start" onClick={() => onNavigate('Маркетплейс')}>Перейти в маркетплейс {'>'}</Button>
           </div>
-          <div className="bg-orange text-white rounded-2xl p-6 flex flex-col">
-            {React.createElement(ICONS.plus, { className: "w-10 h-10 mb-4" })}
-            <h3 className="font-bold text-2xl mb-2">Как создать алго-бота</h3>
-            <p className="text-white/90 mb-4 flex-grow">Для продвинутых пользователей мы предлагаем мощный, но простой конструктор ботов. Вам не нужно быть программистом. Выбирайте индикаторы, задавайте условия для входа и выхода из сделок, настраивайте управление рисками. Протестируйте свою стратегию на исторических данных и, если результат вас устроит, опубликуйте своего бота в Маркетплейсе.</p>
-            <button className="mt-auto text-white font-semibold border-b border-white/50 hover:border-white inline-flex items-center gap-2 self-start">Перейти в конструктор {React.createElement(ICONS.arrowRight, { className: "w-4 h-4" })}</button>
+          <div className="bg-orange/10 p-6 rounded-xl flex flex-col">
+            <h3 className="font-bold text-lg mb-2">Подключите свой счет</h3>
+            <p className="text-text-grey text-sm flex-grow mb-4">Подключите свой брокерский счет или счет на криптовалютной бирже, чтобы начать торговлю в реальном времени.</p>
+            <Button variant="text" className="self-start" onClick={() => onNavigate('Помощь')}>Инструкция по подключению {'>'}</Button>
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* Investments Section */}
-      <section>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      {/* Investments */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="bg-white rounded-2xl shadow-sm p-6 flex items-center gap-6">
+          <img src={`${process.env.PUBLIC_URL}/инвестиционные-инструменты-300x212.jpg`} alt="For Investors" className="w-32 h-32 object-cover rounded-lg"/>
           <div>
-            <h3 className="font-bold text-3xl mb-4">Инвесторам</h3>
-            <div className="space-y-4">
-              <div className="bg-white rounded-2xl p-6 flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                <img src={`${process.env.PUBLIC_URL}/assets_task_01jye4eggtfk7ahzf9qf79dmxy_1750673668_img_3 1.svg`} alt="" className="w-12 h-12 sm:w-16 sm:h-16 flex-shrink-0"/>
-                <div>
-                  <h4 className="font-bold text-xl mb-1">Единый счет</h4>
-                  <p className="text-text-grey">Управляйте всеми вашими инвестициями с одного счета. Пополняйте баланс, выводите средства и отслеживайте финансовые потоки в одном месте. Мы обеспечиваем максимальную прозрачность и безопасность ваших активов.</p>
-                </div>
-              </div>
-              <div className="bg-white rounded-2xl p-6 flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                <img src={`${process.env.PUBLIC_URL}/assets_task_01jye57frdf2paxg768scs4s8p_1750674491_img_2 1.png`} alt="" className="w-12 h-12 sm:w-16 sm:h-16 flex-shrink-0"/>
-                <div>
-                  <h4 className="font-bold text-xl mb-1">Инвестиционные продукты</h4>
-                  <p className="text-text-grey">Выбирайте из широкого спектра готовых продуктов: от консервативных ботов для долгосрочных инвестиций до высокорисковых стратегий для агрессивной торговли. Диверсифицируйте свой портфель в несколько кликов.</p>
-                </div>
-              </div>
-              <div className="bg-white rounded-2xl p-6 flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                <img src={`${process.env.PUBLIC_URL}/assets_task_01jye5x9b8faqtakmxk93mnj2t_1750675199_img_3 1.png`} alt="" className="w-12 h-12 sm:w-16 sm:h-16 flex-shrink-0"/>
-                <div>
-                  <h4 className="font-bold text-xl mb-1">Личный рабочий стол</h4>
-                  <p className="text-text-grey">Ваш персональный центр управления. Отслеживайте доходность, анализируйте производительность каждого бота, получайте отчеты и настраивайте уведомления. Все ключевые метрики вашего портфеля на одном экране.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <h3 className="font-bold text-3xl mb-4">Создателям алго-ботов и экспертов</h3>
-            <div className="space-y-4">
-              <div className="bg-white rounded-2xl p-6 flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                <img src={`${process.env.PUBLIC_URL}/assets_task_01jye5yc7pe6w9d2y08qzdf1xt_1750675239_img_1 1.png`} alt="" className="w-12 h-12 sm:w-16 sm:h-16 flex-shrink-0"/>
-                <div>
-                  <h4 className="font-bold text-xl mb-1">Создание и продажа</h4>
-                  <p className="text-text-grey">Превратите свои торговые идеи в источник дохода. Наш интуитивно понятный конструктор позволяет создавать ботов без написания кода. Опубликуйте свой продукт в Маркетплейсе и начните зарабатывать на продажах и аренде.</p>
-                </div>
-              </div>
-              <div className="bg-white rounded-2xl p-6 flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                <img src={`${process.env.PUBLIC_URL}/Analytics_set.svg`} alt="" className="w-12 h-12 sm:w-16 sm:h-16 flex-shrink-0"/>
-                <div>
-                  <h4 className="font-bold text-xl mb-1">Аналитика по продуктам</h4>
-                  <p className="text-text-grey">Получайте подробную статистику по вашим ботам: количество подписчиков, доходность, максимальная просадка и другие ключевые показатели. Анализируйте данные, чтобы улучшать свои стратегии и привлекать больше клиентов.</p>
-                </div>
-              </div>
-              <div className="bg-white rounded-2xl p-6 flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                <img src={`${process.env.PUBLIC_URL}/assets_task_01jye63bnrfm2vt0y8at6hvj98_1750675399_img_1 1.png`} alt="" className="w-12 h-12 sm:w-16 sm:h-16 flex-shrink-0"/>
-                <div>
-                  <h4 className="font-bold text-xl mb-1">Платформа для продажи ботов</h4>
-                  <p className="text-text-grey">Мы предоставляем вам готовую инфраструктуру для ведения бизнеса. Управляйте ценами, предлагайте скидки, общайтесь с клиентами и получайте пассивный доход. Сосредоточьтесь на разработке, а мы позаботимся об остальном.</p>
-                </div>
-              </div>
-            </div>
+            <h3 className="font-bold text-xl mb-2">Для инвесторов</h3>
+            <p className="text-text-grey mb-4">Копируйте сделки успешных трейдеров, инвестируйте в готовые портфели и получайте пассивный доход.</p>
+            <Button variant="small-outline">Начать</Button>
           </div>
         </div>
-      </section>
+        <div className="bg-white rounded-2xl shadow-sm p-6 flex items-center gap-6">
+          <img src={`${process.env.PUBLIC_URL}/34653 1.svg`} alt="For Creators" className="w-32 h-32 object-cover rounded-lg"/>
+          <div>
+            <h3 className="font-bold text-xl mb-2">Для создателей ботов</h3>
+            <p className="text-text-grey mb-4">Монетизируйте свои стратегии, продавая доступ к ним или привлекая инвесторов в свой собственный мини-фонд.</p>
+            <Button variant="small-outline">Создать</Button>
+          </div>
+        </div>
+      </div>
 
-      {/* Platform Updates Section */}
-      <section>
+      {/* Platform Updates */}
+      <div className="bg-white rounded-2xl shadow-sm p-6">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="font-bold text-3xl">Обновления платформы</h2>
-          <Button variant="text" icon={ICONS.arrowRight} iconPosition="right">Смотреть все</Button>
+          <h2 className="font-bold text-xl">Обновления платформы</h2>
+          <Button variant="text" onClick={() => onNavigate('Помощь')}>Смотреть все</Button>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {platformUpdates.map(update => (
-            <div key={update.id} className="bg-white rounded-2xl shadow-lg flex flex-col cursor-pointer group overflow-hidden" onClick={() => setSelectedUpdate(update)}>
-              <div className="overflow-hidden">
-                <img src={update.image} alt={update.title} className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300" />
-              </div>
-              <div className="p-6 flex flex-col flex-grow">
-                <h3 className="font-bold text-xl mb-2">{update.title}</h3>
-                <p className="text-sm text-text-grey mb-2">{update.date}</p>
-                <p className="text-text-grey text-sm mb-4 flex-grow">{update.shortText}</p>
-                <div className="flex justify-end mt-auto">
-                   <Button variant="small-outline" style={{width: '110px'}} className="!border-orange !text-orange hover:!bg-orange hover:!text-white">
-                    Подробнее
-                  </Button>
-                </div>
-              </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {updates.slice(0, 8).map(update => (
+            <div key={update.id} className="bg-grey-1 p-4 rounded-lg cursor-pointer hover:bg-grey-2/50" onClick={() => setSelectedUpdate(update)}>
+              <p className="font-semibold text-sm mb-1">{update.title}</p>
+              <p className="text-xs text-text-grey">{update.date}</p>
             </div>
           ))}
         </div>
-      </section>
+      </div>
       <UpdateModal update={selectedUpdate} onClose={() => setSelectedUpdate(null)} />
     </div>
   );
 };
 
-const personasData = [
-  { id: 1, name: 'Виктор Сорокин', avatar: 'https://placehold.co/100x100/E2BAA4/000000?text=ВС', verified: true, rating: 4.9, specializations: ['Боты', 'Сигналы'], country: 'Россия', new: true, description: 'Эксперт по алгоритмической торговле с 10-летним опытом. Создаю прибыльных ботов для Forex и крипторынка.' },
-  { id: 2, name: 'Анна Ковалева', avatar: 'https://placehold.co/100x100/333/fff?text=АК', verified: true, rating: 4.8, specializations: ['Услуги'], country: 'Беларусь', new: false, description: 'Финансовый консультант. Помогаю составить инвестиционный портфель и управлять рисками.' },
-  { id: 3, name: 'Дмитрий Иванов', avatar: 'https://placehold.co/100x100/DAA520/fff?text=ДИ', verified: false, rating: 4.7, specializations: ['Боты'], country: 'Россия', new: true, description: 'Разработчик торговых систем на MQL5. Специализируюсь на скальпинге и высокочастотной торговле.' },
-  { id: 4, name: 'Елена Петрова', avatar: 'https://placehold.co/100x100/4682B4/fff?text=ЕП', verified: true, rating: 4.9, specializations: ['Сигналы'], country: 'Украина', new: false, description: 'Предоставляю точные торговые сигналы по основным валютным парам. Средняя доходность +25% в месяц.' },
-  { id: 5, name: 'Игорь Смирнов', avatar: 'https://placehold.co/100x100/2E8B57/fff?text=ИС', verified: true, rating: 4.8, specializations: ['Боты', 'Услуги'], country: 'Россия', new: true, description: 'Создаю кастомных ботов под заказ. Провожу обучение по алготрейдингу.' },
-  { id: 6, name: 'Ольга Новикова', avatar: 'https://placehold.co/100x100/FF69B4/fff?text=ОН', verified: false, rating: 4.6, specializations: ['Услуги', 'Сигналы'], country: 'Казахстан', new: false, description: 'Аналитик фондового рынка. Делюсь инвестиционными идеями и сигналами по акциям.' },
-  { id: 7, name: 'Сергей Морозов', avatar: 'https://placehold.co/100x100/8A2BE2/fff?text=СМ', verified: true, rating: 4.9, specializations: ['Боты'], country: 'Россия', new: true, description: 'Профессиональный трейдер и разработчик. Мои боты торгуют на крупнейших мировых биржах.' },
-  { id: 8, name: 'Мария Лебедева', avatar: 'https://placehold.co/100x100/FF4500/fff?text=МЛ', verified: true, rating: 4.7, specializations: ['Услуги'], country: 'Россия', new: false, description: 'Помогаю новичкам разобраться в мире инвестиций. Провожу индивидуальные консультации.' },
-  { id: 9, name: 'Алексей Попов', avatar: 'https://placehold.co/100x100/1E90FF/fff?text=АП', verified: false, rating: 4.5, specializations: ['Сигналы'], country: 'Беларусь', new: true, description: 'Торговые сигналы по криптовалютам. Высокая точность и оперативная поддержка.' },
-  { id: 10, name: 'Екатерина Волкова', avatar: 'https://placehold.co/100x100/32CD32/fff?text=ЕВ', verified: true, rating: 4.9, specializations: ['Боты', 'Сигналы'], country: 'Россия', new: false, description: 'Разрабатываю и продаю торговых роботов для QUIK. Также предоставляю сигналы по рынку FORTS.' },
-  { id: 11, name: 'Павел Козлов', avatar: 'https://placehold.co/100x100/FFD700/000?text=ПК', verified: true, rating: 4.8, specializations: ['Услуги'], country: 'Россия', new: true, description: 'Управление активами. Беру в доверительное управление счета от $10 000.' },
-  { id: 12, name: 'Ирина Соколова', avatar: 'https://placehold.co/100x100/F08080/fff?text=ИС', verified: false, rating: 4.6, specializations: ['Боты'], country: 'Украина', new: false, description: 'Продаю готовых торговых роботов для Metatrader 4/5. Простая установка и настройка.' },
-  { id: 13, name: 'Максим Виноградов', avatar: 'https://placehold.co/100x100/7B68EE/fff?text=МВ', verified: true, rating: 4.9, specializations: ['Сигналы', 'Услуги'], country: 'Россия', new: true, description: 'Авторский телеграм-канал с торговыми сигналами и аналитикой. Подписка от $50 в месяц.' },
-  { id: 14, name: 'Анастасия Белова', avatar: 'https://placehold.co/100x100/40E0D0/fff?text=АБ', verified: true, rating: 4.7, specializations: ['Боты'], country: 'Россия', new: false, description: 'Создаю нейросетевых ботов, которые адаптируются к изменениям рынка.' },
-  { id: 15, name: 'Никита Зайцев', avatar: 'https://placehold.co/100x100/9932CC/fff?text=НЗ', verified: false, rating: 4.5, specializations: ['Услуги'], country: 'Казахстан', new: true, description: 'Обучающие курсы по трейдингу. От новичка до профессионала за 3 месяца.' },
-];
+const MainContent = ({ activePage, productCreated, onNavigate, botData, botImages }) => {
+  switch (activePage) {
+    case 'Главная':
+      return <HomePage onNavigate={onNavigate} />;
+    case 'Лента':
+      return <FeedPage />;
+    case 'Маркетплейс':
+      return <Marketplace onNavigate={onNavigate} botData={botData} botImages={botImages} />;
+    case 'Персоны':
+      return <PersonasPage />;
+    case 'Сообщения':
+      return <MessagesPage />;
+    case 'Избранное':
+      return <FavoritesPage />;
+    case 'Помощь':
+      return <HelpCenterPage onNavigate={onNavigate} />;
+    default:
+      return <HomePage onNavigate={onNavigate} />;
+  }
+};
+
+const PersonasPage = () => {
+  const [activeTab, setActiveTab] = useState('Авторы ботов');
+  const tabs = ['Авторы ботов', 'Авторы услуг', 'Авторы сигналов'];
+  const [filters, setFilters] = useState({
+    search: '',
+    sort: 'Популярные',
+    specialization: [],
+    verified: false,
+    country: 'Все страны'
+  });
+
+  const handleFilterChange = (key, value) => {
+    setFilters(prev => ({ ...prev, [key]: value }));
+  };
+
+  const podium = personasData.slice(0, 3);
+  const others = personasData.slice(3);
+
+  return (
+    <div className="flex flex-col lg:flex-row gap-6">
+      <div className="flex-grow">
+        {/* Top Section */}
+        <div className="bg-white rounded-2xl shadow-sm p-6 mb-6">
+          <h2 className="font-bold text-2xl mb-4">Лидеры Платформы</h2>
+          <div className="border-b border-grey-2 mb-4">
+            <nav className="flex">
+              {tabs.map(tab => (
+                <button key={tab} onClick={() => setActiveTab(tab)} className={`px-4 md:px-6 py-3 font-semibold transition-colors text-sm md:text-base ${activeTab === tab ? 'text-main border-b-2 border-main' : 'text-text-grey hover:bg-grey-2/30'}`}>
+                  {tab}
+                </button>
+              ))}
+            </nav>
+          </div>
+          {/* Podium */}
+          <div className="flex justify-center items-end gap-4">
+            {/* 2nd Place */}
+            <div className="text-center">
+              <img src={podium[1].avatar} alt={podium[1].name} className="w-24 h-24 rounded-full border-4 border-silver mx-auto" />
+              <p className="font-bold mt-2">{podium[1].name}</p>
+              <div className="bg-silver text-white font-bold rounded-full w-8 h-8 flex items-center justify-center mx-auto mt-1">2</div>
+            </div>
+            {/* 1st Place */}
+            <div className="text-center">
+              <img src={podium[0].avatar} alt={podium[0].name} className="w-32 h-32 rounded-full border-4 border-gold mx-auto" />
+              <p className="font-bold mt-2 text-lg">{podium[0].name}</p>
+              <div className="bg-gold text-white font-bold rounded-full w-10 h-10 flex items-center justify-center mx-auto mt-1">1</div>
+            </div>
+            {/* 3rd Place */}
+            <div className="text-center">
+              <img src={podium[2].avatar} alt={podium[2].name} className="w-20 h-20 rounded-full border-4 border-bronze mx-auto" />
+              <p className="font-bold mt-2">{podium[2].name}</p>
+              <div className="bg-bronze text-white font-bold rounded-full w-8 h-8 flex items-center justify-center mx-auto mt-1">3</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Main Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          {others.map(profile => (
+            <ProfileCard key={profile.id} profile={profile} />
+          ))}
+        </div>
+      </div>
+
+      {/* Filters Sidebar */}
+      <aside className="w-full lg:w-80 flex-shrink-0">
+        <div className="bg-white rounded-2xl shadow-sm p-6 sticky top-24">
+          <h3 className="font-bold text-xl mb-4">Поиск и фильтры</h3>
+          <div className="space-y-4">
+            <input
+              type="text"
+              placeholder="Поиск по имени..."
+              value={filters.search}
+              onChange={(e) => handleFilterChange('search', e.target.value)}
+              className="w-full p-3 border border-grey-2 rounded-lg"
+            />
+            <div>
+              <label className="font-semibold mb-2 block">Сортировать по</label>
+              <select
+                value={filters.sort}
+                onChange={(e) => handleFilterChange('sort', e.target.value)}
+                className="w-full p-3 border border-grey-2 rounded-lg bg-white"
+              >
+                <option>Популярные</option>
+                <option>Новички</option>
+                <option>По рейтингу</option>
+              </select>
+            </div>
+            <div>
+              <label className="font-semibold mb-2 block">Специализация</label>
+              <div className="space-y-2">
+                {['Алго-боты', 'Сигналы', 'Услуги', 'Софт'].map(spec => (
+                  <label key={spec} className="flex items-center">
+                    <input
+                      type="checkbox"
+                      className="form-checkbox text-main rounded"
+                      checked={filters.specialization.includes(spec)}
+                      onChange={() => {
+                        const newSpecs = filters.specialization.includes(spec)
+                          ? filters.specialization.filter(s => s !== spec)
+                          : [...filters.specialization, spec];
+                        handleFilterChange('specialization', newSpecs);
+                      }}
+                    />
+                    <span className="ml-2">{spec}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+            <label className="flex items-center justify-between cursor-pointer">
+              <span className="font-semibold">Верифицирован</span>
+              <div onClick={() => handleFilterChange('verified', !filters.verified)} className={`w-14 h-8 flex items-center rounded-full p-1 duration-300 ${filters.verified ? 'bg-green-service' : 'bg-grey-2'}`}>
+                <div className={`bg-white w-6 h-6 rounded-full shadow-md transform duration-300 ${filters.verified ? 'translate-x-6' : ''}`}></div>
+              </div>
+            </label>
+            <div>
+              <label className="font-semibold mb-2 block">Страна</label>
+              <select
+                value={filters.country}
+                onChange={(e) => handleFilterChange('country', e.target.value)}
+                className="w-full p-3 border border-grey-2 rounded-lg bg-white"
+              >
+                <option>Все страны</option>
+                <option>Россия</option>
+                <option>США</option>
+                <option>Германия</option>
+                <option>Китай</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  );
+};
 
 const ProfileCard = ({ profile, isFavorited }) => (
-  <div className="relative bg-white p-6 rounded-2xl shadow-lg flex flex-col items-center text-center transform hover:-translate-y-1 transition-all duration-300">
-    <Button variant="icon" className={`absolute top-2 right-2 ${isFavorited ? 'text-orange' : 'text-text-grey'} hover:text-orange`}>
-      {React.createElement(ICONS.bookmark)}
-    </Button>
-    <img src={profile.avatar} alt={profile.name} className="w-24 h-24 rounded-full mb-4" />
-    <h3 className="font-tt-travels text-xl font-bold">{profile.name}</h3>
-    {profile.verified && <span className="text-xs bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full my-1">Верифицирован</span>}
-    <div className="flex items-center my-2">
-      {React.createElement(ICONS.star, { className: "w-5 h-5 text-yellow-400 mr-1" })}
-      <span className="font-semibold">{profile.rating}</span>
+  <div className="bg-grey-1 p-4 rounded-2xl text-center transform hover:-translate-y-1 transition-all duration-300">
+    <img src={profile.avatar} alt={profile.name} className="w-24 h-24 rounded-full mx-auto mb-4" />
+    <h4 className="font-bold text-lg">{profile.name}</h4>
+    <p className="text-sm text-text-grey mb-2">{profile.specialization}</p>
+    <div className="flex justify-center items-center gap-2 text-sm mb-4">
+      {React.createElement(ICONS.star, { className: "w-4 h-4 text-yellow-500" })}
+      <span>{profile.rating}</span>
+      <span className="text-text-grey">({profile.reviews} отзывов)</span>
     </div>
-    <p className="text-text-grey text-sm mb-4 flex-grow">{profile.description}</p>
-    <div className="flex flex-wrap justify-center gap-2 mb-4">
-      {profile.specializations.map(spec => (
-        <span key={spec} className="text-xs bg-grey-1 px-2 py-1 rounded-full">{spec}</span>
-      ))}
-    </div>
-    <Button variant="small-classic" className="w-full">Смотреть профиль</Button>
+    <Button variant="small-classic" className="w-full">Подписаться</Button>
   </div>
 );
 
-const PersonasFilterSidebar = () => {
-  const [isVerified, setIsVerified] = useState(false);
+const personasData = [
+  { id: 1, name: 'Александр Волков', specialization: 'Алго-боты, Сигналы', rating: 4.9, reviews: 124, avatar: 'https://placehold.co/96x96/E2BAA4/000000?text=АВ' },
+  { id: 2, name: 'Елена Петрова', specialization: 'Услуги, Софт', rating: 4.8, reviews: 98, avatar: 'https://placehold.co/96x96/A4E2B9/000000?text=ЕП' },
+  { id: 3, name: 'Дмитрий Сидоров', specialization: 'Алго-боты', rating: 4.7, reviews: 75, avatar: 'https://placehold.co/96x96/A4A4E2/000000?text=ДС' },
+  { id: 4, name: 'Анна Кузнецова', specialization: 'Сигналы', rating: 4.6, reviews: 62, avatar: 'https://placehold.co/96x96/E2A4A4/000000?text=АК' },
+  { id: 5, name: 'Сергей Иванов', specialization: 'Алго-боты, Услуги', rating: 4.5, reviews: 51, avatar: 'https://placehold.co/96x96/E2E2A4/000000?text=СИ' },
+  { id: 6, name: 'Мария Васильева', specialization: 'Софт', rating: 4.4, reviews: 43, avatar: 'https://placehold.co/96x96/A4E2E2/000000?text=МВ' },
+  { id: 7, name: 'Николай Смирнов', specialization: 'Алго-боты', rating: 4.3, reviews: 38, avatar: 'https://placehold.co/96x96/E2A4E2/000000?text=НС' },
+  { id: 8, name: 'Ольга Попова', specialization: 'Сигналы, Услуги', rating: 4.2, reviews: 31, avatar: 'https://placehold.co/96x96/B9E2A4/000000?text=ОП' },
+  { id: 9, name: 'Павел Козлов', specialization: 'Алго-боты', rating: 4.1, reviews: 25, avatar: 'https://placehold.co/96x96/A4B9E2/000000?text=ПК' },
+  { id: 10, name: 'Виктория Лебедева', specialization: 'Услуги', rating: 4.0, reviews: 20, avatar: 'https://placehold.co/96x96/E2B9A4/000000?text=ВЛ' },
+  { id: 11, name: 'Иван Морозов', specialization: 'Алго-боты, Софт', rating: 3.9, reviews: 18, avatar: 'https://placehold.co/96x96/A4E2B9/000000?text=ИМ' },
+  { id: 12, name: 'Дарья Новикова', specialization: 'Сигналы', rating: 3.8, reviews: 15, avatar: 'https://placehold.co/96x96/A4A4E2/000000?text=ДН' },
+  { id: 13, name: 'Андрей Захаров', specialization: 'Алго-боты', rating: 3.7, reviews: 12, avatar: 'https://placehold.co/96x96/E2A4A4/000000?text=АЗ' },
+  { id: 14, name: 'Екатерина Соловьева', specialization: 'Услуги', rating: 3.6, reviews: 9, avatar: 'https://placehold.co/96x96/E2E2A4/000000?text=ЕС' },
+  { id: 15, name: 'Максим Борисов', specialization: 'Алго-боты, Сигналы', rating: 3.5, reviews: 7, avatar: 'https://placehold.co/96x96/A4E2E2/000000?text=МБ' },
+];
 
-  return (
-    <div className="bg-white rounded-2xl shadow-sm p-6 h-full">
-      <h3 className="font-tt-travels text-xl font-bold mb-4">Фильтры</h3>
-      <div className="space-y-6">
-        <div>
-          <label className="font-semibold mb-2 block">Сортировка</label>
-          <select className="w-full p-3 border border-grey-2 rounded-lg">
-            <option>Новые</option>
-            <option>Старые</option>
-            <option>По имени (А-Я)</option>
-            <option>По имени (Я-А)</option>
-          </select>
-        </div>
-        <div>
-          <label className="font-semibold mb-2 block">Специализация</label>
-          <div className="space-y-2">
-            {['Все', 'Боты', 'Сигналы', 'Услуги'].map(spec => (
-              <label key={spec} className="flex items-center cursor-pointer">
-                <input type="checkbox" className="form-checkbox text-main focus:ring-main rounded"/>
-                <span className="ml-2">{spec}</span>
-              </label>
-            ))}
-          </div>
-        </div>
-        <div>
-          <label className="flex items-center justify-between cursor-pointer">
-            <span className="font-semibold text-lg">Верифицированные</span>
-            <div onClick={() => setIsVerified(!isVerified)} className={`w-14 h-8 flex items-center rounded-full p-1 duration-300 ${isVerified ? 'bg-green-service' : 'bg-grey-2'}`}>
-              <div className={`bg-white w-6 h-6 rounded-full shadow-md transform duration-300 ${isVerified ? 'translate-x-6' : ''}`}></div>
-            </div>
-          </label>
-        </div>
-        <div>
-          <label className="font-semibold mb-2 block">Страна</label>
-          <select className="w-full p-3 border border-grey-2 rounded-lg">
-            <option>Все страны</option>
-            <option>Россия</option>
-            <option>Беларусь</option>
-            <option>Украина</option>
-            <option>Казахстан</option>
-          </select>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-
-const PersonasPage = () => {
-  const [activeTab, setActiveTab] = useState('Авторы Ботов');
-  const tabs = ['Авторы Ботов', 'Авторы Услуг', 'Авторы Сигналов'];
-
-  const topAuthors = {
-    'Авторы Ботов': [
-      { id: 1, name: 'Виктор Сорокин', avatar: 'https://placehold.co/120x120/E2BAA4/000000?text=ВС', verified: true },
-      { id: 2, name: 'Анна Ковалева', avatar: 'https://placehold.co/80x80/333/fff?text=АК', verified: true },
-      { id: 3, name: 'Дмитрий Иванов', avatar: 'https://placehold.co/80x80/DAA520/fff?text=ДИ', verified: false },
-      { id: 4, name: 'Елена Петрова', avatar: 'https://placehold.co/80x80/4682B4/fff?text=ЕП', verified: true },
-      { id: 5, name: 'Игорь Смирнов', avatar: 'https://placehold.co/80x80/2E8B57/fff?text=ИС', verified: true },
-    ],
-    'Авторы Услуг': [
-      { id: 6, name: 'Ольга Новикова', avatar: 'https://placehold.co/120x120/FF69B4/fff?text=ОН', verified: false },
-      { id: 7, name: 'Сергей Морозов', avatar: 'https://placehold.co/80x80/8A2BE2/fff?text=СМ', verified: true },
-      { id: 8, name: 'Мария Лебедева', avatar: 'https://placehold.co/80x80/FF4500/fff?text=МЛ', verified: true },
-      { id: 9, name: 'Алексей Попов', avatar: 'https://placehold.co/80x80/1E90FF/fff?text=АП', verified: false },
-      { id: 10, name: 'Екатерина Волкова', avatar: 'https://placehold.co/80x80/32CD32/fff?text=ЕВ', verified: true },
-    ],
-    'Авторы Сигналов': [
-      { id: 11, name: 'Павел Козлов', avatar: 'https://placehold.co/120x120/FFD700/000?text=ПК', verified: true },
-      { id: 12, name: 'Ирина Соколова', avatar: 'https://placehold.co/80x80/F08080/fff?text=ИС', verified: false },
-      { id: 13, name: 'Максим Виноградов', avatar: 'https://placehold.co/80x80/7B68EE/fff?text=МВ', verified: true },
-      { id: 14, name: 'Анастасия Белова', avatar: 'https://placehold.co/80x80/40E0D0/fff?text=АБ', verified: true },
-      { id: 15, name: 'Никита Зайцев', avatar: 'https://placehold.co/80x80/9932CC/fff?text=НЗ', verified: false },
-    ],
-  };
-
-  const LeaderboardCard = ({ author, isWinner }) => (
-    <div className={`text-center p-4 rounded-2xl flex flex-col items-center transition-all duration-300 ${isWinner ? 'bg-white shadow-lg scale-105 -translate-y-2' : 'bg-grey-1'}`}>
-      <img src={author.avatar} alt={author.name} className={`mx-auto rounded-full mb-2 ${isWinner ? 'w-24 h-24 border-4 border-orange' : 'w-20 h-20'}`} />
-      <p className={`font-semibold ${isWinner ? 'text-lg' : 'text-base'}`}>{author.name}</p>
-      {author.verified && <span className="text-xs bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full my-1">Верифицирован</span>}
-    </div>
-  );
-
-  return (
-    <div className="space-y-8">
-      {/* Leaderboard Section */}
-      <section className="bg-white rounded-2xl p-6 shadow-sm">
-        <h2 className="font-bold text-3xl mb-2 text-center">Лидеры Платформы</h2>
-        <p className="text-center text-text-grey mb-6">Лучшие из лучших по итогам месяца</p>
-        <div className="flex justify-center border-b border-grey-2 mb-8">
-          {tabs.map(tab => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`px-6 py-3 font-semibold transition-colors ${activeTab === tab ? 'text-main border-b-2 border-main' : 'text-text-grey hover:bg-grey-2/30'}`}>
-              {tab}
-            </button>
-          ))}
-        </div>
-        <div className="flex justify-center items-end gap-4 md:gap-8 px-4">
-          <div className="transform transition-transform duration-300 hover:scale-105">
-            <LeaderboardCard author={topAuthors[activeTab][1]} />
-          </div>
-          <div className="transform transition-transform duration-300 hover:scale-105 z-10">
-            <LeaderboardCard author={topAuthors[activeTab][0]} isWinner />
-          </div>
-          <div className="transform transition-transform duration-300 hover:scale-105">
-            <LeaderboardCard author={topAuthors[activeTab][2]} />
-          </div>
-        </div>
-        <div className="flex justify-center items-start gap-4 md:gap-8 mt-6 border-t border-grey-2 pt-6">
-           <div className="transform transition-transform duration-300 hover:scale-105">
-            <LeaderboardCard author={topAuthors[activeTab][3]} />
-          </div>
-          <div className="transform transition-transform duration-300 hover:scale-105">
-            <LeaderboardCard author={topAuthors[activeTab][4]} />
-          </div>
-        </div>
-      </section>
-
-      {/* Main Content */}
-      <div className="flex gap-6">
-        <div className="flex-grow min-w-0">
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-            {personasData.map((profile) => (
-              <ProfileCard key={profile.id} profile={profile} />
-            ))}
-          </div>
-        </div>
-        <aside className="w-80 flex-shrink-0 hidden lg:block">
-          <div className="sticky top-24">
-            <PersonasFilterSidebar />
-          </div>
-        </aside>
-      </div>
-    </div>
-  );
-};
-
-
-const MainContent = ({ activePage, productCreated, onNavigate, botData, botImages }) => {
-    const renderContent = () => {
-        if (productCreated) return <Marketplace onNavigate={onNavigate} botData={botData} botImages={botImages} />;
-        switch (activePage) {
-            case 'Главная': return <HomePage />;
-            case 'Лента': return <FeedPage />;
-            case 'Маркетплейс': return <Marketplace onNavigate={onNavigate} botData={botData} botImages={botImages} />;
-            case 'Персоны': return <PersonasPage />;
-            case 'Рабочий стол': return <div className="bg-white rounded-2xl p-8 shadow-sm"><h1 className="font-tt-travels text-3xl font-bold">Рабочий стол</h1><p className="mt-4 text-text-grey">Здесь будет ваш рабочий стол.</p></div>;
-            case 'Сообщения': return <MessagesPage />;
-            case 'Избранное': return <FavoritesPage />;
-            case 'Помощь': return <div className="bg-white rounded-2xl p-8 shadow-sm"><h1 className="font-tt-travels text-3xl font-bold">Помощь</h1><p className="mt-4 text-text-grey">Здесь будет раздел помощи.</p></div>;
-            default: return <HomePage />;
-        }
-    }
-    return (<main className="flex-grow p-4 lg:p-0 lg:pt-[40px]">{renderContent()}</main>);
-};
-
-const Dashboard = ({ onLogout, botData, botImages }) => {
+const App = () => {
+  const [page, setPage] = useState('landing'); // landing, app, login, register
   const [activePage, setActivePage] = useState('Главная');
   const [isModalOpen, setModalOpen] = useState(false);
   const [isVerified, setVerified] = useState(false);
   const [productCreated, setProductCreated] = useState(false);
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const handleNavigate = (page) => {
-    setActivePage(page);
-    setProductCreated(false);
+  const handleNavigate = (target) => {
+    if (['Лента', 'Маркетплейс', 'Персоны', 'Сообщения', 'Избранное', 'Помощь', 'Главная', 'Рабочий стол'].includes(target)) {
+      setActivePage(target);
+      setPage('app');
+    } else {
+      setPage(target);
+    }
   };
 
+  const handleLogout = () => {
+    // Here you would typically clear tokens, user data, etc.
+    setPage('landing');
+    setActivePage('Главная');
+  };
+
+  if (page === 'landing') {
+    return <LandingPage onNavigate={handleNavigate} botData={botData} botImages={botImages} />;
+  }
+  if (page === 'login') {
+    return <LoginPage onNavigate={handleNavigate} />;
+  }
+  if (page === 'register') {
+    return <RegistrationPage onNavigate={handleNavigate} />;
+  }
+
   return (
-    <div className="bg-bg-light min-h-screen font-open-sans text-text-black">
-      <div className="flex items-start">
-        <Sidebar activePage={activePage} onNavigate={handleNavigate} isMobileMenuOpen={isMobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
-        <div className="flex-grow flex flex-col lg:ml-4 min-w-0">
-          <Header onOpenModal={() => setModalOpen(true)} setMobileMenuOpen={setMobileMenuOpen} onLogout={onLogout} />
-          <MainContent activePage={activePage} productCreated={productCreated} onNavigate={handleNavigate} botData={botData} botImages={botImages} />
+    <div className="bg-bg-light min-h-screen flex flex-col lg:flex-row font-open-sans text-text-black">
+      <Sidebar activePage={activePage} onNavigate={handleNavigate} isMobileMenuOpen={isMobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
+      <main className="flex-grow p-4 lg:p-0 lg:pr-4 lg:py-4">
+        <Header onOpenModal={() => setModalOpen(true)} setMobileMenuOpen={setMobileMenuOpen} onLogout={handleLogout} />
+        <div className="mt-4">
+          <MainContent 
+            activePage={activePage} 
+            productCreated={productCreated} 
+            onNavigate={handleNavigate}
+            botData={botData}
+            botImages={botImages}
+          />
         </div>
-      </div>
-      <CreateModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} isVerified={isVerified} onVerificationComplete={() => setVerified(true)} onProductCreated={() => setProductCreated(true)} />
+      </main>
+      <CreateModal 
+        isOpen={isModalOpen} 
+        onClose={() => setModalOpen(false)}
+        isVerified={isVerified}
+        onVerificationComplete={() => setVerified(true)}
+        onProductCreated={() => {
+          setProductCreated(true);
+          setTimeout(() => setProductCreated(false), 3000);
+        }}
+      />
     </div>
   );
 };
 
-
-//=========== ГЛАВНЫЙ КОМПОНЕНТ-РОУТЕР ===========//
-
-export default function App() {
-  const [view, setView] = useState('landing'); // 'landing', 'register', 'login', 'app'
-
-  const handleNavigate = (targetView) => {
-    setView(targetView);
-  };
-
-  const renderView = () => {
-    switch (view) {
-      case 'landing':
-        return <LandingPage onNavigate={handleNavigate} botData={botData} botImages={botImages} />;
-      case 'register':
-        return <RegistrationPage onNavigate={handleNavigate} />;
-      case 'login':
-        return <LoginPage onNavigate={handleNavigate} />;
-      case 'app':
-        return <Dashboard onLogout={() => handleNavigate('landing')} botData={botData} botImages={botImages} />;
-      default:
-        return <LandingPage onNavigate={handleNavigate} botData={botData} botImages={botImages} />;
-    }
-  };
-
-  return <div className="App">{renderView()}</div>;
-}
+export default App;

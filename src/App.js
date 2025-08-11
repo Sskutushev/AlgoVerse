@@ -1211,8 +1211,8 @@ const Marketplace = ({ onNavigate, botData, botImages }) => {
   const [showFilter, setShowFilter] = useState(true);
   const lastScrollY = useRef(0);
 
-  const recommendedBots = botData.filter(b => b.rating >= 4.8).slice(0, 7).map(b => ({...b, rating: 5.0}));
-  const adBanners = botData.slice(5, 12);
+  const recommendedBots = botData.filter(b => b.rating >= 4.8).slice(0, 3).map(b => ({...b, rating: 5.0}));
+  const adBanners = botData.slice(5, 11);
 
   const controlFilterSidebar = useCallback(() => {
     const currentScrollY = window.scrollY;
@@ -1327,6 +1327,24 @@ const Marketplace = ({ onNavigate, botData, botImages }) => {
     <div className="flex gap-6">
       {/* Main Content */}
       <div className="flex-grow min-w-0">
+        <section className="mb-8">
+          <h2 className="font-bold text-2xl mb-4">Рекламные баннеры</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {adBanners.map((ad, index) => (
+              <AdCard key={index} image={ad.image} title="Рекламный баннер" url="#!" />
+            ))}
+          </div>
+        </section>
+
+        <section className="mb-8">
+          <h2 className="font-bold text-2xl mb-4">Рекомендуемые</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {recommendedBots.map((bot, index) => (
+              <BotCard key={index} bot={bot} onDetailsClick={() => setSelectedBot(bot)} onBuyClick={() => onNavigate('register')} />
+            ))}
+          </div>
+        </section>
+
         <div className="bg-white rounded-2xl shadow-sm p-4 mb-6">
           <div className="border-b border-grey-2 flex items-center justify-between flex-wrap">
             <nav className="flex">
@@ -1353,24 +1371,6 @@ const Marketplace = ({ onNavigate, botData, botImages }) => {
           </div>
         </div>
         
-        <section className="mb-8">
-          <h2 className="font-bold text-2xl mb-4">Рекламные баннеры</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {adBanners.map((ad, index) => (
-              <AdCard key={index} image={ad.image} title="Рекламный баннер" url="#!" />
-            ))}
-          </div>
-        </section>
-
-        <section className="mb-8">
-          <h2 className="font-bold text-2xl mb-4">Рекомендуемые</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {recommendedBots.map((bot, index) => (
-              <BotCard key={index} bot={bot} onDetailsClick={() => setSelectedBot(bot)} onBuyClick={() => onNavigate('register')} />
-            ))}
-          </div>
-        </section>
-
         <div className="p-1">{renderContent()}</div>
       </div>
 

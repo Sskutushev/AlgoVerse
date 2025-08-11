@@ -890,7 +890,7 @@ const Sidebar = ({ activePage, onNavigate, isMobileMenuOpen, setMobileMenuOpen }
         <div className="space-y-2">
           {['Рабочий стол', 'Сообщения', 'Избранное'].map((item) => (
             <button key={item} onClick={() => handleItemClick(item)} className={`flex items-center w-full text-left gap-5 px-4 py-3 rounded-lg transition-colors ${activePage === item ? 'bg-main text-white' : 'text-text-grey hover:bg-grey-2/50 hover:text-text-black'}`}>
-              {React.createElement(ICONS[{'Рабочий стол': 'desktop', 'Сообщения': 'messages', 'Избранное': 'heart'}[item]])}
+              {React.createElement(ICONS[{'Рабочий стол': 'desktop', 'Сообщения': 'messages', 'Избранное': 'bookmark'}[item]])}
               <span className="font-open-sans font-semibold">{item}</span>
             </button>
           ))}
@@ -2185,7 +2185,10 @@ const personasData = [
 ];
 
 const ProfileCard = ({ profile }) => (
-  <div className="bg-white p-6 rounded-2xl shadow-lg flex flex-col items-center text-center transform hover:-translate-y-1 transition-all duration-300">
+  <div className="relative bg-white p-6 rounded-2xl shadow-lg flex flex-col items-center text-center transform hover:-translate-y-1 transition-all duration-300">
+    <Button variant="icon" className="absolute top-2 right-2 text-text-grey hover:text-main">
+      {React.createElement(ICONS.bookmark)}
+    </Button>
     <img src={profile.avatar} alt={profile.name} className="w-24 h-24 rounded-full mb-4" />
     <h3 className="font-tt-travels text-xl font-bold">{profile.name}</h3>
     {profile.verified && <span className="text-xs bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full my-1">Верифицирован</span>}

@@ -1238,15 +1238,57 @@ const messagesData = {
   },
 };
 
-const FavoritesPage = () => (
-  <div className="bg-white rounded-2xl p-8 shadow-sm text-center">
-    <h1 className="font-tt-travels text-3xl font-bold mb-4">Избранное</h1>
-    <p className="text-text-grey">Здесь будут ваши избранные боты, сигналы и персоны.</p>
-    <div className="mt-8">
-      {React.createElement(ICONS.heart, { className: "w-24 h-24 text-grey-2 mx-auto" })}
+const FavoritesPage = () => {
+  const [activeTab, setActiveTab] = useState('Персоны');
+  const tabs = ['Персоны', 'Алго-боты', 'Сигналы', 'Услуги', 'Софт', 'Дополнительно'];
+
+  const favoritedPersonas = personasData.slice(0, 5);
+  const favoritedBots = botData.slice(0, 6);
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'Персоны':
+        return (
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            {favoritedPersonas.map((profile) => (
+              <ProfileCard key={profile.id} profile={profile} isFavorited={true} />
+            ))}
+          </div>
+        );
+      case 'Алго-боты':
+        return (
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            {favoritedBots.map((bot, index) => (
+              <BotCard key={index} bot={bot} isFavorited={true} />
+            ))}
+          </div>
+        );
+      default:
+        return (
+          <div className="text-center py-16">
+            <p className="text-text-grey text-lg">{`Здесь будут ваши избранные ${activeTab.toLowerCase()}.`}</p>
+          </div>
+        );
+    }
+  };
+
+  return (
+    <div className="space-y-6">
+      <div className="bg-white rounded-2xl shadow-sm p-4">
+        <div className="border-b border-grey-2 flex items-center justify-between flex-wrap">
+          <nav className="flex">
+            {tabs.map(tab => (
+              <button key={tab} onClick={() => setActiveTab(tab)} className={`px-4 md:px-6 py-3 font-semibold transition-colors text-sm md:text-base ${activeTab === tab ? 'text-main border-b-2 border-main' : 'text-text-grey hover:bg-grey-2/30'}`}>
+                {tab}
+              </button>
+            ))}
+          </nav>
+        </div>
+      </div>
+      <div>{renderContent()}</div>
     </div>
-  </div>
-);
+  );
+};
 
 const MessagesPage = () => {
   const [activeChatId, setActiveChatId] = useState('support');
@@ -1317,7 +1359,7 @@ const MessagesPage = () => {
 };
 
 
-const BotCard = ({ bot, onDetailsClick, onBuyClick }) => (
+const BotCard = ({ bot, onDetailsClick, onBuyClick, isFavorited }) => (
     <div className="bg-white p-6 rounded-2xl shadow-lg flex flex-col transform hover:-translate-y-1 transition-all duration-300 h-full">
         <div className="relative mb-4">
             <img src={bot.image} alt={bot.name} className="w-full h-48 object-cover rounded-lg"/>
@@ -1331,7 +1373,7 @@ const BotCard = ({ bot, onDetailsClick, onBuyClick }) => (
                     <span className="text-sm font-semibold">{bot.comments}</span>
                 </div>
             </div>
-            <Button variant="icon" className="absolute top-2 right-2 text-white bg-black/20 hover:bg-black/40">
+            <Button variant="icon" className={`absolute top-2 right-2 ${isFavorited ? 'text-orange' : 'text-white'} bg-black/20 hover:bg-black/40`}>
                 {React.createElement(ICONS.bookmark, { className: "w-5 h-5" })}
             </Button>
         </div>
@@ -2184,9 +2226,9 @@ const personasData = [
   { id: 15, name: 'Никита Зайцев', avatar: 'https://placehold.co/100x100/9932CC/fff?text=НЗ', verified: false, rating: 4.5, specializations: ['Услуги'], country: 'Казахстан', new: true, description: 'Обучающие курсы по трейдингу. От новичка до профессионала за 3 месяца.' },
 ];
 
-const ProfileCard = ({ profile }) => (
+const ProfileCard = ({ profile, isFavorited }) => (
   <div className="relative bg-white p-6 rounded-2xl shadow-lg flex flex-col items-center text-center transform hover:-translate-y-1 transition-all duration-300">
-    <Button variant="icon" className="absolute top-2 right-2 text-text-grey hover:text-main">
+    <Button variant="icon" className={`absolute top-2 right-2 ${isFavorited ? 'text-orange' : 'text-text-grey'} hover:text-orange`}>
       {React.createElement(ICONS.bookmark)}
     </Button>
     <img src={profile.avatar} alt={profile.name} className="w-24 h-24 rounded-full mb-4" />

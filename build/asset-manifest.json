@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/AlgoVerse/static/css/main.860c45ed.css",
-    "main.js": "/AlgoVerse/static/js/main.9017ef1e.js",
+    "main.js": "/AlgoVerse/static/js/main.3582cdcf.js",
     "static/js/453.ec1a3a7f.chunk.js": "/AlgoVerse/static/js/453.ec1a3a7f.chunk.js",
     "static/media/persons.svg": "/AlgoVerse/static/media/persons.da367802c7af81fcbe4ef93cdecc7a8a.svg",
     "static/media/site.svg": "/AlgoVerse/static/media/site.08e3485728adaa85545d5a3ee38b25bf.svg",
@@ -10,11 +10,11 @@
     "static/media/exit.svg": "/AlgoVerse/static/media/exit.ff02735393528e271e685c2d2866d780.svg",
     "index.html": "/AlgoVerse/index.html",
     "main.860c45ed.css.map": "/AlgoVerse/static/css/main.860c45ed.css.map",
-    "main.9017ef1e.js.map": "/AlgoVerse/static/js/main.9017ef1e.js.map",
+    "main.3582cdcf.js.map": "/AlgoVerse/static/js/main.3582cdcf.js.map",
     "453.ec1a3a7f.chunk.js.map": "/AlgoVerse/static/js/453.ec1a3a7f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.860c45ed.css",
-    "static/js/main.9017ef1e.js"
+    "static/js/main.3582cdcf.js"
   ]
 }

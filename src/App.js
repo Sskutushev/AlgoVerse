@@ -10,9 +10,6 @@ import ReactSlider from 'react-slider';
 
 
 //=========== ИКОНКИ (SVG) ===========//
-// Для удобства определим иконки как отдельные компоненты.
-// В реальном проекте их лучше вынести в отдельный файл.
-
 const ICONS = {
   feed: (props) => (
     <svg {...props} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -49,6 +46,11 @@ const ICONS = {
   heart: (props) => (
     <svg {...props} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  ),
+  star: (props) => (
+    <svg {...props} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   ),
   bookmark: (props) => (
@@ -228,21 +230,21 @@ const ICONS = {
 };
 
 const botImages = [
-  `${process.env.PUBLIC_URL}/инвестиционные-инструменты-300x212.jpg`,
+  `${process.env.PUBLIC_URL}/1626182958_13-kartinkin-com-p-treider-art-art-krasivo-15.jpg`,
+  `${process.env.PUBLIC_URL}/images.jpg`,
+  `${process.env.PUBLIC_URL}/images (1).jpg`,
+  `${process.env.PUBLIC_URL}/images (2).jpg`,
+  `${process.env.PUBLIC_URL}/images (3).jpg`,
+  `${process.env.PUBLIC_URL}/images (4).jpg`,
+  `${process.env.PUBLIC_URL}/images (5).jpg`,
+  `${process.env.PUBLIC_URL}/images (6).jpg`,
+  `${process.env.PUBLIC_URL}/images (7).jpg`,
+  `${process.env.PUBLIC_URL}/images (8).jpg`,
+  `${process.env.PUBLIC_URL}/images (9).jpg`,
   `${process.env.PUBLIC_URL}/2.jpg`,
   `${process.env.PUBLIC_URL}/3.jpg`,
   `${process.env.PUBLIC_URL}/4.jpg`,
   `${process.env.PUBLIC_URL}/5.jpg`,
-  `${process.env.PUBLIC_URL}/6.jpg`,
-  `${process.env.PUBLIC_URL}/7.jpg`,
-  `${process.env.PUBLIC_URL}/8.jpg`,
-  `${process.env.PUBLIC_URL}/9.jpg`,
-  `${process.env.PUBLIC_URL}/10.jpg`,
-  `${process.env.PUBLIC_URL}/11.jpg`,
-  `${process.env.PUBLIC_URL}/12.jpg`,
-  `${process.env.PUBLIC_URL}/13.jpeg`,
-  `${process.env.PUBLIC_URL}/инвестиционные-инструменты-300x212.jpg`,
-  `${process.env.PUBLIC_URL}/2.jpg`,
 ];
 
 const botData = [
@@ -543,17 +545,17 @@ const LandingPage = ({ onNavigate, botData, botImages }) => {
       <section id="features" ref={featuresRef} className={`container mx-auto px-6 py-20 ${featuresVisible ? 'fade-in-up' : 'section-hidden'}`}>
         <h2 className="font-tt-travels text-4xl font-bold text-center mb-12">Что мы предлагаем?</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-bg-light p-8 rounded-2xl text-center ${featuresVisible ? 'fade-in-up' : 'section-hidden'}">
+          <div className={`bg-bg-light p-8 rounded-2xl text-center ${featuresVisible ? 'fade-in-up' : 'section-hidden'}`}>
             <img src={`${process.env.PUBLIC_URL}/34653 1.svg`} alt="Feature Icon" className="w-[70px] h-[70px] mx-auto mb-4" />
             <h3 className="font-tt-travels text-2xl font-bold mb-4">Свои боты</h3>
             <p className="text-text-grey">Создавайте торговых ботов за минуты — просто, быстро и без кода. Готовых можно сразу опубликовать на платформе и подключить к партнёрской программе для продвижения.</p>
           </div>
-          <div className="bg-bg-light p-8 rounded-2xl text-center ${featuresVisible ? 'fade-in-up' : 'section-hidden'}">
+          <div className={`bg-bg-light p-8 rounded-2xl text-center ${featuresVisible ? 'fade-in-up' : 'section-hidden'}`}>
             <img src={`${process.env.PUBLIC_URL}/assets_task_01jye5yc7pe6w9d2y08qzdf1xt_1750675239_img_1 1.svg`} alt="Feature Icon" className="w-[70px] h-[70px] mx-auto mb-4" />
             <h3 className="font-tt-travels text-2xl font-bold mb-4">Копируй и зарабатывай</h3>
             <p className="text-text-grey">Автоматически повторяйте сделки лучших стратегий. Настраивайте риски, следите за результатами в реальном времени, получайте прибыль синхронно с топами.</p>
           </div>
-           <div className="bg-bg-light p-8 rounded-2xl text-center ${featuresVisible ? 'fade-in-up' : 'section-hidden'}">
+           <div className={`bg-bg-light p-8 rounded-2xl text-center ${featuresVisible ? 'fade-in-up' : 'section-hidden'}`}>
             <img src={`${process.env.PUBLIC_URL}/25к3ц45к2й34 1.svg`} alt="Feature Icon" className="w-[70px] h-[70px] mx-auto mb-4" />
             <h3 className="font-tt-travels text-2xl font-bold mb-4">Контроль и рост</h3>
             <p className="text-text-grey">Единый дашборд с полной аналитикой по ботам, доходности и действиям. Прозрачность, масштабирование и понимание — всё, чтобы расти уверенно.</p>
@@ -593,7 +595,7 @@ const LandingPage = ({ onNavigate, botData, botImages }) => {
                 <div className="relative mb-4">
                   <img src={bot.image} alt={bot.name} className="w-full h-32 object-cover rounded-lg"/>
                   <div className="absolute top-2 left-2 flex items-center bg-white rounded-full px-2 py-1 shadow-md">
-                    {React.createElement(ICONS.heart, { className: "w-4 h-4 text-yellow-500 mr-1" })}
+                    {React.createElement(ICONS.star, { className: "w-4 h-4 text-yellow-500 mr-1" })}
                     <span className="text-sm font-semibold">{bot.rating}</span>
                   </div>
                   <div className="absolute top-2 left-16 flex items-center bg-white rounded-full px-2 py-1 shadow-md">
@@ -1079,7 +1081,7 @@ const BotDetailsPage = ({ bot, onBack }) => {
               <textarea placeholder="Ваш комментарий..." className="w-full p-3 border border-grey-2 rounded-lg"></textarea>
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-1">
-                  {[...Array(5)].map((_, i) => React.createElement(ICONS.heart, { key: i, className: "w-6 h-6 text-grey-2 cursor-pointer hover:text-yellow-400" }))}
+                  {[...Array(5)].map((_, i) => React.createElement(ICONS.star, { key: i, className: "w-6 h-6 text-grey-2 cursor-pointer hover:text-yellow-400" }))}
                 </div>
                 <Button variant="small-classic">Отправить</Button>
               </div>
@@ -1143,7 +1145,7 @@ const BotDetailsPage = ({ bot, onBack }) => {
           <div className="bg-white shadow-lg p-6 w-full lg:w-[380px] h-auto flex flex-col border border-grey-2" style={{ borderRadius: '65px' }}>
               <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center bg-white rounded-full px-2 py-1 shadow-md">
-                      {React.createElement(ICONS.heart, { className: "w-4 h-4 text-yellow-500 mr-1" })}
+                      {React.createElement(ICONS.star, { className: "w-4 h-4 text-yellow-500 mr-1" })}
                       <span className="text-sm font-semibold">{bot.rating}</span>
                   </div>
                   <div className="flex items-center bg-white rounded-full px-2 py-1 shadow-md">
@@ -1170,6 +1172,66 @@ const BotDetailsPage = ({ bot, onBack }) => {
   );
 };
 
+const Carousel = ({ children, title }) => {
+  const carouselRef = useRef(null);
+
+  const handlePrev = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: -300, behavior: 'smooth' });
+    }
+  };
+
+  const handleNext = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <section className="mb-8">
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="font-bold text-2xl">{title}</h2>
+        <div className="flex gap-2">
+          <Button variant="icon" onClick={handlePrev}>{React.createElement(ICONS.arrowLeft)}</Button>
+          <Button variant="icon" onClick={handleNext}>{React.createElement(ICONS.arrowRight)}</Button>
+        </div>
+      </div>
+      <div className="flex overflow-x-auto gap-6 pb-4" ref={carouselRef} style={{ scrollbarWidth: 'none', '-ms-overflow-style': 'none' }}>
+        {children}
+      </div>
+    </section>
+  );
+};
+
+const BotCard = ({ bot, onDetailsClick, onBuyClick }) => (
+    <div className="bg-white p-6 rounded-2xl shadow-lg flex flex-col transform hover:-translate-y-1 transition-all duration-300 h-full">
+        <div className="relative mb-4">
+            <img src={bot.image} alt={bot.name} className="w-full h-48 object-cover rounded-lg"/>
+            <div className="absolute top-2 left-2 flex items-center gap-2">
+                <div className="flex items-center bg-white rounded-full px-2 py-1 shadow-md">
+                    {React.createElement(ICONS.star, { className: "w-4 h-4 text-yellow-500 mr-1" })}
+                    <span className="text-sm font-semibold">{bot.rating}</span>
+                </div>
+                <div className="flex items-center bg-white rounded-full px-2 py-1 shadow-md">
+                    {React.createElement(ICONS.messages, { className: "w-4 h-4 text-blue-500 mr-1" })}
+                    <span className="text-sm font-semibold">{bot.comments}</span>
+                </div>
+            </div>
+            <Button variant="icon" className="absolute top-2 right-2 text-white bg-black/20 hover:bg-black/40">
+                {React.createElement(ICONS.bookmark, { className: "w-5 h-5" })}
+            </Button>
+        </div>
+        <h3 className="font-tt-travels text-xl font-bold mb-2">{bot.name}</h3>
+        <p className="text-text-grey text-sm mb-4 flex-grow">{bot.description}</p>
+        <div className="flex items-center gap-2 mt-4">
+            <Button variant="small-classic" className="w-1/2" onClick={onBuyClick}>Купить</Button>
+            <Button variant="small-outline" icon={ICONS.arrowRight} iconPosition="right" onClick={onDetailsClick} className="w-1/2 !border-orange !text-orange hover:!bg-orange hover:!text-white">
+                Подробнее
+            </Button>
+        </div>
+    </div>
+);
+
 const Marketplace = ({ onNavigate, botData, botImages }) => {
   const [selectedBot, setSelectedBot] = useState(null);
   const [activeTab, setActiveTab] = useState('Алго-боты');
@@ -1177,6 +1239,9 @@ const Marketplace = ({ onNavigate, botData, botImages }) => {
   const tabs = ['Алго-боты', 'Сигналы', 'Услуги', 'Софт', 'Дополнительно'];
   const [showFilter, setShowFilter] = useState(true);
   const lastScrollY = useRef(0);
+
+  const recommendedBots = botData.filter(b => b.rating >= 4.8).slice(0, 7).map(b => ({...b, rating: 5.0}));
+  const adBanners = botData.slice(5, 12);
 
   const controlFilterSidebar = useCallback(() => {
     const currentScrollY = window.scrollY;
@@ -1206,32 +1271,7 @@ const Marketplace = ({ onNavigate, botData, botImages }) => {
         return (
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {botData.map((bot, index) => (
-              <div key={index} className="bg-white p-6 rounded-2xl shadow-lg flex flex-col transform hover:-translate-y-1 transition-all duration-300">
-                <div className="relative mb-4">
-                  <img src={bot.image} alt={bot.name} className="w-full h-48 object-cover rounded-lg"/>
-                  <div className="absolute top-2 left-2 flex items-center gap-2">
-                    <div className="flex items-center bg-white rounded-full px-2 py-1 shadow-md">
-                      {React.createElement(ICONS.heart, { className: "w-4 h-4 text-yellow-500 mr-1" })}
-                      <span className="text-sm font-semibold">{bot.rating}</span>
-                    </div>
-                    <div className="flex items-center bg-white rounded-full px-2 py-1 shadow-md">
-                      {React.createElement(ICONS.messages, { className: "w-4 h-4 text-blue-500 mr-1" })}
-                      <span className="text-sm font-semibold">{bot.comments}</span>
-                    </div>
-                  </div>
-                  <Button variant="icon" className="absolute top-2 right-2 text-white bg-black/20 hover:bg-black/40">
-                    {React.createElement(ICONS.bookmark, { className: "w-5 h-5" })}
-                  </Button>
-                </div>
-                <h3 className="font-tt-travels text-xl font-bold mb-2">{bot.name}</h3>
-                <p className="text-text-grey text-sm mb-4 flex-grow">{bot.description}</p>
-                <div className="flex items-center gap-2 mt-4">
-                  <Button variant="small-classic" className="w-1/2" onClick={() => onNavigate('register')}>Купить</Button>
-                  <Button variant="small-outline" icon={ICONS.arrowRight} iconPosition="right" onClick={() => setSelectedBot(bot)} className="w-1/2 !border-orange !text-orange hover:!bg-orange hover:!text-white">
-                    Подробнее
-                  </Button>
-                </div>
-              </div>
+              <BotCard key={index} bot={bot} onDetailsClick={() => setSelectedBot(bot)} onBuyClick={() => onNavigate('register')} />
             ))}
           </div>
         );
@@ -1283,15 +1323,15 @@ const Marketplace = ({ onNavigate, botData, botImages }) => {
             <div className="space-y-2">
               <label className="flex items-center cursor-pointer">
                 <input type="checkbox" className="form-checkbox text-main focus:ring-main rounded"/>
-                <span className="ml-2 flex items-center">Выше 3 {React.createElement(ICONS.heart, { className: "w-4 h-4 text-yellow-400 ml-1" })}</span>
+                <span className="ml-2 flex items-center">Выше 3 {React.createElement(ICONS.star, { className: "w-4 h-4 text-yellow-400 ml-1" })}</span>
               </label>
               <label className="flex items-center cursor-pointer">
                 <input type="checkbox" className="form-checkbox text-main focus:ring-main rounded"/>
-                <span className="ml-2 flex items-center">Выше 4 {React.createElement(ICONS.heart, { className: "w-4 h-4 text-yellow-400 ml-1" })}</span>
+                <span className="ml-2 flex items-center">Выше 4 {React.createElement(ICONS.star, { className: "w-4 h-4 text-yellow-400 ml-1" })}</span>
               </label>
               <label className="flex items-center cursor-pointer">
                 <input type="checkbox" className="form-checkbox text-main focus:ring-main rounded"/>
-                <span className="ml-2 flex items-center">Выше 5 {React.createElement(ICONS.heart, { className: "w-4 h-4 text-yellow-400 ml-1" })}</span>
+                <span className="ml-2 flex items-center">Выше 5 {React.createElement(ICONS.star, { className: "w-4 h-4 text-yellow-400 ml-1" })}</span>
               </label>
             </div>
           </div>
@@ -1315,7 +1355,7 @@ const Marketplace = ({ onNavigate, botData, botImages }) => {
   return (
     <div className="flex gap-6">
       {/* Main Content */}
-      <div className="flex-grow">
+      <div className="flex-grow min-w-0">
         <div className="bg-white rounded-2xl shadow-sm p-4 mb-6">
           <div className="border-b border-grey-2 flex items-center justify-between flex-wrap">
             <nav className="flex">
@@ -1341,6 +1381,23 @@ const Marketplace = ({ onNavigate, botData, botImages }) => {
             <Button variant="small-outline" className="lg:hidden" onClick={() => setFilterOpen(true)}>Фильтры</Button>
           </div>
         </div>
+        
+        <Carousel title="Рекламные баннеры">
+          {adBanners.map((ad, index) => (
+            <div key={index} className="flex-none w-full sm:w-1/2 lg:w-1/3">
+              <AdCard image={ad.image} title="Рекламный баннер" url="#!" />
+            </div>
+          ))}
+        </Carousel>
+
+        <Carousel title="Рекомендуемые">
+          {recommendedBots.map((bot, index) => (
+            <div key={index} className="flex-none w-full sm:w-1/2 lg:w-1/3">
+              <BotCard bot={bot} onDetailsClick={() => setSelectedBot(bot)} onBuyClick={() => onNavigate('register')} />
+            </div>
+          ))}
+        </Carousel>
+
         <div className="p-1">{renderContent()}</div>
       </div>
 
@@ -1457,11 +1514,11 @@ const feedPosts = [
 ];
 
 const AdCard = ({ image, title, url }) => (
-  <a href={url} target="_blank" rel="noopener noreferrer" className="block bg-white rounded-2xl shadow-sm p-4 hover:shadow-md transition-shadow">
-    <div className="relative aspect-square rounded-lg overflow-hidden">
+  <a href={url} target="_blank" rel="noopener noreferrer" className="block bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden">
+    <div className="relative h-32">
       <img src={image} alt={title} className="w-full h-full object-cover" />
-      <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-        <h4 className="text-white font-bold text-center p-2">{title}</h4>
+      <div className="absolute inset-0 bg-black/30 flex items-center justify-center p-2">
+        <h4 className="text-white font-bold text-center">{title}</h4>
       </div>
     </div>
   </a>
@@ -1710,6 +1767,56 @@ const FeedPage = () => {
   );
 };
 
+const FinancialQuoteItem = ({ name, price, change, isPositive }) => (
+  <div className="p-2">
+    <div className="font-semibold text-sm text-text-grey">{name}</div>
+    <div className="text-lg font-mono text-text-black">{price}</div>
+    <div className={`text-sm font-mono ${isPositive ? 'text-green-500' : 'text-red-500'}`}>
+      {isPositive ? '+' : ''}{change}%
+    </div>
+  </div>
+);
+
+const QuoteCategory = ({ title, items }) => (
+  <div>
+    <h3 className="font-bold text-xl mb-2 text-text-black">{title}</h3>
+    <div className="grid grid-cols-2 gap-x-4 gap-y-2 bg-grey-1 p-2 rounded-lg">
+      {items.map(item => <FinancialQuoteItem key={item.name} {...item} />)}
+    </div>
+  </div>
+);
+
+const FinancialQuotes = () => {
+  const currencies = [
+    { name: 'EUR/USD', price: '1.0850', change: 0.25, isPositive: true },
+    { name: 'GBP/USD', price: '1.2580', change: -0.11, isPositive: false },
+    { name: 'USD/JPY', price: '155.70', change: 0.45, isPositive: true },
+    { name: 'USD/CHF', price: '0.9115', change: -0.05, isPositive: false },
+  ];
+  const crypto = [
+    { name: 'BTC/USD', price: '68,540.1', change: 2.15, isPositive: true },
+    { name: 'ETH/USD', price: '3,550.80', change: 1.80, isPositive: true },
+    { name: 'USDT/USD', price: '1.0001', change: 0.01, isPositive: true },
+    { name: 'LTC/USD', price: '85.30', change: -1.20, isPositive: false },
+  ];
+  const stocks = [
+    { name: 'MOEX', price: '3,450.50', change: 0.80, isPositive: true },
+    { name: 'S&P 500', price: '5,250.00', change: -0.20, isPositive: false },
+    { name: 'NASDAQ', price: '16,300.1', change: 0.15, isPositive: true },
+    { name: 'DAX', price: '18,400.7', change: 0.50, isPositive: true },
+  ];
+
+  return (
+    <section className="bg-white rounded-2xl p-6 shadow-sm">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <QuoteCategory title="Валюты" items={currencies} />
+        <QuoteCategory title="Криптовалюты" items={crypto} />
+        <QuoteCategory title="Фондовый рынок" items={stocks} />
+      </div>
+    </section>
+  );
+};
+
 const HomePage = () => {
   const [selectedUpdate, setSelectedUpdate] = useState(null);
 
@@ -1800,20 +1907,23 @@ const HomePage = () => {
   };
 
   return (
-    <div className="space-y-12 pb-12">
+    <div className="space-y-8 pb-12">
       {/* Welcome Banner */}
-      <section className="rounded-2xl text-white relative overflow-hidden min-h-[250px] md:min-h-[280px]">
+      <section className="rounded-2xl text-white relative overflow-hidden h-[280px]">
         <img src={`${process.env.PUBLIC_URL}/Frame 5655.svg`} alt="" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 flex flex-col md:flex-row items-center justify-center md:justify-between text-center md:text-left p-8">
+        <div className="absolute inset-0 flex items-center justify-between p-8">
           <div className="relative z-10 max-w-lg">
-            <h1 className="font-bold text-3xl md:text-4xl mb-4">Добро пожаловать</h1>
+            <h1 className="font-bold text-4xl mb-4">Добро пожаловать</h1>
             <p className="text-lg">Ознакомьтесь с основными возможностями платформы и выберите то, что нужно именно вам!</p>
           </div>
-          <div className="relative z-10 w-1/2 mt-4 md:mt-0 md:w-1/3">
+          <div className="relative z-10 w-1/2 md:w-[45%] self-end -right-4">
               <img src={`${process.env.PUBLIC_URL}/Group 996.svg`} alt="Welcome Illustration" className="w-full h-auto object-contain" />
           </div>
         </div>
       </section>
+
+      {/* Financial Quotes */}
+      <FinancialQuotes />
 
       {/* Partner Ads */}
       <section>
@@ -1940,6 +2050,186 @@ const HomePage = () => {
   );
 };
 
+const personasData = [
+  { id: 1, name: 'Виктор Сорокин', avatar: 'https://placehold.co/100x100/E2BAA4/000000?text=ВС', verified: true, rating: 4.9, specializations: ['Боты', 'Сигналы'], country: 'Россия', new: true, description: 'Эксперт по алгоритмической торговле с 10-летним опытом. Создаю прибыльных ботов для Forex и крипторынка.' },
+  { id: 2, name: 'Анна Ковалева', avatar: 'https://placehold.co/100x100/333/fff?text=АК', verified: true, rating: 4.8, specializations: ['Услуги'], country: 'Беларусь', new: false, description: 'Финансовый консультант. Помогаю составить инвестиционный портфель и управлять рисками.' },
+  { id: 3, name: 'Дмитрий Иванов', avatar: 'https://placehold.co/100x100/DAA520/fff?text=ДИ', verified: false, rating: 4.7, specializations: ['Боты'], country: 'Россия', new: true, description: 'Разработчик торговых систем на MQL5. Специализируюсь на скальпинге и высокочастотной торговле.' },
+  { id: 4, name: 'Елена Петрова', avatar: 'https://placehold.co/100x100/4682B4/fff?text=ЕП', verified: true, rating: 4.9, specializations: ['Сигналы'], country: 'Украина', new: false, description: 'Предоставляю точные торговые сигналы по основным валютным парам. Средняя доходность +25% в месяц.' },
+  { id: 5, name: 'Игорь Смирнов', avatar: 'https://placehold.co/100x100/2E8B57/fff?text=ИС', verified: true, rating: 4.8, specializations: ['Боты', 'Услуги'], country: 'Россия', new: true, description: 'Создаю кастомных ботов под заказ. Провожу обучение по алготрейдингу.' },
+  { id: 6, name: 'Ольга Новикова', avatar: 'https://placehold.co/100x100/FF69B4/fff?text=ОН', verified: false, rating: 4.6, specializations: ['Услуги', 'Сигналы'], country: 'Казахстан', new: false, description: 'Аналитик фондового рынка. Делюсь инвестиционными идеями и сигналами по акциям.' },
+  { id: 7, name: 'Сергей Морозов', avatar: 'https://placehold.co/100x100/8A2BE2/fff?text=СМ', verified: true, rating: 4.9, specializations: ['Боты'], country: 'Россия', new: true, description: 'Профессиональный трейдер и разработчик. Мои боты торгуют на крупнейших мировых биржах.' },
+  { id: 8, name: 'Мария Лебедева', avatar: 'https://placehold.co/100x100/FF4500/fff?text=МЛ', verified: true, rating: 4.7, specializations: ['Услуги'], country: 'Россия', new: false, description: 'Помогаю новичкам разобраться в мире инвестиций. Провожу индивидуальные консультации.' },
+  { id: 9, name: 'Алексей Попов', avatar: 'https://placehold.co/100x100/1E90FF/fff?text=АП', verified: false, rating: 4.5, specializations: ['Сигналы'], country: 'Беларусь', new: true, description: 'Торговые сигналы по криптовалютам. Высокая точность и оперативная поддержка.' },
+  { id: 10, name: 'Екатерина Волкова', avatar: 'https://placehold.co/100x100/32CD32/fff?text=ЕВ', verified: true, rating: 4.9, specializations: ['Боты', 'Сигналы'], country: 'Россия', new: false, description: 'Разрабатываю и продаю торговых роботов для QUIK. Также предоставляю сигналы по рынку FORTS.' },
+  { id: 11, name: 'Павел Козлов', avatar: 'https://placehold.co/100x100/FFD700/000?text=ПК', verified: true, rating: 4.8, specializations: ['Услуги'], country: 'Россия', new: true, description: 'Управление активами. Беру в доверительное управление счета от $10 000.' },
+  { id: 12, name: 'Ирина Соколова', avatar: 'https://placehold.co/100x100/F08080/fff?text=ИС', verified: false, rating: 4.6, specializations: ['Боты'], country: 'Украина', new: false, description: 'Продаю готовых торговых роботов для Metatrader 4/5. Простая установка и настройка.' },
+  { id: 13, name: 'Максим Виноградов', avatar: 'https://placehold.co/100x100/7B68EE/fff?text=МВ', verified: true, rating: 4.9, specializations: ['Сигналы', 'Услуги'], country: 'Россия', new: true, description: 'Авторский телеграм-канал с торговыми сигналами и аналитикой. Подписка от $50 в месяц.' },
+  { id: 14, name: 'Анастасия Белова', avatar: 'https://placehold.co/100x100/40E0D0/fff?text=АБ', verified: true, rating: 4.7, specializations: ['Боты'], country: 'Россия', new: false, description: 'Создаю нейросетевых ботов, которые адаптируются к изменениям рынка.' },
+  { id: 15, name: 'Никита Зайцев', avatar: 'https://placehold.co/100x100/9932CC/fff?text=НЗ', verified: false, rating: 4.5, specializations: ['Услуги'], country: 'Казахстан', new: true, description: 'Обучающие курсы по трейдингу. От новичка до профессионала за 3 месяца.' },
+];
+
+const ProfileCard = ({ profile }) => (
+  <div className="bg-white p-6 rounded-2xl shadow-lg flex flex-col items-center text-center transform hover:-translate-y-1 transition-all duration-300">
+    <img src={profile.avatar} alt={profile.name} className="w-24 h-24 rounded-full mb-4" />
+    <h3 className="font-tt-travels text-xl font-bold">{profile.name}</h3>
+    {profile.verified && <span className="text-xs bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full my-1">Верифицирован</span>}
+    <div className="flex items-center my-2">
+      {React.createElement(ICONS.star, { className: "w-5 h-5 text-yellow-400 mr-1" })}
+      <span className="font-semibold">{profile.rating}</span>
+    </div>
+    <p className="text-text-grey text-sm mb-4 flex-grow">{profile.description}</p>
+    <div className="flex flex-wrap justify-center gap-2 mb-4">
+      {profile.specializations.map(spec => (
+        <span key={spec} className="text-xs bg-grey-1 px-2 py-1 rounded-full">{spec}</span>
+      ))}
+    </div>
+    <Button variant="small-classic" className="w-full">Смотреть профиль</Button>
+  </div>
+);
+
+const PersonasFilterSidebar = () => {
+  const [isVerified, setIsVerified] = useState(false);
+
+  return (
+    <div className="bg-white rounded-2xl shadow-sm p-6 h-full">
+      <h3 className="font-tt-travels text-xl font-bold mb-4">Фильтры</h3>
+      <div className="space-y-6">
+        <div>
+          <label className="font-semibold mb-2 block">Сортировка</label>
+          <select className="w-full p-3 border border-grey-2 rounded-lg">
+            <option>Новые</option>
+            <option>Старые</option>
+            <option>По имени (А-Я)</option>
+            <option>По имени (Я-А)</option>
+          </select>
+        </div>
+        <div>
+          <label className="font-semibold mb-2 block">Специализация</label>
+          <div className="space-y-2">
+            {['Все', 'Боты', 'Сигналы', 'Услуги'].map(spec => (
+              <label key={spec} className="flex items-center cursor-pointer">
+                <input type="checkbox" className="form-checkbox text-main focus:ring-main rounded"/>
+                <span className="ml-2">{spec}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+        <div>
+          <label className="flex items-center justify-between cursor-pointer">
+            <span className="font-semibold text-lg">Верифицированные</span>
+            <div onClick={() => setIsVerified(!isVerified)} className={`w-14 h-8 flex items-center rounded-full p-1 duration-300 ${isVerified ? 'bg-green-service' : 'bg-grey-2'}`}>
+              <div className={`bg-white w-6 h-6 rounded-full shadow-md transform duration-300 ${isVerified ? 'translate-x-6' : ''}`}></div>
+            </div>
+          </label>
+        </div>
+        <div>
+          <label className="font-semibold mb-2 block">Страна</label>
+          <select className="w-full p-3 border border-grey-2 rounded-lg">
+            <option>Все страны</option>
+            <option>Россия</option>
+            <option>Беларусь</option>
+            <option>Украина</option>
+            <option>Казахстан</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+
+const PersonasPage = () => {
+  const [activeTab, setActiveTab] = useState('Авторы Ботов');
+  const tabs = ['Авторы Ботов', 'Авторы Услуг', 'Авторы Сигналов'];
+
+  const topAuthors = {
+    'Авторы Ботов': [
+      { id: 1, name: 'Виктор Сорокин', avatar: 'https://placehold.co/120x120/E2BAA4/000000?text=ВС', verified: true },
+      { id: 2, name: 'Анна Ковалева', avatar: 'https://placehold.co/80x80/333/fff?text=АК', verified: true },
+      { id: 3, name: 'Дмитрий Иванов', avatar: 'https://placehold.co/80x80/DAA520/fff?text=ДИ', verified: false },
+      { id: 4, name: 'Елена Петрова', avatar: 'https://placehold.co/80x80/4682B4/fff?text=ЕП', verified: true },
+      { id: 5, name: 'Игорь Смирнов', avatar: 'https://placehold.co/80x80/2E8B57/fff?text=ИС', verified: true },
+    ],
+    'Авторы Услуг': [
+      { id: 6, name: 'Ольга Новикова', avatar: 'https://placehold.co/120x120/FF69B4/fff?text=ОН', verified: false },
+      { id: 7, name: 'Сергей Морозов', avatar: 'https://placehold.co/80x80/8A2BE2/fff?text=СМ', verified: true },
+      { id: 8, name: 'Мария Лебедева', avatar: 'https://placehold.co/80x80/FF4500/fff?text=МЛ', verified: true },
+      { id: 9, name: 'Алексей Попов', avatar: 'https://placehold.co/80x80/1E90FF/fff?text=АП', verified: false },
+      { id: 10, name: 'Екатерина Волкова', avatar: 'https://placehold.co/80x80/32CD32/fff?text=ЕВ', verified: true },
+    ],
+    'Авторы Сигналов': [
+      { id: 11, name: 'Павел Козлов', avatar: 'https://placehold.co/120x120/FFD700/000?text=ПК', verified: true },
+      { id: 12, name: 'Ирина Соколова', avatar: 'https://placehold.co/80x80/F08080/fff?text=ИС', verified: false },
+      { id: 13, name: 'Максим Виноградов', avatar: 'https://placehold.co/80x80/7B68EE/fff?text=МВ', verified: true },
+      { id: 14, name: 'Анастасия Белова', avatar: 'https://placehold.co/80x80/40E0D0/fff?text=АБ', verified: true },
+      { id: 15, name: 'Никита Зайцев', avatar: 'https://placehold.co/80x80/9932CC/fff?text=НЗ', verified: false },
+    ],
+  };
+
+  const LeaderboardCard = ({ author, isWinner }) => (
+    <div className={`text-center p-4 rounded-2xl flex flex-col items-center transition-all duration-300 ${isWinner ? 'bg-white shadow-lg scale-105 -translate-y-2' : 'bg-grey-1'}`}>
+      <img src={author.avatar} alt={author.name} className={`mx-auto rounded-full mb-2 ${isWinner ? 'w-24 h-24 border-4 border-orange' : 'w-20 h-20'}`} />
+      <p className={`font-semibold ${isWinner ? 'text-lg' : 'text-base'}`}>{author.name}</p>
+      {author.verified && <span className="text-xs bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full my-1">Верифицирован</span>}
+    </div>
+  );
+
+  return (
+    <div className="space-y-8">
+      {/* Leaderboard Section */}
+      <section className="bg-white rounded-2xl p-6 shadow-sm">
+        <h2 className="font-bold text-3xl mb-2 text-center">Лидеры Платформы</h2>
+        <p className="text-center text-text-grey mb-6">Лучшие из лучших по итогам месяца</p>
+        <div className="flex justify-center border-b border-grey-2 mb-8">
+          {tabs.map(tab => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`px-6 py-3 font-semibold transition-colors ${activeTab === tab ? 'text-main border-b-2 border-main' : 'text-text-grey hover:bg-grey-2/30'}`}>
+              {tab}
+            </button>
+          ))}
+        </div>
+        <div className="flex justify-center items-end gap-4 md:gap-8 px-4">
+          <div className="transform transition-transform duration-300 hover:scale-105">
+            <LeaderboardCard author={topAuthors[activeTab][1]} />
+          </div>
+          <div className="transform transition-transform duration-300 hover:scale-105 z-10">
+            <LeaderboardCard author={topAuthors[activeTab][0]} isWinner />
+          </div>
+          <div className="transform transition-transform duration-300 hover:scale-105">
+            <LeaderboardCard author={topAuthors[activeTab][2]} />
+          </div>
+        </div>
+        <div className="flex justify-center items-start gap-4 md:gap-8 mt-6 border-t border-grey-2 pt-6">
+           <div className="transform transition-transform duration-300 hover:scale-105">
+            <LeaderboardCard author={topAuthors[activeTab][3]} />
+          </div>
+          <div className="transform transition-transform duration-300 hover:scale-105">
+            <LeaderboardCard author={topAuthors[activeTab][4]} />
+          </div>
+        </div>
+      </section>
+
+      {/* Main Content */}
+      <div className="flex gap-6">
+        <div className="flex-grow min-w-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            {personasData.map((profile) => (
+              <ProfileCard key={profile.id} profile={profile} />
+            ))}
+          </div>
+        </div>
+        <aside className="w-80 flex-shrink-0 hidden lg:block">
+          <div className="sticky top-24">
+            <PersonasFilterSidebar />
+          </div>
+        </aside>
+      </div>
+    </div>
+  );
+};
+
 
 const MainContent = ({ activePage, productCreated, onNavigate, botData, botImages }) => {
     const renderContent = () => {
@@ -1948,7 +2238,7 @@ const MainContent = ({ activePage, productCreated, onNavigate, botData, botImage
             case 'Главная': return <HomePage />;
             case 'Лента': return <FeedPage />;
             case 'Маркетплейс': return <Marketplace onNavigate={onNavigate} botData={botData} botImages={botImages} />;
-            case 'Персоны': return <div className="bg-white rounded-2xl p-8 shadow-sm"><h1 className="font-tt-travels text-3xl font-bold">Персоны</h1><p className="mt-4 text-text-grey">Здесь будет список персон.</p></div>;
+            case 'Персоны': return <PersonasPage />;
             case 'Рабочий стол': return <div className="bg-white rounded-2xl p-8 shadow-sm"><h1 className="font-tt-travels text-3xl font-bold">Рабочий стол</h1><p className="mt-4 text-text-grey">Здесь будет ваш рабочий стол.</p></div>;
             case 'Сообщения': return <div className="bg-white rounded-2xl p-8 shadow-sm"><h1 className="font-tt-travels text-3xl font-bold">Сообщения</h1><p className="mt-4 text-text-grey">Здесь будут ваши сообщения.</p></div>;
             case 'Избранное': return <div className="bg-white rounded-2xl p-8 shadow-sm"><h1 className="font-tt-travels text-3xl font-bold">Избранное</h1><p className="mt-4 text-text-grey">Здесь будут ваши избранные элементы.</p></div>;
@@ -2006,9 +2296,9 @@ export default function App() {
       case 'app':
         return <Dashboard onLogout={() => handleNavigate('landing')} botData={botData} botImages={botImages} />;
       default:
-        return <LandingPage onNavigate={handleNavigate} />;
+        return <LandingPage onNavigate={handleNavigate} botData={botData} botImages={botImages} />;
     }
   };
 
-  return renderView();
+  return <div className="App">{renderView()}</div>;
 }

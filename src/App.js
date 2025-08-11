@@ -1355,7 +1355,7 @@ const Marketplace = ({ onNavigate, botData, botImages }) => {
   return (
     <div className="flex gap-6">
       {/* Main Content */}
-      <div className="flex-grow min-w-0 overflow-x-hidden">
+      <div className="flex-grow min-w-0">
         <div className="bg-white rounded-2xl shadow-sm p-4 mb-6">
           <div className="border-b border-grey-2 flex items-center justify-between flex-wrap">
             <nav className="flex">
@@ -1382,21 +1382,23 @@ const Marketplace = ({ onNavigate, botData, botImages }) => {
           </div>
         </div>
         
-        <Carousel title="Рекламные баннеры">
-          {adBanners.map((ad, index) => (
-            <div key={index} className="flex-none w-full sm:w-1/2 lg:w-1/3">
-              <AdCard image={ad.image} title="Рекламный баннер" url="#!" />
-            </div>
-          ))}
-        </Carousel>
+        <section className="mb-8">
+          <h2 className="font-bold text-2xl mb-4">Рекламные баннеры</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {adBanners.map((ad, index) => (
+              <AdCard key={index} image={ad.image} title="Рекламный баннер" url="#!" />
+            ))}
+          </div>
+        </section>
 
-        <Carousel title="Рекомендуемые">
-          {recommendedBots.map((bot, index) => (
-            <div key={index} className="flex-none w-full sm:w-1/2 lg:w-1/3">
-              <BotCard bot={bot} onDetailsClick={() => setSelectedBot(bot)} onBuyClick={() => onNavigate('register')} />
-            </div>
-          ))}
-        </Carousel>
+        <section className="mb-8">
+          <h2 className="font-bold text-2xl mb-4">Рекомендуемые</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {recommendedBots.map((bot, index) => (
+              <BotCard key={index} bot={bot} onDetailsClick={() => setSelectedBot(bot)} onBuyClick={() => onNavigate('register')} />
+            ))}
+          </div>
+        </section>
 
         <div className="p-1">{renderContent()}</div>
       </div>

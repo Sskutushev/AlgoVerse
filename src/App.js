@@ -152,6 +152,14 @@ const ICONS = {
       <path d="M21 13v2a4 4 0 0 1-4 4H3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   ),
+  smiley: (props) => (
+    <svg {...props} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M8 14s1.5 2 4 2 4-2 4-2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <line x1="9" y1="9" x2="9.01" y2="9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <line x1="15" y1="9" x2="15.01" y2="9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  ),
   send: (props) => (
     <svg {...props} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <line x1="22" y1="2" x2="11" y2="13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -1172,6 +1180,141 @@ const BotDetailsPage = ({ bot, onBack }) => {
   );
 };
 
+
+
+
+const messagesData = {
+  'support': {
+    name: 'Поддержка',
+    avatar: 'https://placehold.co/40x40/4682B4/fff?text=S',
+    messages: [
+      { id: 1, text: 'Добрый день! У меня возникла проблема с подключением API ключей от биржи. Можете помочь?', sender: 'user', time: '11:00', status: 'read' },
+      { id: 2, text: 'Здравствуйте! Конечно. Уточните, пожалуйста, какую ошибку вы получаете?', sender: 'contact', time: '11:01', status: 'read' },
+      { id: 3, text: 'Пишет "Invalid API Key". Хотя я уверен, что все ввел правильно.', sender: 'user', time: '11:03', status: 'read' },
+      { id: 4, text: 'Понял вас. Чаще всего такая ошибка возникает, если при создании ключа не были выставлены правильные разрешения. Убедитесь, что у ключа есть права на чтение информации и на совершение сделок. Права на вывод средств не нужны.', sender: 'contact', time: '11:05', status: 'read' },
+      { id: 5, text: 'А, точно! Забыл про права на сделки. Сейчас попробую пересоздать ключ.', sender: 'user', time: '11:07', status: 'read' },
+      { id: 6, text: 'Отлично, получилось! Большое спасибо за помощь!', sender: 'user', time: '11:15', status: 'sent' },
+      { id: 7, text: 'Рады были помочь! Если возникнут еще вопросы - обращайтесь.', sender: 'contact', time: '11:16', status: 'delivered' },
+    ],
+  },
+  'promo': {
+    name: 'Акции и предложения',
+    avatar: 'https://placehold.co/40x40/FF69B4/fff?text=P',
+    messages: [
+      { id: 1, text: '🔥 Черная пятница на AlgoVerse! 🔥 Скидки до -70% на лучших торговых ботов и подписки на сигналы. Не упустите свой шанс автоматизировать прибыль!', sender: 'contact', time: 'Вчера', status: 'read' },
+      { id: 2, text: 'Только до конца недели, пополните свой счет на сумму от $500 и получите бонус +10% на баланс. Начните торговать с большим депозитом!', sender: 'contact', time: '15:12', status: 'delivered' },
+    ],
+  },
+  'seller-1': {
+    name: 'Продавец "CryptoWhale"',
+    avatar: 'https://placehold.co/40x40/E2BAA4/000000?text=CW',
+    messages: [
+      { id: 1, text: 'Здравствуйте! Увидел, что вы приобрели моего бота "Эксперт на криптовалюту BTC".', sender: 'contact', time: '10:30', status: 'read' },
+      { id: 2, text: 'Спасибо за покупку! В качестве бонуса, хочу предложить вам скидку 20% на мой новый торговый сигнал по ETH/USD.', sender: 'contact', time: '10:31', status: 'read' },
+      { id: 3, text: 'О, спасибо, интересно! А какая у него статистика?', sender: 'user', time: '10:35', status: 'read' },
+      { id: 4, text: 'За последний месяц доходность составила +35%. Сигнал основан на анализе объемов и настроений в социальных сетях.', sender: 'contact', time: '10:38', status: 'sent' },
+    ],
+  },
+  'seller-2': {
+    name: 'Продавец "Algo-tradingbot Gold"',
+    avatar: 'https://placehold.co/40x40/DAA520/fff?text=AG',
+    messages: [
+      { id: 1, text: 'Обновление для вашего бота "Algo-tradingbot Gold" доступно! Версия 1.5 включает улучшенный алгоритм управления рисками.', sender: 'contact', time: '09:15', status: 'delivered' },
+    ],
+  },
+  'seller-3': {
+    name: 'Продавец "Форекс Мастер Pro"',
+    avatar: 'https://placehold.co/40x40/4682B4/fff?text=FM',
+    messages: [
+      { id: 1, text: 'Привет! Я автор бота "Форекс Мастер Pro". Если у вас есть вопросы по настройке, обращайтесь!', sender: 'contact', time: 'Вчера', status: 'read' },
+    ],
+  },
+  'seller-4': {
+    name: 'Продавец "Индексный Скальпер"',
+    avatar: 'https://placehold.co/40x40/2E8B57/fff?text=ИС',
+    messages: [
+      { id: 1, text: 'Вижу, вы добавили "Индексный Скальпер" в избранное. Готовы начать зарабатывать на индексах?', sender: 'contact', time: 'Позавчера', status: 'read' },
+    ],
+  },
+};
+
+const FavoritesPage = () => (
+  <div className="bg-white rounded-2xl p-8 shadow-sm text-center">
+    <h1 className="font-tt-travels text-3xl font-bold mb-4">Избранное</h1>
+    <p className="text-text-grey">Здесь будут ваши избранные боты, сигналы и персоны.</p>
+    <div className="mt-8">
+      {React.createElement(ICONS.heart, { className: "w-24 h-24 text-grey-2 mx-auto" })}
+    </div>
+  </div>
+);
+
+const MessagesPage = () => {
+  const [activeChatId, setActiveChatId] = useState('support');
+  const [message, setMessage] = useState('');
+  const [showEmojis, setShowEmojis] = useState(false);
+  const emojis = ['😀', '😂', '😍', '🤔', '👍', '🙏', '🚀', '🔥', '💰', '📈', '📉', '🎉'];
+  const activeChat = messagesData[activeChatId];
+
+  const MessageStatus = ({ status }) => {
+    if (status === 'read') return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="#4F46E5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M22 4L12 14.01l-3-3" stroke="#4F46E5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>;
+    if (status === 'delivered') return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>;
+    if (status === 'sent') return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1 4"/></svg>;
+    return null;
+  };
+
+  return (
+    <div className="flex flex-col md:flex-row bg-white rounded-2xl shadow-sm h-full max-h-[calc(100vh-12rem)]">
+      <div className="w-full md:w-1/3 lg:w-1/4 border-r border-grey-2 flex flex-col">
+        <div className="p-4 border-b border-grey-2">
+          <h2 className="font-bold text-xl">Сообщения</h2>
+        </div>
+        <div className="flex-grow overflow-y-auto">
+          {Object.keys(messagesData).map(chatId => (
+            <div key={chatId} onClick={() => setActiveChatId(chatId)} className={`flex items-center p-4 cursor-pointer ${activeChatId === chatId ? 'bg-main/10' : 'hover:bg-grey-1/50'}`}>
+              <img src={messagesData[chatId].avatar} alt={messagesData[chatId].name} className="w-12 h-12 rounded-full mr-4" />
+              <div className="flex-grow overflow-hidden">
+                <h3 className="font-semibold">{messagesData[chatId].name}</h3>
+                <p className="text-sm text-text-grey truncate">{messagesData[chatId].messages.slice(-1)[0].text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="w-full md:w-2/3 lg:w-3/4 flex flex-col">
+        <div className="p-4 border-b border-grey-2 flex items-center">
+          <img src={activeChat.avatar} alt={activeChat.name} className="w-10 h-10 rounded-full mr-4" />
+          <h2 className="font-bold text-xl">{activeChat.name}</h2>
+        </div>
+        <div className="flex-grow p-6 overflow-y-auto space-y-4">
+          {activeChat.messages.map(msg => (
+            <div key={msg.id} className={`flex items-end gap-2 ${msg.sender === 'user' ? 'justify-end' : ''}`}>
+              {msg.sender === 'contact' && <img src={activeChat.avatar} alt={activeChat.name} className="w-8 h-8 rounded-full" />}
+              <div className={`px-4 py-2 rounded-2xl max-w-md ${msg.sender === 'user' ? 'bg-main text-white rounded-br-none' : 'bg-grey-1 text-text-black rounded-bl-none'}`}>
+                <p>{msg.text}</p>
+                <div className={`flex items-center gap-1 mt-1 ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
+                  <span className="text-xs opacity-70">{msg.time}</span>
+                  {msg.sender === 'user' && <MessageStatus status={msg.status} />}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="p-4 border-t border-grey-2 relative">
+          {showEmojis && (
+            <div className="absolute bottom-full mb-2 bg-white shadow-lg rounded-lg p-2 grid grid-cols-6 gap-1">
+              {emojis.map(emoji => <button key={emoji} onClick={() => setMessage(m => m + emoji)} className="p-2 rounded-lg hover:bg-grey-1">{emoji}</button>)}
+            </div>
+          )}
+          <div className="flex items-center bg-grey-1 rounded-full px-2">
+            <Button variant="icon" onClick={() => setShowEmojis(s => !s)}>{React.createElement(ICONS.smiley)}</Button>
+            <input type="text" placeholder="Напишите сообщение..." className="flex-grow bg-transparent p-3 focus:outline-none" value={message} onChange={(e) => setMessage(e.target.value)} />
+            <Button variant="icon" className="text-orange">{React.createElement(ICONS.send)}</Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 
 const BotCard = ({ bot, onDetailsClick, onBuyClick }) => (
@@ -2213,8 +2356,8 @@ const MainContent = ({ activePage, productCreated, onNavigate, botData, botImage
             case 'Маркетплейс': return <Marketplace onNavigate={onNavigate} botData={botData} botImages={botImages} />;
             case 'Персоны': return <PersonasPage />;
             case 'Рабочий стол': return <div className="bg-white rounded-2xl p-8 shadow-sm"><h1 className="font-tt-travels text-3xl font-bold">Рабочий стол</h1><p className="mt-4 text-text-grey">Здесь будет ваш рабочий стол.</p></div>;
-            case 'Сообщения': return <div className="bg-white rounded-2xl p-8 shadow-sm"><h1 className="font-tt-travels text-3xl font-bold">Сообщения</h1><p className="mt-4 text-text-grey">Здесь будут ваши сообщения.</p></div>;
-            case 'Избранное': return <div className="bg-white rounded-2xl p-8 shadow-sm"><h1 className="font-tt-travels text-3xl font-bold">Избранное</h1><p className="mt-4 text-text-grey">Здесь будут ваши избранные элементы.</p></div>;
+            case 'Сообщения': return <MessagesPage />;
+            case 'Избранное': return <FavoritesPage />;
             case 'Помощь': return <div className="bg-white rounded-2xl p-8 shadow-sm"><h1 className="font-tt-travels text-3xl font-bold">Помощь</h1><p className="mt-4 text-text-grey">Здесь будет раздел помощи.</p></div>;
             default: return <HomePage />;
         }
@@ -2238,7 +2381,7 @@ const Dashboard = ({ onLogout, botData, botImages }) => {
     <div className="bg-bg-light min-h-screen font-open-sans text-text-black">
       <div className="flex items-start">
         <Sidebar activePage={activePage} onNavigate={handleNavigate} isMobileMenuOpen={isMobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
-        <div className="flex-grow flex flex-col lg:ml-4">
+        <div className="flex-grow flex flex-col lg:ml-4 min-w-0">
           <Header onOpenModal={() => setModalOpen(true)} setMobileMenuOpen={setMobileMenuOpen} onLogout={onLogout} />
           <MainContent activePage={activePage} productCreated={productCreated} onNavigate={handleNavigate} botData={botData} botImages={botImages} />
         </div>

@@ -1172,36 +1172,7 @@ const BotDetailsPage = ({ bot, onBack }) => {
   );
 };
 
-const Carousel = ({ children, title }) => {
-  const carouselRef = useRef(null);
 
-  const handlePrev = () => {
-    if (carouselRef.current) {
-      carouselRef.current.scrollBy({ left: -300, behavior: 'smooth' });
-    }
-  };
-
-  const handleNext = () => {
-    if (carouselRef.current) {
-      carouselRef.current.scrollBy({ left: 300, behavior: 'smooth' });
-    }
-  };
-
-  return (
-    <section className="mb-8">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="font-bold text-2xl">{title}</h2>
-        <div className="flex gap-2">
-          <Button variant="icon" onClick={handlePrev}>{React.createElement(ICONS.arrowLeft)}</Button>
-          <Button variant="icon" onClick={handleNext}>{React.createElement(ICONS.arrowRight)}</Button>
-        </div>
-      </div>
-      <div className="flex overflow-x-auto gap-6 pb-4" ref={carouselRef} style={{ scrollbarWidth: 'none', '-ms-overflow-style': 'none' }}>
-        {children}
-      </div>
-    </section>
-  );
-};
 
 const BotCard = ({ bot, onDetailsClick, onBuyClick }) => (
     <div className="bg-white p-6 rounded-2xl shadow-lg flex flex-col transform hover:-translate-y-1 transition-all duration-300 h-full">

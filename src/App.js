@@ -1123,7 +1123,7 @@ const BotDetailsPage = ({ bot, onBack }) => {
       <div className="flex justify-center">
         <div className="flex flex-col lg:flex-row items-start" style={{ gap: '50px' }}>
           {/* Left Card Container */}
-          <div className="w-full lg:w-[640px] bg-white p-8" style={{ borderRadius: '65px' }}>
+          <div className="w-full lg:w-2/3 bg-white p-8" style={{ borderRadius: '65px' }}>
             <div className="flex items-center gap-4 mb-4">
               <span className="bg-green-service/20 text-green-service font-semibold px-4 py-1 rounded-full text-sm">Алго-боты</span>
             </div>
@@ -1141,8 +1141,8 @@ const BotDetailsPage = ({ bot, onBack }) => {
           </div>
 
           {/* Right Purchase Container */}
-          <aside className="w-full lg:w-[380px] flex-shrink-0">
-          <div className="bg-white shadow-lg p-6 w-full lg:w-[380px] h-auto flex flex-col border border-grey-2" style={{ borderRadius: '65px' }}>
+          <aside className="w-full lg:w-1/3 flex-shrink-0">
+          <div className="bg-white shadow-lg p-6 w-full lg:w-full h-auto flex flex-col border border-grey-2" style={{ borderRadius: '65px' }}>
               <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center bg-white rounded-full px-2 py-1 shadow-md">
                       {React.createElement(ICONS.star, { className: "w-4 h-4 text-yellow-500 mr-1" })}
@@ -1355,7 +1355,7 @@ const Marketplace = ({ onNavigate, botData, botImages }) => {
   return (
     <div className="flex gap-6">
       {/* Main Content */}
-      <div className="flex-grow min-w-0">
+      <div className="flex-grow min-w-0 overflow-x-hidden">
         <div className="bg-white rounded-2xl shadow-sm p-4 mb-6">
           <div className="border-b border-grey-2 flex items-center justify-between flex-wrap">
             <nav className="flex">

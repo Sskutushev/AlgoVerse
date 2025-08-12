@@ -2400,39 +2400,39 @@ const PersonsPage = ({ onNavigate }) => {
 
     const [first, second, third, fourth, fifth] = leaderboardData;
 
-    const PodiumCard = ({ profile, rank, size }) => {
+    const PodiumCard = ({ profile, rank, size, alignment }) => {
       const sizeClasses = {
-        large: 'w-28 h-28 md:w-32 md:h-32 text-lg',
-        medium: 'w-24 h-24 md:w-28 md:h-28 text-base',
-        small: 'w-20 h-20 md:w-24 md:h-24 text-sm'
+        large: 'w-32 h-32 md:w-40 md:h-40 text-xl',
+        medium: 'w-28 h-28 md:w-32 md:h-32 text-lg',
+        small: 'w-24 h-24 md:w-28 md:h-28 text-base'
       };
       const rankColors = {
-        1: 'bg-yellow-400',
-        2: 'bg-gray-300',
-        3: 'bg-yellow-600',
+        1: 'bg-yellow-400 border-yellow-400',
+        2: 'bg-gray-300 border-gray-300',
+        3: 'bg-yellow-600 border-yellow-600',
       };
 
       return (
-        <div className="flex flex-col items-center gap-2 p-2 text-center">
+        <div className={`flex flex-col items-center gap-2 p-2 text-center ${alignment}`}>
           <div className="relative">
-            <img src={profile.avatar} alt={profile.name} className={`${sizeClasses[size]} rounded-full border-4 shadow-lg ${rank === 1 ? 'border-yellow-400' : 'border-white'}`} />
-            <div className={`absolute -top-2 -right-2 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm ${rankColors[rank] || 'bg-gray-400'}`}>
+            <img src={profile.avatar} alt={profile.name} className={`${sizeClasses[size]} rounded-full border-4 shadow-lg ${rank === 1 ? 'border-yellow-400' : 'border-gray-200'}`} />
+            <div className={`absolute -top-2 -right-2 w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-white font-bold ${rankColors[rank] || 'bg-gray-400'}`}>
               {rank}
             </div>
           </div>
           <h4 className={`font-bold ${sizeClasses[size]}`}>{profile.name}</h4>
-          <p className="text-xs text-text-grey">{profile.specialization}</p>
+          <p className="text-sm text-text-grey">{profile.specialization}</p>
         </div>
       );
     };
 
     return (
-      <div className="flex justify-center items-end gap-2 md:gap-4 pt-8">
-        <div className="hidden md:block" style={{ order: 2 }}><PodiumCard profile={fourth} rank={4} size="small" /></div>
-        <div style={{ order: 1 }}><PodiumCard profile={second} rank={2} size="medium" /></div>
-        <div style={{ order: 0 }}><PodiumCard profile={first} rank={1} size="large" /></div>
-        <div style={{ order: 3 }}><PodiumCard profile={third} rank={3} size="medium" /></div>
-        <div className="hidden md:block" style={{ order: 4 }}><PodiumCard profile={fifth} rank={5} size="small" /></div>
+      <div className="flex justify-center items-end gap-2 md:gap-4 pt-8 w-full">
+        <div style={{ order: 0 }}><PodiumCard profile={fourth} rank={4} size="small" alignment="self-end" /></div>
+        <div style={{ order: 1 }}><PodiumCard profile={second} rank={2} size="medium" alignment="self-end" /></div>
+        <div style={{ order: 2 }}><PodiumCard profile={first} rank={1} size="large" alignment="self-center" /></div>
+        <div style={{ order: 3 }}><PodiumCard profile={third} rank={3} size="medium" alignment="self-end" /></div>
+        <div style={{ order: 4 }}><PodiumCard profile={fifth} rank={5} size="small" alignment="self-end" /></div>
       </div>
     );
   };

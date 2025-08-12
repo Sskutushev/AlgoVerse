@@ -289,17 +289,17 @@ const botData = [
   ];
 
 const quotesData = [
-  { name: 'EUR/USD', price: '1.0732', change: '+0.12%', changeType: 'positive', segment: 'Валюты', tradingViewSymbol: 'FX:EURUSD' },
-  { name: 'RUB/USD', price: '91.50', change: '-0.25%', changeType: 'negative', segment: 'Валюты', tradingViewSymbol: 'FX:USDRUB' },
-  { name: 'GBP/USD', price: '1.2458', change: '+0.08%', changeType: 'positive', segment: 'Валюты', tradingViewSymbol: 'FX:GBPUSD' },
-  { name: 'USD/JPY', price: '154.28', change: '-0.15%', changeType: 'negative', segment: 'Валюты', tradingViewSymbol: 'FX:USDJPY' },
+  { name: 'EUR/USD', price: '1.0732', change: '+0.12%', changeType: 'positive', segment: 'Валюты', tradingViewSymbol: 'FX_IDC:EURUSD' },
+  { name: 'GBP/USD', price: '1.2458', change: '+0.08%', changeType: 'positive', segment: 'Валюты', tradingViewSymbol: 'FX_IDC:GBPUSD' },
+  { name: 'USD/JPY', price: '154.28', change: '-0.15%', changeType: 'negative', segment: 'Валюты', tradingViewSymbol: 'FX_IDC:USDJPY' },
+  { name: 'USD/CHF', price: '0.9050', change: '+0.05%', changeType: 'positive', segment: 'Валюты', tradingViewSymbol: 'FX_IDC:USDCHF' },
   { name: 'BTC/USD', price: '63,450.12', change: '+2.5%', changeType: 'positive', segment: 'Криптовалюты', tradingViewSymbol: 'BINANCE:BTCUSDT' },
   { name: 'ETH/USD', price: '3,050.78', change: '+1.8%', changeType: 'positive', segment: 'Криптовалюты', tradingViewSymbol: 'BINANCE:ETHUSDT' },
   { name: 'LTC/USD', price: '82.45', change: '-0.5%', changeType: 'negative', segment: 'Криптовалюты', tradingViewSymbol: 'BINANCE:LTCUSDT' },
-  { name: 'USDT/USD', price: '1.00', change: '+0.01%', changeType: 'positive', segment: 'Криптовалюты', tradingViewSymbol: 'KRAKEN:USDTUSD' },
+  { name: 'USDT/USD', price: '1.00', change: '+0.01%', changeType: 'positive', segment: 'Криптовалюты', tradingViewSymbol: 'BINANCE:USDTUSD' },
+  { name: 'MOEX', price: '3,450.12', change: '-0.30%', changeType: 'negative', segment: 'Фондовый рынок', tradingViewSymbol: 'MOEX:IMOEX' },
   { name: 'S&P 500', price: '5,070.55', change: '+0.14%', changeType: 'positive', segment: 'Фондовый рынок', tradingViewSymbol: 'SP:SPX' },
   { name: 'NASDAQ', price: '15,712.75', change: '+0.11%', changeType: 'positive', segment: 'Фондовый рынок', tradingViewSymbol: 'NASDAQ:NDX' },
-  { name: 'MOEX', price: '3,450.12', change: '-0.30%', changeType: 'negative', segment: 'Фондовый рынок', tradingViewSymbol: 'MOEX:IMOEX' },
   { name: 'DAX', price: '17,770.02', change: '+0.20%', changeType: 'positive', segment: 'Фондовый рынок', tradingViewSymbol: 'XETR:DAX' },
 ];
 
@@ -2312,14 +2312,14 @@ const HomePage = ({ onNavigate }) => {
     return ( 
         <div className="space-y-12"> 
             {/* Welcome Banner */}
-            <section className="rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between text-white relative overflow-hidden min-h-[250px]">
+            <section className="rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between text-white relative overflow-hidden min-h-[150px]">
                 <img src={`${process.env.PUBLIC_URL}/Frame 5655.svg`} alt="" className="absolute inset-0 w-full h-full object-cover" />
                 <div className="relative z-10 md:w-1/2 text-center md:text-left mb-8 md:mb-0">
                     <h1 className="font-bold text-4xl mb-4">Добро пожаловать</h1>
                     <p className="text-lg">Алготрейдинговые боты, готовые сигнальные решения и единый счёт для контроля сделок — всё в одном месте: подключайтесь к стратегиям без сложной установки, пользуйтесь гибкими условиями и низкими комиссиями, получайте максимум возможностей для создания ботов и инвестиций с диверсификацией средств.</p>
                 </div>
                 <div className="relative z-10 w-full md:w-1/2 flex items-center justify-end">
-                    <img src={`${process.env.PUBLIC_URL}/608e59f7-475d-4d93-a2f0-163b70558ca4.png`} alt="Welcome Illustration" className="w-[750px] h-[350px] object-contain mr-0" />
+                    <img src={`${process.env.PUBLIC_URL}/608e59f7-475d-4d93-a2f0-163b70558ca4.png`} alt="Welcome Illustration" className="w-[750px] h-[300px] object-contain mr-0" />
                 </div>
             </section>
             

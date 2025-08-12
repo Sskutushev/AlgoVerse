@@ -9,10 +9,14 @@ import Group12Icon from './assets/Group12.png';
 import ReactSlider from 'react-slider';
 import HelpCenterPage from './pages/HelpCenterPage';
 import CommentSection from './components/CommentSection';
+import DesktopPage, { SignalCard } from './pages/DesktopPage';
+import SignalDetailsPage from './pages/SignalDetailsPage';
+import InstrumentDetailsPage from './pages/InstrumentDetailsPage';
+import { signalData } from './pages/DesktopPage';
 
 
 //=========== ИКОНКИ (SVG) ===========//
-const ICONS = {
+export const ICONS = {
   feed: (props) => (
     <svg {...props} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M4 4H10V10H4V4ZM4 14H10V20H4V14ZM14 4H20V10H14V4ZM14 14H20V20H14V14Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -284,6 +288,51 @@ const botData = [
     { name: "Фьючерсный Аналитик", description: "Бот для анализа и торговли фьючерсными контрактами. Использует технический анализ и объем торгов для определения трендов.", rating: 4.6, comments: 17, image: botImages[14] },
   ];
 
+const quotesData = [
+  { name: 'EUR/USD', price: '1.0732', change: '+0.12%', changeType: 'positive', segment: 'Валюты', tradingViewSymbol: 'FX:EURUSD' },
+  { name: 'RUB/USD', price: '91.50', change: '-0.25%', changeType: 'negative', segment: 'Валюты', tradingViewSymbol: 'FX:USDRUB' },
+  { name: 'GBP/USD', price: '1.2458', change: '+0.08%', changeType: 'positive', segment: 'Валюты', tradingViewSymbol: 'FX:GBPUSD' },
+  { name: 'USD/JPY', price: '154.28', change: '-0.15%', changeType: 'negative', segment: 'Валюты', tradingViewSymbol: 'FX:USDJPY' },
+  { name: 'BTC/USD', price: '63,450.12', change: '+2.5%', changeType: 'positive', segment: 'Криптовалюты', tradingViewSymbol: 'BINANCE:BTCUSDT' },
+  { name: 'ETH/USD', price: '3,050.78', change: '+1.8%', changeType: 'positive', segment: 'Криптовалюты', tradingViewSymbol: 'BINANCE:ETHUSDT' },
+  { name: 'LTC/USD', price: '82.45', change: '-0.5%', changeType: 'negative', segment: 'Криптовалюты', tradingViewSymbol: 'BINANCE:LTCUSDT' },
+  { name: 'USDT/USD', price: '1.00', change: '+0.01%', changeType: 'positive', segment: 'Криптовалюты', tradingViewSymbol: 'KRAKEN:USDTUSD' },
+  { name: 'S&P 500', price: '5,070.55', change: '+0.14%', changeType: 'positive', segment: 'Фондовый рынок', tradingViewSymbol: 'SP:SPX' },
+  { name: 'NASDAQ', price: '15,712.75', change: '+0.11%', changeType: 'positive', segment: 'Фондовый рынок', tradingViewSymbol: 'NASDAQ:NDX' },
+  { name: 'MOEX', price: '3,450.12', change: '-0.30%', changeType: 'negative', segment: 'Фондовый рынок', tradingViewSymbol: 'MOEX:IMOEX' },
+  { name: 'DAX', price: '17,770.02', change: '+0.20%', changeType: 'positive', segment: 'Фондовый рынок', tradingViewSymbol: 'XETR:DAX' },
+];
+
+const QuotesTicker = ({ onInstrumentClick }) => {
+  const segments = ['Валюты', 'Криптовалюты', 'Фондовый рынок'];
+
+  return (
+    <div className="bg-white rounded-2xl shadow-sm p-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {segments.map(segment => (
+          <div key={segment}>
+            <h3 className="font-bold text-lg mb-2 px-2">{segment}</h3>
+            <div className="space-y-2">
+              {quotesData.filter(item => item.segment === segment).map(item => (
+                <button key={item.name} onClick={() => onInstrumentClick(item)} className="w-full flex justify-between items-center p-2 rounded-lg hover:bg-grey-1/50">
+                  <span className="font-semibold">{item.name}</span>
+                  <div className='text-right'>
+                    <span className="font-semibold">{item.price}</span>
+                    <span className={`ml-2 text-sm font-semibold ${item.changeType === 'positive' ? 'text-green-500' : 'text-red-500'}`}>
+                      {item.change}
+                    </span>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+
 const brokerAds = [
   { name: 'АТОН', image: botImages[5] },
   { name: 'БКС инвестиции', image: botImages[6] },
@@ -293,7 +342,7 @@ const brokerAds = [
 
 //=========== КОМПОНЕНТЫ UI (КНОПКИ И Т.Д.) ===========//
 
-const Button = ({ children, variant = 'big-classic', icon: Icon, iconPosition = 'left', className = '', disabled, iconClass = '', ...props }) => {
+export const Button = ({ children, variant = 'big-classic', icon: Icon, iconPosition = 'left', className = '', disabled, iconClass = '', ...props }) => {
   const baseStyles = "inline-flex items-center justify-center font-bold rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2";
   const variantStyles = {
     'big-classic': 'px-8 py-3 bg-main text-white hover:bg-main-light active:bg-main-dark disabled:bg-grey-2 disabled:text-text-grey',
@@ -1044,7 +1093,7 @@ const CreateModal = ({ isOpen, onClose, isVerified, onVerificationComplete, onPr
 // eslint-disable-next-line no-template-curly-in-string
 const ProductCreationForm = ({ onBack, onSave }) => { return (<><h2 className="text-2xl font-bold mb-6 font-tt-travels">Создание нового продукта</h2><div className="space-y-4"><div><label className="font-semibold mb-1 block">Название</label><input type="text" placeholder="Название продукта..." className="w-full p-3 border border-grey-2 rounded-lg" /></div><div><label className="font-semibold mb-1 block">Продукт</label><select className="w-full p-3 border border-grey-2 rounded-lg"><option>Эксперты</option><option>Индикаторы</option></select></div><div className="grid grid-cols-2 gap-4"><div><label className="font-semibold mb-1 block">Тип счета</label><select className="w-full p-3 border border-grey-2 rounded-lg"><option>Любой</option></select></div><div><label className="font-semibold mb-1 block">Тип эксперта</label><div className="p-3 border border-grey-2 rounded-lg space-y-2"><label className="flex items-center"><input type="checkbox" className="form-checkbox mr-2"/>Арбитражный</label><label className="flex items-center"><input type="checkbox" className="form-checkbox mr-2"/>Скальпирующий</label></div></div></div><div><label className="font-semibold mb-1 block">Цена</label><div className="space-y-2"><div className="flex items-center gap-2"><input type="checkbox" className="form-checkbox"/><input type="number" placeholder="0.00" className="w-24 p-2 border rounded-lg"/><span>USD</span><span>аренда на 1 месяц</span></div><div className="flex items-center gap-2"><input type="checkbox" className="form-checkbox"/><input type="number" placeholder="0.00" className="w-24 p-2 border rounded-lg"/><span>USD</span><span>аренда на 1 год</span></div></div></div></div><div className="flex gap-4 mt-8">{onBack && <Button variant="big-outline" onClick={onBack}>Назад</Button>}<Button variant="big-classic" className="w-full" onClick={onSave}>Сохранить черновик</Button></div></>);};
 
-const BotDetailsPage = ({ bot, onBack }) => {
+const BotDetailsPage = ({ bot, onBack, isPurchased }) => {
   const [activeTab, setActiveTab] = useState('Описание');
   const tabs = ['Описание', 'Инструкция', 'Отзывы', 'Обновление'];
 
@@ -1184,10 +1233,14 @@ const BotDetailsPage = ({ bot, onBack }) => {
                   <p className="text-text-grey ml-1">в год</p>
               </div>
               <div className="flex-grow"></div>
-              <div className="flex items-center gap-4 mt-4">
-                  <Button variant="small-outline" className="w-1/2 !border-main !text-main hover:!bg-main hover:!text-white">Демо</Button>
-                  <Button variant="small-classic" className="w-1/2">Купить</Button>
-              </div>
+              {isPurchased ? (
+                <Button variant="small-classic" className="w-full">Скачать</Button>
+              ) : (
+                <div className="flex items-center gap-4 mt-4">
+                    <Button variant="small-outline" className="w-1/2 !border-main !text-main hover:!bg-main hover:!text-white">Демо</Button>
+                    <Button variant="small-classic" className="w-1/2">Купить</Button>
+                </div>
+              )}
             </div>
           </aside>
         </div>
@@ -1366,7 +1419,7 @@ const videosData = [
     description: "Подробный видеоурок по созданию и настройке вашего первого торгового робота на платформе AlgoVerse.",
     image: botImages[10],
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ", // Placeholder YouTube video
-    content: "Полное описание видео 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    content: "Полное содержание видео 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
   },
   {
     id: 2,
@@ -1648,7 +1701,7 @@ const MessagesPage = () => {
 };
 
 
-const BotCard = ({ bot, onDetailsClick, onBuyClick, isFavorited }) => (
+export const BotCard = ({ bot, onDetailsClick, onBuyClick, isFavorited, isPurchased }) => (
     <div className="bg-white p-6 rounded-2xl shadow-lg flex flex-col transform hover:-translate-y-1 transition-all duration-300 h-full">
         <div className="relative mb-4">
             <img src={bot.image} alt={bot.name} className="w-full h-48 object-cover rounded-lg"/>
@@ -1669,15 +1722,23 @@ const BotCard = ({ bot, onDetailsClick, onBuyClick, isFavorited }) => (
         <h3 className="font-tt-travels text-xl font-bold mb-2">{bot.name}</h3>
         <p className="text-text-grey text-sm mb-4 flex-grow">{bot.description}</p>
         <div className="flex items-center gap-2 mt-4">
-            <Button variant="small-classic" className="w-1/2" onClick={onBuyClick}>Купить</Button>
-            <Button variant="small-outline" icon={ICONS.arrowRight} iconPosition="right" onClick={onDetailsClick} className="w-1/2 !border-orange !text-orange hover:!bg-orange hover:!text-white">
-                Подробнее
-            </Button>
+            {isPurchased ? (
+                <Button variant="small-outline" icon={ICONS.arrowRight} iconPosition="right" onClick={onDetailsClick} className="w-full !border-orange !text-orange hover:!bg-orange hover:!text-white">
+                    Подробнее
+                </Button>
+            ) : (
+                <>
+                    <Button variant="small-classic" className="w-1/2" onClick={onBuyClick}>Купить</Button>
+                    <Button variant="small-outline" icon={ICONS.arrowRight} iconPosition="right" onClick={onDetailsClick} className="w-1/2 !border-orange !text-orange hover:!bg-orange hover:!text-white">
+                        Подробнее
+                    </Button>
+                </>
+            )}
         </div>
     </div>
 );
 
-const BrokerAdCard = ({ image, title }) => (
+export const BrokerAdCard = ({ image, title }) => (
   <a href="#!" className="block bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden aspect-square">
     <div className="relative w-full h-full">
       <img src={image} alt={title} className="w-full h-full object-cover" />
@@ -1688,8 +1749,7 @@ const BrokerAdCard = ({ image, title }) => (
   </a>
 );
 
-const Marketplace = ({ onNavigate, botData, botImages }) => {
-  const [selectedBot, setSelectedBot] = useState(null);
+const Marketplace = ({ onNavigate, botData, onBotDetailsClick, onSignalDetailsClick }) => {
   const [activeTab, setActiveTab] = useState('Алго-боты');
   const [isFilterOpen, setFilterOpen] = useState(false);
   const tabs = ['Алго-боты', 'Сигналы', 'Услуги', 'Софт', 'Дополнительно'];
@@ -1716,18 +1776,21 @@ const Marketplace = ({ onNavigate, botData, botImages }) => {
     };
   }, [controlFilterSidebar]);
 
-
-  if (selectedBot) {
-    return <BotDetailsPage bot={selectedBot} onBack={() => setSelectedBot(null)} />;
-  }
-
   const renderContent = () => {
     switch (activeTab) {
       case 'Алго-боты':
         return (
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {botData.map((bot, index) => (
-              <BotCard key={index} bot={bot} onDetailsClick={() => setSelectedBot(bot)} onBuyClick={() => onNavigate('register')} />
+              <BotCard key={index} bot={bot} onDetailsClick={() => onBotDetailsClick(bot)} onBuyClick={() => onNavigate('register')} />
+            ))}
+          </div>
+        );
+      case 'Сигналы':
+        return (
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            {signalData.map((signal) => (
+              <SignalCard key={signal.id} signal={signal} onDetailsClick={() => onSignalDetailsClick(signal)} />
             ))}
           </div>
         );
@@ -1827,7 +1890,7 @@ const Marketplace = ({ onNavigate, botData, botImages }) => {
           <h2 className="font-bold text-2xl mb-4">Рекомендуемые</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {recommendedBots.map((bot, index) => (
-              <BotCard key={index} bot={bot} onDetailsClick={() => setSelectedBot(bot)} onBuyClick={() => onNavigate('register')} />
+              <BotCard key={index} bot={bot} onDetailsClick={() => onBotDetailsClick(bot)} onBuyClick={() => onNavigate('register')} />
             ))}
           </div>
         </section>
@@ -1979,7 +2042,7 @@ const feedPosts = [
   }
 ];
 
-const AdCard = ({ image, title, url }) => (
+export const AdCard = ({ image, title, url }) => (
   <a href={url} target="_blank" rel="noopener noreferrer" className="block bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden">
     <div className="relative h-32">
       <img src={image} alt={title} className="w-full h-full object-cover" />
@@ -2478,11 +2541,15 @@ function App() {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
+  const [selectedBot, setSelectedBot] = useState(null);
+  const [selectedSignal, setSelectedSignal] = useState(null);
 
   const handleNavigate = (target) => {
     if (['Лента', 'Маркетплейс', 'Персоны', 'Рабочий стол', 'Сообщения', 'Избранное', 'Помощь', 'Главная'].includes(target)) {
       setPage('app');
       setActivePage(target);
+      setSelectedBot(null);
+      setSelectedSignal(null);
     } else {
       setPage(target);
     }
@@ -2492,6 +2559,14 @@ function App() {
     setPage('landing');
     setActivePage('Главная');
   };
+
+  const handleBotDetailsClick = (bot) => {
+    setSelectedBot(bot);
+  }
+
+  const handleSignalDetailsClick = (signal) => {
+    setSelectedSignal(signal);
+  }
 
   const renderPage = () => {
     if (page === 'landing') {
@@ -2505,30 +2580,40 @@ function App() {
     }
     if (page === 'app') {
       let ComponentToRender;
-      switch (activePage) {
-        case 'Главная':
-          ComponentToRender = <HomePage onNavigate={handleNavigate} />;
-          break;
-        case 'Лента':
-          ComponentToRender = <FeedPage onOpenModal={() => setModalOpen(true)} />;
-          break;
-        case 'Маркетплейс':
-          ComponentToRender = <Marketplace onNavigate={handleNavigate} botData={botData} botImages={botImages} />;
-          break;
-        case 'Персоны':
-          ComponentToRender = <PersonsPage onNavigate={handleNavigate} />;
-          break;
+
+      if (selectedBot) {
+        ComponentToRender = <BotDetailsPage bot={selectedBot} onBack={() => setSelectedBot(null)} isPurchased={activePage === 'Рабочий стол'} />;
+      } else if (selectedSignal) {
+        ComponentToRender = <SignalDetailsPage signal={selectedSignal} onBack={() => setSelectedSignal(null)} />;
+      } else {
+        switch (activePage) {
+          case 'Главная':
+            ComponentToRender = <HomePage onNavigate={handleNavigate} />;
+            break;
+          case 'Лента':
+            ComponentToRender = <FeedPage onOpenModal={() => setModalOpen(true)} />;
+            break;
+          case 'Маркетплейс':
+            ComponentToRender = <Marketplace onNavigate={handleNavigate} botData={botData} onBotDetailsClick={handleBotDetailsClick} onSignalDetailsClick={handleSignalDetailsClick} />;
+            break;
+          case 'Персоны':
+            ComponentToRender = <PersonsPage onNavigate={handleNavigate} />;
+            break;
+          case 'Рабочий стол':
+            ComponentToRender = <DesktopPage botData={botData} onBotDetailsClick={handleBotDetailsClick} onSignalDetailsClick={handleSignalDetailsClick} />;
+            break;
         case 'Сообщения':
-          ComponentToRender = <MessagesPage />;
-          break;
-        case 'Избранное':
-          ComponentToRender = <FavoritesPage />;
-          break;
-        case 'Помощь':
-          ComponentToRender = <HelpCenterPage onNavigate={handleNavigate} />;
-          break;
-        default:
-          ComponentToRender = <div className="text-center p-10">Раздел в разработке</div>;
+            ComponentToRender = <MessagesPage />;
+            break;
+          case 'Избранное':
+            ComponentToRender = <FavoritesPage />;
+            break;
+          case 'Помощь':
+            ComponentToRender = <HelpCenterPage onNavigate={handleNavigate} />;
+            break;
+          default:
+            ComponentToRender = <div className="text-center p-10">Раздел в разработке</div>;
+        }
       }
 
       return (

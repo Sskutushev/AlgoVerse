@@ -13,6 +13,9 @@ import DesktopPage, { SignalCard } from './pages/DesktopPage';
 import SignalDetailsPage from './pages/SignalDetailsPage';
 import InstrumentDetailsPage from './pages/InstrumentDetailsPage';
 import QuotesSection from './components/QuotesSection';
+import ProductSelectionStep from './components/ProductSelectionStep';
+import AlgoBotCreationForm from './components/AlgoBotCreationForm';
+import ProductDraftPage from './pages/ProductDraftPage';
 import { signalData } from './pages/DesktopPage';
 
 
@@ -1061,6 +1064,7 @@ const Header = ({ onOpenModal, setMobileMenuOpen, onLogout }) => {
 };
 
 
+
 const CreateModal = ({ isOpen, onClose, isVerified, onVerificationComplete, onProductCreated }) => {
     const [step, setStep] = useState(isVerified ? 4 : 1);
     const [docType, setDocType] = useState('Паспорт');
@@ -1072,23 +1076,33 @@ const CreateModal = ({ isOpen, onClose, isVerified, onVerificationComplete, onPr
     if (!isOpen) return null;
 
     const handleNextStep = () => {
-        if (step === 3) { onVerificationComplete(); setStep(4); } 
-        else if (step === 4) { onProductCreated(); onClose(); } 
-        else { setStep(s => s + 1); }
+        if (step === 3) { 
+            onVerificationComplete(); 
+            setStep(4); 
+        } else {
+            setStep(s => s + 1);
+        }
     };
     const handleBackStep = () => setStep(s => s - 1);
+    const handleProductSelect = (product) => {
+        if (product === 'Алго бот') {
+            setStep(5); // Move to the creation form
+        }
+        // Other products are disabled for now
+    };
 
     const renderStep = () => {
         switch (step) {
             case 1: return (<><h2 className="text-2xl font-bold text-center mb-2 font-tt-travels">ПОДТВЕРЖДЕНИЕ ЛИЧНОСТИ</h2><p className="text-center text-text-grey mb-6">Выберите страну и тип документа</p><div className="mb-4"><label className="font-semibold mb-2 block">Выберите страну выдачи документа</label><select className="w-full p-3 border border-grey-2 rounded-lg"><option>Россия</option><option>Казахстан</option></select></div><div className="mb-6"><label className="font-semibold mb-2 block">Выберите тип документа</label><div className="grid grid-cols-2 gap-4">{['Паспорт', 'Водительское удостоверение', 'ID карта', 'Вид на жительство'].map(type => (<label key={type} className={`flex items-center p-3 border rounded-lg cursor-pointer ${docType === type ? 'border-main bg-main/10' : 'border-grey-2'}`}><input type="radio" name="docType" value={type} checked={docType === type} onChange={() => setDocType(type)} className="form-radio text-main focus:ring-main" /><span className="ml-3 text-sm">{type}</span></label>))}</div></div><div className="bg-grey-2/30 p-4 rounded-lg text-center mb-6">{React.createElement(ICONS.upload, { className: "mx-auto text-grey mb-2" })}<Button variant="text">Загрузить документ</Button></div><Button variant="big-with-arrow" icon={ICONS.arrowRight} iconPosition="right" className="w-full" onClick={handleNextStep}>Следующий шаг</Button></>);
             case 2: return (<><h2 className="text-2xl font-bold text-center mb-2 font-tt-travels">3D СКАНИРОВАНИЕ ЛИЦА</h2><p className="text-center text-text-grey mb-8 max-w-sm mx-auto">Сначала посмотрите в камеру. Убедитесь, что ваше лицо полностью находится в кадре. Медленно поверните голову по кругу, чтобы завершить 3D-сканирование.</p><div className="relative w-48 h-48 mx-auto mb-8 flex items-center justify-center"><div className="absolute inset-0 border-8 border-grey-2 rounded-full"></div><div className="absolute inset-0 border-8 border-main rounded-full animate-spin" style={{ clipPath: 'polygon(0 0, 50% 0, 50% 100%, 0 100%)' }}></div><img src="https://placehold.co/150x150/E2BAA4/000000?text=User" alt="User face" className="rounded-full w-40 h-40 object-cover"/></div><div className="flex gap-4"><Button variant="big-outline" className="w-full" onClick={handleBackStep}>Назад</Button><Button variant="big-classic" className="w-full" onClick={handleNextStep}>Начать</Button></div></>);
             case 3: return (<><div className="w-24 h-24 mx-auto mb-6 flex items-center justify-center bg-light-blue/20 rounded-full"><svg className="w-12 h-12 text-light-blue animate-spin" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2V6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M12 18V22" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M4.93 4.93L7.76 7.76" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M16.24 16.24L19.07 19.07" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M2 12H6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M18 12H22" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M4.93 19.07L7.76 16.24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M16.24 7.76L19.07 4.93" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></div><h2 className="text-2xl font-bold text-center mb-2 font-tt-travels">Система уже проверяет ваши данные.</h2><p className="text-center text-text-grey mb-8 max-w-md mx-auto">Обычно это занимает одну-три минуты. Статус учетной записи будет автоматически изменяться после завершения проверки.</p><Button variant="big-classic" className="w-full" onClick={handleNextStep}>(Имитация) Завершить проверку</Button></>);
-            case 4: return <ProductCreationForm onBack={isVerified ? null : handleBackStep} onSave={handleNextStep} />;
+            case 4: return <ProductSelectionStep onSelectProduct={handleProductSelect} />;
+            case 5: return <AlgoBotCreationForm onBack={() => setStep(4)} onSave={onProductCreated} />;
             default: return null;
         }
     };
 
-    return (<div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"><div className="bg-white rounded-2xl p-8 w-full max-w-2xl max-h-[90vh] overflow-y-auto relative"><Button variant="icon" className="absolute top-4 right-4" onClick={onClose}>{React.createElement(ICONS.close)}</Button>{renderStep()}</div></div>);
+    return (<div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"><div className="bg-white rounded-2xl p-8 w-full max-w-3xl max-h-[90vh] overflow-y-auto relative"><Button variant="icon" className="absolute top-4 right-4" onClick={onClose}>{React.createElement(ICONS.close)}</Button>{renderStep()}</div></div>);
 };
 
 // eslint-disable-next-line no-template-curly-in-string
@@ -2547,9 +2561,15 @@ function App() {
   const [selectedBot, setSelectedBot] = useState(null);
   const [selectedSignal, setSelectedSignal] = useState(null);
   const [selectedInstrumentId, setSelectedInstrumentId] = useState(null);
+  const [showProductDraft, setShowProductDraft] = useState(false);
+  const [newProductData, setNewProductData] = useState(null);
 
   const handleNavigate = (target, data) => {
-    if (target.startsWith('instrument/')) {
+    if (target === 'draft') {
+        setShowProductDraft(true);
+        setPage('app');
+        setActivePage('draft');
+    } else if (target.startsWith('instrument/')) {
       const instrumentId = target.split('/')[1];
       setSelectedInstrumentId(instrumentId);
       setPage('app');
@@ -2560,6 +2580,7 @@ function App() {
       setSelectedBot(null);
       setSelectedSignal(null);
       setSelectedInstrumentId(null);
+      setShowProductDraft(false);
     } else {
       setPage(target);
     }
@@ -2568,6 +2589,7 @@ function App() {
   const handleLogout = () => {
     setPage('landing');
     setActivePage('Главная');
+    setShowProductDraft(false);
   };
 
   const handleBotDetailsClick = (bot) => {
@@ -2576,6 +2598,12 @@ function App() {
 
   const handleSignalDetailsClick = (signal) => {
     setSelectedSignal(signal);
+  }
+
+  const handleProductCreated = (productData) => {
+      setNewProductData(productData);
+      setModalOpen(false);
+      handleNavigate('draft');
   }
 
   const renderPage = () => {
@@ -2591,7 +2619,9 @@ function App() {
     if (page === 'app') {
       let ComponentToRender;
 
-      if (selectedBot) {
+      if (showProductDraft) {
+        ComponentToRender = <ProductDraftPage productData={newProductData} />;
+      } else if (selectedBot) {
         ComponentToRender = <BotDetailsPage bot={selectedBot} onBack={() => setSelectedBot(null)} isPurchased={activePage === 'Рабочий стол'} />;
       } else if (selectedSignal) {
         ComponentToRender = <SignalDetailsPage signal={selectedSignal} onBack={() => setSelectedSignal(null)} />;
@@ -2643,11 +2673,8 @@ function App() {
             isVerified={isVerified}
             onVerificationComplete={() => {
               setIsVerified(true);
-              // alert('Верификация пройдена!');
             }}
-            onProductCreated={() => {
-              // alert('Продукт создан!');
-            }}
+            onProductCreated={handleProductCreated}
           />
         </div>
       );

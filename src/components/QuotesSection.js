@@ -1,30 +1,56 @@
+
 import React from 'react';
-import { ICONS } from '../App'; // Assuming ICONS are exported from App.js
+import { quotesData } from '../data/quotesData';
 
-const QuotesSection = ({ quotesData, onInstrumentClick }) => {
-  const segments = ['Валюты', 'Криптовалюты', 'Фондовый рынок'];
+const InstrumentCard = ({ instrument, onNavigate }) => (
+  <button onClick={() => onNavigate(`instrument/${instrument.id}`)} className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 flex flex-col justify-between text-left">
+    <div>
+      <div className="flex justify-between items-start">
+        <h4 className="font-bold text-lg text-text-black">{instrument.name}</h4>
+        <span className={`font-bold ${instrument.changeColor}`}>{instrument.change}</span>
+      </div>
+      <p className="text-2xl text-text-grey mt-2">{instrument.price}</p>
+    </div>
+  </button>
+);
 
+const QuotesSection = ({ onNavigate }) => {
   return (
-    <div className="bg-white rounded-2xl shadow-sm p-4">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {segments.map(segment => (
-          <div key={segment}>
-            <h3 className="font-bold text-lg mb-2 px-2">{segment}</h3>
-            <div className="space-y-2">
-              {quotesData.filter(item => item.segment === segment).map(item => (
-                <button key={item.name} onClick={() => onInstrumentClick(item)} className="w-full flex justify-between items-center p-2 rounded-lg hover:bg-grey-1/50">
-                  <span className="font-semibold">{item.name}</span>
-                  <div className='text-right'>
-                    <span className="font-semibold">{item.price}</span>
-                    <span className={`ml-2 text-sm font-semibold ${item.changeType === 'positive' ? 'text-green-500' : 'text-red-500'}`}>
-                      {item.change}
-                    </span>
-                  </div>
-                </button>
+    <div className="py-8">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          {/* Сегмент Валюты */}
+          <div className="bg-white p-6 rounded-2xl shadow-lg">
+            <h3 className="text-2xl font-bold mb-4 text-text-black">Валюты</h3>
+            <div className="grid grid-cols-2 gap-4">
+              {quotesData.currencies.map(item => (
+                <InstrumentCard key={item.id} instrument={item} onNavigate={onNavigate} />
               ))}
             </div>
           </div>
-        ))}
+
+          {/* Сегмент Криптовалюты */}
+          <div className="bg-white p-6 rounded-2xl shadow-lg">
+            <h3 className="text-2xl font-bold mb-4 text-text-black">Криптовалюты</h3>
+            <div className="grid grid-cols-2 gap-4">
+              {quotesData.crypto.map(item => (
+                <InstrumentCard key={item.id} instrument={item} onNavigate={onNavigate} />
+              ))}
+            </div>
+          </div>
+
+          {/* Сегмент Фондовый рынок */}
+          <div className="bg-white p-6 rounded-2xl shadow-lg">
+            <h3 className="text-2xl font-bold mb-4 text-text-black">Фондовый рынок</h3>
+            <div className="grid grid-cols-2 gap-4">
+              {quotesData.stocks.map(item => (
+                <InstrumentCard key={item.id} instrument={item} onNavigate={onNavigate} />
+              ))}
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
   );

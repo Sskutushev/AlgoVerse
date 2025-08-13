@@ -12,6 +12,7 @@ import CommentSection from './components/CommentSection';
 import DesktopPage, { SignalCard } from './pages/DesktopPage';
 import SignalDetailsPage from './pages/SignalDetailsPage';
 import InstrumentDetailsPage from './pages/InstrumentDetailsPage';
+import QuotesSection from './components/QuotesSection';
 import { signalData } from './pages/DesktopPage';
 
 
@@ -2322,6 +2323,8 @@ const HomePage = ({ onNavigate }) => {
                     <img src={`${process.env.PUBLIC_URL}/608e59f7-475d-4d93-a2f0-163b70558ca4.png`} alt="Welcome Illustration" className="w-[750px] h-[300px] object-contain mr-0" />
                 </div>
             </section>
+
+            <QuotesSection onNavigate={onNavigate} />
             
             {/* Partner Ads */} 
             <section> 
@@ -2543,13 +2546,20 @@ function App() {
   const [isVerified, setIsVerified] = useState(false);
   const [selectedBot, setSelectedBot] = useState(null);
   const [selectedSignal, setSelectedSignal] = useState(null);
+  const [selectedInstrumentId, setSelectedInstrumentId] = useState(null);
 
-  const handleNavigate = (target) => {
-    if (['Лента', 'Маркетплейс', 'Персоны', 'Рабочий стол', 'Сообщения', 'Избранное', 'Помощь', 'Главная'].includes(target)) {
+  const handleNavigate = (target, data) => {
+    if (target.startsWith('instrument/')) {
+      const instrumentId = target.split('/')[1];
+      setSelectedInstrumentId(instrumentId);
+      setPage('app');
+      setActivePage('instrument'); // Special page state
+    } else if (['Лента', 'Маркетплейс', 'Персоны', 'Рабочий стол', 'Сообщения', 'Избранное', 'Помощь', 'Главная'].includes(target)) {
       setPage('app');
       setActivePage(target);
       setSelectedBot(null);
       setSelectedSignal(null);
+      setSelectedInstrumentId(null);
     } else {
       setPage(target);
     }
@@ -2585,6 +2595,8 @@ function App() {
         ComponentToRender = <BotDetailsPage bot={selectedBot} onBack={() => setSelectedBot(null)} isPurchased={activePage === 'Рабочий стол'} />;
       } else if (selectedSignal) {
         ComponentToRender = <SignalDetailsPage signal={selectedSignal} onBack={() => setSelectedSignal(null)} />;
+      } else if (activePage === 'instrument' && selectedInstrumentId) {
+        ComponentToRender = <InstrumentDetailsPage instrumentId={selectedInstrumentId} onBack={() => handleNavigate('Главная')} />;
       } else {
         switch (activePage) {
           case 'Главная':

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, BrokerAdCard, ICONS } from '../App'; // Assuming these are exported from App.js
 import { NewsModal } from '../App'; // Assuming NewsModal is exported from App.js
+import QuotesSection from '../components/QuotesSection'; // Import the new component
 
 const HomePage = ({ handleInstrumentDetailsClick, newsUpdatesData, brokerAds }) => {
   const [isNewsModalOpen, setNewsModalOpen] = useState(false);
@@ -107,7 +108,7 @@ const HomePage = ({ handleInstrumentDetailsClick, newsUpdatesData, brokerAds }) 
   return (
     <div className="space-y-6">
         <WelcomeBanner />
-        <QuotesTicker onInstrumentClick={handleInstrumentDetailsClick} />
+        <QuotesSection onInstrumentClick={handleInstrumentDetailsClick} />
         <PartnersCarousel />
         <GettingStarted />
         <InvestmentSection />

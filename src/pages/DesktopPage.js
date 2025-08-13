@@ -3,9 +3,9 @@ import { ICONS, Button, BotCard } from '../App'; // Assuming these are exported 
 
 // Mock data for signals - using chart images
 export const signalData = [
-  { id: 1, name: 'Сигнал по BTC/USD', description: 'Краткосрочные сигналы на основе анализа объемов и волатильности для пары BTC/USD.', chart: '/chart1.jpg', profit: 25, risk: 'Низкий', value: 1250.50, pnl_percentage: 41.6 }
-,  { id: 2, name: 'Трендовый сигнал ETH', description: 'Среднесрочные сигналы для торговли по тренду на Ethereum. Идеально для позиционной торговли.', chart: '/chart2.jpg', profit: 45, risk: 'Средний', value: 990.00, pnl_percentage: 33.0 },
-  { id: 3, name: 'Скальпинг на S&P 500', description: 'Высокочастотные сигналы для скальпинга фьючерса на индекс S&P 500.', chart: '/chart3.jpg', profit: 75, risk: 'Высокий', value: 760.00, pnl_percentage: 25.4 },
+  { id: 1, name: 'Сигнал по BTC/USD', description: 'Краткосрочные сигналы на основе анализа объемов и волатильности для пары BTC/USD.', chart: '/chart1.jpg', profit: 25, risk: 'Низкий', value: 1250.50, pnl_percentage: 41.6, tradingViewSymbol: 'BINANCE:BTCUSDT' },
+  { id: 2, name: 'Трендовый сигнал ETH', description: 'Среднесрочные сигналы для торговли по тренду на Ethereum. Идеально для позиционной торговли.', chart: '/chart2.jpg', profit: 45, risk: 'Средний', value: 990.00, pnl_percentage: 33.0, tradingViewSymbol: 'BINANCE:ETHUSDT' },
+  { id: 3, name: 'Скальпинг на S&P 500', description: 'Высокочастотные сигналы для скальпинга фьючерса на индекс S&P 500.', chart: '/chart3.jpg', profit: 75, risk: 'Высокий', value: 760.00, pnl_percentage: 25.4, tradingViewSymbol: 'SP:SPX' },
 ];
 
 const pnlChartData = {

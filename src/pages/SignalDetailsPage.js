@@ -1,56 +1,7 @@
 import React, { useState, useEffect, useRef, memo } from 'react';
 import { Button, ICONS } from '../App'; // Assuming these are exported from App.js
+import TradingViewWidget from '../components/TradingViewWidget';
 
-// TradingView Widget Component
-export const TradingViewWidget = memo(({ symbol }) => {
-  const container = useRef();
-
-  useEffect(
-    () => {
-      if (!container.current) return;
-
-      const script = document.createElement("script");
-      script.src = "https://s3.tradingview.com/tv.js";
-      script.type = "text/javascript";
-      script.async = true;
-      script.onload = () => {
-        if (container.current && window.TradingView) {
-          new window.TradingView.widget(
-            {
-              "width": "100%",
-              "height": 550,
-              "symbol": symbol,
-              "interval": "D",
-              "timezone": "Etc/UTC",
-              "theme": "light",
-              "style": "1",
-              "locale": "ru",
-              "enable_publishing": false,
-              "allow_symbol_change": true,
-              "container_id": container.current.id
-            }
-          );
-        }
-      };
-      
-      container.current.innerHTML = '';
-      container.current.appendChild(script);
-
-      return () => {
-        if (container.current) {
-          container.current.innerHTML = '';
-        }
-      }
-    },
-    [symbol]
-  );
-
-  return (
-    <div className="tradingview-widget-container" ref={container} id={`tradingview_widget_${Math.random().toString(36).substring(7)}`} style={{ height: "550px", width: "100%" }}>
-      <div className="tradingview-widget-container__widget" />
-    </div>
-  );
-});
 
 const ProfitabilityChart = () => {
     const [period, setPeriod] = useState('1 год');

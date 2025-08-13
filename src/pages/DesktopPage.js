@@ -27,9 +27,9 @@ const FundsPanel = () => {
             <div className="flex items-baseline gap-4">
                 <div className="text-center md:text-left">
                 <p className="text-sm text-text-grey">Общая сумма активов</p>
-                <p className="font-bold text-2xl md:text-3xl">$ 3,000.38</p>
+                <p className="font-bold text-2xl md:text-3xl">$ 6273</p>
                 </div>
-                <p className="font-semibold text-green-500 text-lg">+13%</p>
+                <p className="font-semibold text-green-500 text-lg">+102%</p>
             </div>
             <div className="text-center md:text-left">
                 <p className="text-sm text-text-grey">Свободные средства</p>

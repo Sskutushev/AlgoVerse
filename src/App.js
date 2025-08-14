@@ -17,6 +17,8 @@ import ProductSelectionStep from './components/ProductSelectionStep';
 import AlgoBotCreationForm from './components/AlgoBotCreationForm';
 import ProductDraftPage from './pages/ProductDraftPage';
 import { signalData } from './pages/DesktopPage';
+import NotificationsPage from './pages/NotificationsPage';
+import { notificationsData } from './data/notificationsData';
 
 
 //=========== ИКОНКИ (SVG) ===========//
@@ -509,7 +511,7 @@ const LandingPage = ({ onNavigate, botData, botImages }) => {
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center gap-4">
             <Logo className="h-10 w-10"/>
-            <span className="font-tt-travels text-2xl font-bold hidden sm:inline">AlgoVerse</span>
+            <span className="font-tt-travels text-2xl font-bold hidden sm:inline">TOT Algo</span>
           </button>
           <nav className="hidden md:flex items-center gap-8">
             <a href="#about" onClick={(e) => { e.preventDefault(); document.getElementById('about').scrollIntoView({ behavior: 'smooth' }); }} className="hover:text-main">О нас</a>
@@ -531,7 +533,7 @@ const LandingPage = ({ onNavigate, botData, botImages }) => {
             <div className="flex justify-between items-center mb-8">
                 <button onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-4">
                     <Logo className="h-10 w-10"/>
-                    <span className="font-tt-travels text-2xl font-bold">AlgoVerse</span>
+                    <span className="font-tt-travels text-2xl font-bold">TOT Algo</span>
                 </button>
                 <Button variant="icon" onClick={() => setMobileMenuOpen(false)}>
                     {React.createElement(ICONS.close)}
@@ -694,7 +696,7 @@ const LandingPage = ({ onNavigate, botData, botImages }) => {
       {/* Footer */}
       <footer className="bg-white py-8 px-6">
         <div className="container mx-auto text-center text-text-grey">
-          <p>&copy; {new Date().getFullYear()} AlgoVerse. Все права защищены.</p>
+          <p>&copy; {new Date().getFullYear()} TOT Algo. Все права защищены.</p>
         </div>
       </footer>
     </div>
@@ -943,7 +945,7 @@ const Sidebar = ({ activePage, onNavigate, isMobileMenuOpen, setMobileMenuOpen }
       <div className="p-4">
         <button onClick={() => handleItemClick('Главная')} className="flex items-center gap-4">
           <Logo className="h-10 w-10"/>
-          <span className="font-tt-travels text-2xl font-bold text-text-black">AlgoVerse</span>
+          <span className="font-tt-travels text-2xl font-bold text-text-black">TOT Algo</span>
         </button>
       </div>
       <nav className="flex-grow px-4 mt-8 pb-6 overflow-y-auto">
@@ -1317,7 +1319,7 @@ const chatMockData = {
     name: 'Акции и предложения',
     avatar: 'https://placehold.co/40x40/FF69B4/fff?text=P',
     messages: [
-      { id: 1, text: '🔥 Черная пятница на AlgoVerse! 🔥 Скидки до -70% на лучших торговых ботов и подписки на сигналы. Не упустите свой шанс автоматизировать прибыль!', sender: 'contact', time: 'Вчера', status: 'read' },
+      { id: 1, text: '🔥 Черная пятница на TOT Algo! 🔥 Скидки до -70% на лучших торговых ботов и подписки на сигналы. Не упустите свой шанс автоматизировать прибыль!', sender: 'contact', time: 'Вчера', status: 'read' },
       { id: 2, text: 'Только до конца недели, пополните свой счет на сумму от $500 и получите бонус +10% на баланс. Начните торговать с большим депозитом!', sender: 'contact', time: '15:12', status: 'delivered' },
     ],
   },
@@ -1357,7 +1359,7 @@ const chatMockData = {
 const articlesData = [
   {
     id: 1,
-    title: "Как начать торговать на AlgoVerse",
+    title: "Как начать торговать на TOT Algo",
     description: "Пошаговое руководство для новичков: от регистрации до первой сделки.",
     image: botImages[0],
     content: "Полное содержание статьи 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
@@ -1392,7 +1394,7 @@ const articlesData = [
   },
   {
     id: 6,
-    title: "Настройка торгового терминала для AlgoVerse",
+    title: "Настройка торгового терминала для TOT Algo",
     description: "Подробная инструкция по подключению и настройке вашего терминала.",
     image: botImages[5],
     content: "Полное содержание статьи 6. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
@@ -1431,14 +1433,14 @@ const videosData = [
   {
     id: 1,
     title: "Видеоурок: Создание своего первого алго-бота",
-    description: "Подробный видеоурок по созданию и настройке вашего первого торгового робота на платформе AlgoVerse.",
+    description: "Подробный видеоурок по созданию и настройке вашего первого торгового робота на платформе TOT Algo.",
     image: botImages[10],
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ", // Placeholder YouTube video
     content: "Полное содержание видео 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
   },
   {
     id: 2,
-    title: "Обзор интерфейса AlgoVerse",
+    title: "Обзор интерфейса TOT Algo",
     description: "Знакомство с основными разделами платформы и их функционалом.",
     image: botImages[11],
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
@@ -1462,7 +1464,7 @@ const videosData = [
   },
   {
     id: 5,
-    title: "Обзор новых функций AlgoVerse",
+    title: "Обзор новых функций TOT Algo",
     description: "Видеопрезентация последних обновлений и добавленных возможностей платформы.",
     image: botImages[14],
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
@@ -1494,7 +1496,7 @@ const videosData = [
   },
   {
     id: 9,
-    title: "Торговля на Форекс с AlgoVerse",
+    title: "Торговля на Форекс с TOT Algo",
     description: "Видеоурок по особенностям торговли на валютном рынке с использованием платформы.",
     image: botImages[3],
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
@@ -1521,7 +1523,7 @@ const newsUpdatesData = [
   },
   {
     id: 2,
-    title: "AlgoVerse запускает партнерскую программу",
+    title: "TOT Algo запускает партнерскую программу",
     description: "Приглашаем всех желающих присоединиться к нашей партнерской программе и зарабатывать на привлечении новых пользователей.",
     image: botImages[6],
     date: "05.08.2025",
@@ -1538,7 +1540,7 @@ const newsUpdatesData = [
   {
     id: 4,
     title: "Вебинар: Эффективные стратегии алго-трейдинга",
-    description: "Приглашаем на бесплатный вебинар с ведущими экспертами AlgoVerse.",
+    description: "Приглашаем на бесплатный вебинар с ведущими экспертами TOT Algo.",
     image: botImages[8],
     date: "25.07.2025",
     content: "Полное содержание новости 4. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
@@ -1546,7 +1548,7 @@ const newsUpdatesData = [
   {
     id: 5,
     title: "Интеграция с новыми биржами",
-    description: "Теперь AlgoVerse поддерживает торговлю на еще большем количестве популярных криптовалютных и фондовых бирж.",
+    description: "Теперь TOT Algo поддерживает торговлю на еще большем количестве популярных криптовалютных и фондовых бирж.",
     image: botImages[9],
     date: "20.07.2025",
     content: "Полное содержание новости 5. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
